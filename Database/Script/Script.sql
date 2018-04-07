@@ -48,3 +48,7 @@ CREATE TABLE [dbo].[SalesOrderLines]
 	[LastUpdate] [datetime] NOT NULL CONSTRAINT [DF_POrders_LastUpdate] DEFAULT (getdate())
 )
 ALTER TABLE [dbo].[SalesOrderLines] ADD CONSTRAINT [PK_POrderLine] PRIMARY KEY CLUSTERED ([SalesOrderID], [SalesOrderLineNo])
+
+ALTER TABLE [dbo].[SalesOrderLines]     
+ADD CONSTRAINT FK_SalesOrders_SalesOrderLines FOREIGN KEY ([SalesOrderID])     
+    REFERENCES [dbo].[SalesOrders] ([SalesOrderID]) 
