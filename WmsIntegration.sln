@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceptionPlanApi", "Recepti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesOrder", "SalesOrder\SalesOrder.csproj", "{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}"
 EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{3BA1A7BF-F3F2-4109-B873-E4F20C406878}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,12 @@ Global
 		{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BA1A7BF-F3F2-4109-B873-E4F20C406878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BA1A7BF-F3F2-4109-B873-E4F20C406878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BA1A7BF-F3F2-4109-B873-E4F20C406878}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3BA1A7BF-F3F2-4109-B873-E4F20C406878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BA1A7BF-F3F2-4109-B873-E4F20C406878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BA1A7BF-F3F2-4109-B873-E4F20C406878}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
