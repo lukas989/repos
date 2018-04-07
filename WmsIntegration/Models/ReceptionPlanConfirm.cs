@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WmsIntegration.Models
 {
-    public class ReceptionPlanConfirmModel
+    public class ReceptionPlanConfirm
     {
         public ReceptionPlanConfirmHeader Header { get; set; }
 

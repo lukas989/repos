@@ -14,7 +14,7 @@ namespace WmsIntegration.Controllers
     {
         // PUT: api/ReceptionPlan
         [HttpPut]
-        public void Put([FromBody]ReceptionPlanModel value)
+        public void Put([FromBody]ReceptionPlan value)
         {
 
         }

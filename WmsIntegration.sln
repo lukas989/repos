@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmsIntegration", "WmsIntegration\WmsIntegration.csproj", "{6E267DD8-E8DD-400D-8CBB-5009367B94F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WmsIntegration", "WmsIntegration\WmsIntegration.csproj", "{6E267DD8-E8DD-400D-8CBB-5009367B94F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReceptionPlanApi", "ReceptionPlanApi\ReceptionPlanApi.csproj", "{D24B1247-E705-49C6-878A-5BF68938FDD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SalesOrder", "SalesOrder\SalesOrder.csproj", "{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{6E267DD8-E8DD-400D-8CBB-5009367B94F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6E267DD8-E8DD-400D-8CBB-5009367B94F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6E267DD8-E8DD-400D-8CBB-5009367B94F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D24B1247-E705-49C6-878A-5BF68938FDD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D24B1247-E705-49C6-878A-5BF68938FDD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D24B1247-E705-49C6-878A-5BF68938FDD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D24B1247-E705-49C6-878A-5BF68938FDD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{516AF6A6-6520-4A7A-8BF6-E98AA43C4868}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

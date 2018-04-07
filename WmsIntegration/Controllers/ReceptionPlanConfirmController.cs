@@ -15,7 +15,7 @@ namespace WmsIntegration.Controllers
       
         // PUT: api/ReceptionPlanConfirm
         [HttpPut]
-        public void Put([FromBody]ReceptionPlanConfirmModel receptionPlanConfirmModel)
+        public void Put([FromBody]ReceptionPlanConfirm receptionPlanConfirmModel)
         {
 
         }

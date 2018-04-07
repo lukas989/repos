@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WmsIntegration.Models
 {
-    public class ReceptionPlanModel
+    public class ReceptionPlan
     {
         public ReceptionPlanSupplier Supplier { get; set; }
 
