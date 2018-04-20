@@ -71,5 +71,7 @@
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
     <Build Include="dbo\Tables\Products.sql" />
     <Build Include="dbo\Tables\Suppliers.sql" />
+    <Build Include="dbo\Tables\RecPlans.sql" />
+    <Build Include="dbo\Tables\RecPlanLines.sql" />
   </ItemGroup>
 </Project>
