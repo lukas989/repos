@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[SalesOrderLines]
 (
-	[SalesOrderID] int NOT NULL,
+	[SalesOrderID] bigint NOT NULL,
 	[SalesOrderLineNo] int NOT NULL,
 	[ProductId] [bigint] NOT NULL,
 	[OrderedQty] int NOT NULL,

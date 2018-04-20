@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Stocks]
 (
-	[StockID] [int] IDENTITY(1,1) NOT NULL,
+	[StockID] [int] IDENTITY(1,1) PRIMARY KEY,
 	[RegionID] [int] NOT NULL,
 	[Name] [varchar] (32) NOT NULL, 
 	[Description] [varchar] (255) NULL
