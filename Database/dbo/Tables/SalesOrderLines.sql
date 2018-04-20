@@ -2,9 +2,8 @@
 (
 	[SalesOrderID] int NOT NULL,
 	[SalesOrderLineNo] int NOT NULL,
-    [Cono] [int] NOT NULL,
     [SalesOrderStatusId] [int] NOT NULL,    
-	[PartNumber] [varchar] (15),
+	[ProductId] [bigint] NOT NULL,
 	[OrderedQty] int NOT NULL,
 	[RecivedQty] int NULL,
 	[PriceTypeId] int NOT NULL,

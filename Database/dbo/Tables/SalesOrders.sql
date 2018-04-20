@@ -1,7 +1,6 @@
 ﻿CREATE TABLE [dbo].[SalesOrders]
 (
 	[SalesOrderID] [bigint] IDENTITY(1,1) NOT NULL,
-    [Cono] [int] NOT NULL,
     [SalesOrderStatusId] [int] NOT NULL,    
 	[SupplierId] [int] NOT NULL,
 	[ExpectedDate] [datetime] NULL,
