@@ -7,11 +7,19 @@ IF OBJECT_ID('dbo.Products', 'U') IS NOT NULL
 IF OBJECT_ID('dbo.Suppliers', 'U') IS NOT NULL 
   DROP TABLE dbo.Suppliers;
 
+IF OBJECT_ID('dbo.RecPlanLines', 'U') IS NOT NULL 
+  DROP TABLE dbo.RecPlanLines; 
+
+IF OBJECT_ID('dbo.RecPlans', 'U') IS NOT NULL 
+  DROP TABLE dbo.RecPlans; 
+
+  
 IF OBJECT_ID('dbo.SalesOrderLines', 'U') IS NOT NULL 
   DROP TABLE dbo.SalesOrderLines; 
 
 IF OBJECT_ID('dbo.SalesOrders', 'U') IS NOT NULL 
   DROP TABLE dbo.SalesOrders; 
+
 
   CREATE TABLE [dbo].[Products]
 (
