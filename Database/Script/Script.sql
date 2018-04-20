@@ -16,6 +16,22 @@ IF OBJECT_ID('dbo.Suppliers', 'U') IS NOT NULL
 IF OBJECT_ID('dbo.Products', 'U') IS NOT NULL 
   DROP TABLE [dbo].[Products];
 
+  IF OBJECT_ID('dbo.SalesOrderStatus', 'U') IS NOT NULL 
+  DROP TABLE dbo.SalesOrderStatus; 
+
+IF OBJECT_ID('dbo.DiscountTypes', 'U') IS NOT NULL 
+  DROP TABLE dbo.DiscountTypes; 
+
+IF OBJECT_ID('dbo.RecPlanStatus', 'U') IS NOT NULL 
+  DROP TABLE dbo.RecPlanStatus; 
+
+IF OBJECT_ID('dbo.Stocks', 'U') IS NOT NULL 
+  DROP TABLE dbo.Stocks; 
+  
+IF OBJECT_ID('dbo.Regions', 'U') IS NOT NULL 
+  DROP TABLE dbo.Regions; 
+
+
   CREATE TABLE [dbo].[Products]
 (
 	[ProductID] [bigint] IDENTITY(1,1) NOT NULL,

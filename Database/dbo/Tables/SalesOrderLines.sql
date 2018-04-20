@@ -2,7 +2,6 @@
 (
 	[SalesOrderID] int NOT NULL,
 	[SalesOrderLineNo] int NOT NULL,
-    [SalesOrderStatusId] [int] NOT NULL,    
 	[ProductId] [bigint] NOT NULL,
 	[OrderedQty] int NOT NULL,
 	[RecivedQty] int NULL,
@@ -21,6 +20,6 @@
 GO
 ALTER TABLE [dbo].[SalesOrderLines] ADD CONSTRAINT [PK_POrderLine] PRIMARY KEY CLUSTERED ([SalesOrderID], [SalesOrderLineNo])
 GO
-ALTER TABLE [dbo].[SalesOrderLines]     
-ADD CONSTRAINT FK_SalesOrders_SalesOrderLines FOREIGN KEY ([SalesOrderID])     
-    REFERENCES [dbo].[SalesOrders] ([SalesOrderID])
+ALTER TABLE [dbo].[SalesOrderLines]  ADD CONSTRAINT FK_SalesOrders_SalesOrderLines FOREIGN KEY ([SalesOrderID])  REFERENCES [dbo].[SalesOrders] ([SalesOrderID])
+GO
+ALTER TABLE [dbo].[SalesOrderLines] ADD CONSTRAINT FK_SalesOrderLines_DiscountTypes FOREIGN KEY ([DiscountTypeId])  REFERENCES [dbo].[DiscountTypes] ([DiscountTypeId])
