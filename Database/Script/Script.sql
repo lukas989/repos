@@ -222,3 +222,5 @@ CREATE TABLE [dbo].[CustomerAddress]
 )
 
 --CONSTRAINT FK_RecPlanLines_SalesOrderLines FOREIGN KEY ([SalesOrderId],[SalesOrderLineNo])  REFERENCES RecPlanLines([SalesOrderId],[SalesOrderLineNo])
+
+--
