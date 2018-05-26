@@ -4,11 +4,11 @@
 IF OBJECT_Id('dbo.RecPlans', 'U') IS NOT NULL 
   DROP TABLE dbo.RecPlans; 
   
-IF OBJECT_Id('dbo.SalesOrderLines', 'U') IS NOT NULL 
-  DROP TABLE dbo.SalesOrderLines; 
+IF OBJECT_Id('dbo.PurchaseOrderLines', 'U') IS NOT NULL 
+  DROP TABLE dbo.PurchaseOrderLines; 
 
-IF OBJECT_Id('dbo.SalesOrders', 'U') IS NOT NULL 
-  DROP TABLE dbo.SalesOrders; 
+IF OBJECT_Id('dbo.PurchaseOrders', 'U') IS NOT NULL 
+  DROP TABLE dbo.PurchaseOrders; 
   
 IF OBJECT_Id('dbo.Suppliers', 'U') IS NOT NULL 
   DROP TABLE dbo.Suppliers;
@@ -16,8 +16,8 @@ IF OBJECT_Id('dbo.Suppliers', 'U') IS NOT NULL
 IF OBJECT_Id('dbo.Products', 'U') IS NOT NULL 
   DROP TABLE [dbo].[Products];
 
-  IF OBJECT_Id('dbo.SalesOrderStatus', 'U') IS NOT NULL 
-  DROP TABLE dbo.SalesOrderStatus; 
+  IF OBJECT_Id('dbo.PurchaseOrderStatus', 'U') IS NOT NULL 
+  DROP TABLE dbo.PurchaseOrderStatus; 
 
 IF OBJECT_Id('dbo.DiscountTypes', 'U') IS NOT NULL 
   DROP TABLE dbo.DiscountTypes; 
@@ -64,10 +64,10 @@ IF OBJECT_Id('dbo.CustomerAddress', 'U') IS NOT NULL
 
 
 
-CREATE TABLE [dbo].[SalesOrders]
+CREATE TABLE [dbo].[PurchaseOrders]
 (
-	[SalesOrderId] [int] IDENTITY(1,1) NOT NULL,
-    [SalesOrderStatusId] [int] NOT NULL,    
+	[PurchaseOrderId] [int] IDENTITY(1,1) NOT NULL,
+    [PurchaseOrderStatusId] [int] NOT NULL,    
 	[SupplierId] [int] NOT NULL,
 	[ExpectedDate] [datetime] NULL,
 	[CurrencyId] [char] (3)  NOT NULL,
@@ -77,22 +77,22 @@ CREATE TABLE [dbo].[SalesOrders]
 	[EntryDate] [datetime] NOT NULL  DEFAULT (getdate()),
 	[LastAuthor] [varchar] (32)  NOT NULL  DEFAULT (suser_sname()),
 	[LastUpdate] [datetime] NOT NULL  DEFAULT (getdate()),
-	CONSTRAINT [PK_SalesOrders] PRIMARY KEY CLUSTERED ([SalesOrderId]),
-	CONSTRAINT FK_Supplier_SalesOrders FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
-	CONSTRAINT FK_Stock_SalesOrders FOREIGN KEY ([StockId])  REFERENCES Stocks([StockId])
+	CONSTRAINT [PK_PurchaseOrders] PRIMARY KEY CLUSTERED ([PurchaseOrderId]),
+	CONSTRAINT FK_Supplier_PurchaseOrders FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
+	CONSTRAINT FK_Stock_PurchaseOrders FOREIGN KEY ([StockId])  REFERENCES Stocks([StockId])
     
 )
 
 
-CREATE TABLE [dbo].[SalesOrderLines]
+CREATE TABLE [dbo].[PurchaseOrderLines]
 (
-	[SalesOrderId] int NOT NULL,
-	[SalesOrderLineNo] int NOT NULL,
+	[PurchaseOrderId] int NOT NULL,
+	[PurchaseOrderLineNo] int NOT NULL,
 	[ProductId] [int] NOT NULL,
 	[OrderedQty] int NOT NULL,
 	[RecivedQty] int NULL,
 	[PriceTypeId] int NOT NULL,
-	[SalesOrderPrice] [decimal] (15, 5) NOT NULL DEFAULT ((1)),
+	[PurchaseOrderPrice] [decimal] (15, 5) NOT NULL DEFAULT ((1)),
 	[ExpectedDate] [datetime] NULL,
 	[DeliveryDate] [datetime] NULL,
 	[DiscountTypeId] INT NOT NULL  DEFAULT ((1)),
@@ -102,9 +102,9 @@ CREATE TABLE [dbo].[SalesOrderLines]
 	[EntryDate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
 	[LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 	[LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
-	CONSTRAINT [PK_SalesOrderLines] PRIMARY KEY CLUSTERED ([SalesOrderId],[SalesOrderLineNo]),
-	CONSTRAINT FK_Products_SalesOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId]),
-	CONSTRAINT FK_DiscountTypes_SalesOrderLines FOREIGN KEY (DiscountTypeId)  REFERENCES DiscountTypes([DiscountTypeId]),
+	CONSTRAINT [PK_PurchaseOrderLines] PRIMARY KEY CLUSTERED ([PurchaseOrderId],[PurchaseOrderLineNo]),
+	CONSTRAINT FK_Products_PurchaseOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId]),
+	CONSTRAINT FK_DiscountTypes_PurchaseOrderLines FOREIGN KEY (DiscountTypeId)  REFERENCES DiscountTypes([DiscountTypeId]),
 	
 
 	
@@ -133,8 +133,8 @@ CREATE TABLE [dbo].[RecPlanLines]
 (
 [RecPlanId] INT NOT NULL,
 [RecPlanLineNo] INT NOT NULL,
-[SalesOrderId] INT NOT NULL,
-[SalesOrderLineNo] INT NOT NULL,
+[PurchaseOrderId] INT NOT NULL,
+[PurchaseOrderLineNo] INT NOT NULL,
 [ExpectedQty] INT NOT NULL,
 [RecivedQty] INT NULL,
 [DeliveryDate] [DATETIME] NULL,
@@ -144,15 +144,15 @@ CREATE TABLE [dbo].[RecPlanLines]
 [LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
 CONSTRAINT [PK_RecPlanLines] PRIMARY KEY CLUSTERED ([RecPlanId],[RecPlanLineNo]),
 CONSTRAINT FK_RecPlans_RecPlanLines FOREIGN KEY ([RecPlanId])  REFERENCES RecPlans([RecPlanId]),
-CONSTRAINT FK_SalesOrder_RecPlanLines FOREIGN KEY ([SalesOrderId])  REFERENCES SalesOrders([SalesOrderId])
+CONSTRAINT FK_PurchaseOrder_RecPlanLines FOREIGN KEY ([PurchaseOrderId])  REFERENCES PurchaseOrders([PurchaseOrderId])
 )
-CREATE TABLE [dbo].[SalesOrderStatus]
+CREATE TABLE [dbo].[PurchaseOrderStatus]
 (
-	[SalesOrderStatusId] [INT] IDENTITY(1,1) NOT NULL,
+	[PurchaseOrderStatusId] [INT] IDENTITY(1,1) NOT NULL,
 	[Name] [VARCHAR] (32) NOT NULL, 
 	[Description] [VARCHAR] (255) NULL,
-	CONSTRAINT [PK_SalesOrderStatus] PRIMARY KEY CLUSTERED ([SalesOrderStatusId]),
-	--CONSTRAINT FK_SalesOrder_SalesOrderStatus FOREIGN KEY ([SalesOrderStatusId])  REFERENCES SalesOrders([SalesOrderStatusId])
+	CONSTRAINT [PK_PurchaseOrderStatus] PRIMARY KEY CLUSTERED ([PurchaseOrderStatusId]),
+	--CONSTRAINT FK_PurchaseOrder_PurchaseOrderStatus FOREIGN KEY ([PurchaseOrderStatusId])  REFERENCES PurchaseOrders([PurchaseOrderStatusId])
 )
 
 CREATE TABLE [dbo].[DiscountTypes]
@@ -221,6 +221,6 @@ CREATE TABLE [dbo].[CustomerAddress]
 	
 )
 
---CONSTRAINT FK_RecPlanLines_SalesOrderLines FOREIGN KEY ([SalesOrderId],[SalesOrderLineNo])  REFERENCES RecPlanLines([SalesOrderId],[SalesOrderLineNo])
+--CONSTRAINT FK_RecPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES RecPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
 
 --
