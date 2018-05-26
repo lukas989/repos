@@ -97,7 +97,6 @@ CREATE TABLE [dbo].[PurchaseOrderLines]
 	[DeliveryDate] [datetime] NULL,
 	[DiscountTypeId] INT NOT NULL  DEFAULT ((1)),
 	[DiscountValue] INT NULL,
-	[DiscountPercent] INT NULL,
 	[EntryAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 	[EntryDate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
 	[LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
@@ -211,6 +210,7 @@ CREATE TABLE [dbo].[CustomerAddress]
 (
 	[CustomerAddressId] [INT] IDENTITY(1,1) NOT NULL,
 	[CustomerId] [INT] NOT NULL,
+	[CustomerAddressTypeId] [INT] NOT NULL,
 	[Street]	VARCHAR(255) NOT NULL,
 	[City]		VARCHAR(255) NOT NULL,
 	[Zipcode]	VARCHAR(15)  NOT NULL,
@@ -223,4 +223,61 @@ CREATE TABLE [dbo].[CustomerAddress]
 
 --CONSTRAINT FK_RecPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES RecPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
 
---
+CREATE TABLE [dbo].[CustomerAddressTypes]
+(
+	[CustomerAddressTypeId] [INT] IDENTITY(1,1) NOT NULL,
+	[Name] [VARCHAR] (32) NOT NULL, 
+	[Description] [VARCHAR] (255) NULL,
+	CONSTRAINT [PK_CustomerAddressTypes] PRIMARY KEY CLUSTERED ([CustomerAddressTypeId]),
+	--CONSTRAINT FK_PurchaseOrder_PurchaseOrderStatus FOREIGN KEY ([PurchaseOrderStatusId])  REFERENCES PurchaseOrders([PurchaseOrderStatusId])
+)
+
+
+CREATE TABLE [dbo].[SalesOrders]
+(
+	[SalesOrderId] [INT] IDENTITY(1,1) NOT NULL,
+    [SalesOrderStatusId] [int] NOT NULL,    
+	[CustomerId] [INT] NOT NULL,
+	[ExpectedDate] [datetime] NULL,
+	[CurrencyId] [char] (3)  NOT NULL,
+	[CurrencyRate] [decimal] (15, 5) NOT NULL DEFAULT ((1)),
+	[StockId] [INT] NOT NULL,
+	[EntryAuthor] [varchar] (32)  NOT NULL  DEFAULT (suser_sname()),
+	[EntryDate] [datetime] NOT NULL  DEFAULT (getdate()),
+	[LastAuthor] [varchar] (32)  NOT NULL  DEFAULT (suser_sname()),
+	[LastUpdate] [datetime] NOT NULL  DEFAULT (getdate()),
+	CONSTRAINT [PK_SalesOrder] PRIMARY KEY CLUSTERED ([SalesOrderId])    ,
+	CONSTRAINT FK_Customers_SalesOrder FOREIGN KEY ([CustomerId])  REFERENCES Customers([CustomerId])
+)
+
+
+CREATE TABLE [dbo].[SalesOrderLines]
+(
+	[SalesOrderId] int NOT NULL,
+	[SalesOrderLineNo] int NOT NULL,
+	[ProductId] [int] NOT NULL,
+	[OrderedQty] int NOT NULL,
+	[RecivedQty] int NULL,
+	[PriceTypeId] int NOT NULL,
+	[PurchaseOrderPrice] [decimal] (15, 5) NOT NULL DEFAULT ((1)),
+	[ExpectedDate] [datetime] NULL,
+	[DeliveryDate] [datetime] NULL,
+	[DiscountTypeId] INT NOT NULL  DEFAULT ((1)),
+	[DiscountValue] INT NULL,
+	[EntryAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
+	[EntryDate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
+	[LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
+	[LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
+	CONSTRAINT [PK_SalesOrderLines] PRIMARY KEY CLUSTERED ([SalesOrderId],[SalesOrderLineNo]),
+	CONSTRAINT FK_Products_SalesOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId]),
+	CONSTRAINT FK_DiscountTypes_SalesOrderLines FOREIGN KEY (DiscountTypeId)  REFERENCES DiscountTypes([DiscountTypeId]),
+)
+
+CREATE TABLE [dbo].[SalesOrderStatus]
+(
+	[SalesOrderStatusId] [INT] IDENTITY(1,1) NOT NULL,
+	[Name] [VARCHAR] (32) NOT NULL, 
+	[Description] [VARCHAR] (255) NULL,
+	CONSTRAINT [PK_SalesOrderStatus] PRIMARY KEY CLUSTERED ([SalesOrderStatusId]),
+	--CONSTRAINT FK_PurchaseOrder_PurchaseOrderStatus FOREIGN KEY ([PurchaseOrderStatusId])  REFERENCES PurchaseOrders([PurchaseOrderStatusId])
+)
