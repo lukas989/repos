@@ -1,6 +1,8 @@
 ﻿CREATE TABLE [dbo].[SalesOrderStatus]
 (
-	[SalesOrderStatusID] [int] IDENTITY(1,1) PRIMARY KEY,
-	[Name] [varchar] (32) NOT NULL, 
-	[Description] [varchar] (255) NULL
+	[SalesOrderStatusId] [INT] IDENTITY(1,1) NOT NULL,
+	[Name] [VARCHAR] (32) NOT NULL, 
+	[Description] [VARCHAR] (255) NULL,
+	CONSTRAINT [PK_SalesOrderStatus] PRIMARY KEY CLUSTERED ([SalesOrderStatusId]),
+	--CONSTRAINT FK_SalesOrder_SalesOrderStatus FOREIGN KEY ([SalesOrderStatusId])  REFERENCES SalesOrders([SalesOrderStatusId])
 )

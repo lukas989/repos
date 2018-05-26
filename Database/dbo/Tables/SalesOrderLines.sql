@@ -1,21 +1,27 @@
 ﻿CREATE TABLE [dbo].[SalesOrderLines]
 (
-	[SalesOrderID] bigint NOT NULL,
+	[SalesOrderId] int NOT NULL,
 	[SalesOrderLineNo] int NOT NULL,
-	[ProductId] [bigint] NOT NULL,
+	[ProductId] [int] NOT NULL,
 	[OrderedQty] int NOT NULL,
 	[RecivedQty] int NULL,
 	[PriceTypeId] int NOT NULL,
 	[SalesOrderPrice] [decimal] (15, 5) NOT NULL DEFAULT ((1)),
 	[ExpectedDate] [datetime] NULL,
 	[DeliveryDate] [datetime] NULL,
-	[DiscountTypeId] int NOT NULL  DEFAULT ((1)),
-	[DiscountValue] int NULL,
-	[DiscountPercent] int NULL,
-	[EntryAuthor] [varchar] (32) COLLATE Polish_CI_AS NOT NULL CONSTRAINT [DF_POrders_EntryAuthor] DEFAULT (suser_sname()),
-	[EntryDate] [datetime] NOT NULL CONSTRAINT [DF_POrders_EntryDate] DEFAULT (getdate()),
-	[LastAuthor] [varchar] (32) COLLATE Polish_CI_AS NOT NULL CONSTRAINT [DF_POrders_LastAuthor] DEFAULT (suser_sname()),
-	[LastUpdate] [datetime] NOT NULL CONSTRAINT [DF_POrders_LastUpdate] DEFAULT (getdate())
+	[DiscountTypeId] INT NOT NULL  DEFAULT ((1)),
+	[DiscountValue] INT NULL,
+	[DiscountPercent] INT NULL,
+	[EntryAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
+	[EntryDate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
+	[LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
+	[LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
+	CONSTRAINT [PK_SalesOrderLines] PRIMARY KEY CLUSTERED ([SalesOrderId],[SalesOrderLineNo]),
+	CONSTRAINT FK_Products_SalesOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId]),
+	CONSTRAINT FK_DiscountTypes_SalesOrderLines FOREIGN KEY (DiscountTypeId)  REFERENCES DiscountTypes([DiscountTypeId]),
+	
+
+	
 )
 GO
 ALTER TABLE [dbo].[SalesOrderLines] ADD CONSTRAINT [PK_POrderLine] PRIMARY KEY CLUSTERED ([SalesOrderID], [SalesOrderLineNo])

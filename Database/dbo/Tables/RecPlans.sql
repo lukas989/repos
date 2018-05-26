@@ -1,14 +1,17 @@
 ﻿CREATE TABLE [dbo].[RecPlans]
 (
-[RecPlanID] [bigint] IDENTITY(1,1) PRIMARY KEY,
-[RecPlanStatusID] [int] NOT NULL, 
-[SupplierId] [int] NOT NULL,
-[ExpectedDate] [datetime] NULL,
-[StockId] [int],
-[EntryAuthor] [varchar] (32) COLLATE Polish_CI_AS NOT NULL CONSTRAINT [DF_PRecPlans_EntryAuthor] DEFAULT (suser_sname()),
-[EntryDate] [datetime] NOT NULL CONSTRAINT [DF_PRecPlans_EntryDate] DEFAULT (getdate()),
-[LastAuthor] [varchar] (32) COLLATE Polish_CI_AS NOT NULL CONSTRAINT [DF_PRecPlans_LastAuthor] DEFAULT (suser_sname()),
-[LastUpdate] [datetime] NOT NULL CONSTRAINT [DF_PRecPlans_LastUpdate] DEFAULT (getdate()),
+[RecPlanId] [int] IDENTITY(1,1) NOT NULL,
+[RecPlanStatusId] [INT] NOT NULL, 
+[SupplierId] [INT] NOT NULL,
+[ExpectedDate] [DATETIME] NULL,
+[StockId] [INT] not null,
+[EntryAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
+[EntryDate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
+[LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
+[LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
+CONSTRAINT [PK_RecPlans] PRIMARY KEY CLUSTERED ([RecPlanId]),
+CONSTRAINT FK_Supplier_RecPlans FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
+CONSTRAINT FK_Stock_RecPlans FOREIGN KEY ([StockId])  REFERENCES Stocks([StockId])
 )
 GO
 ALTER TABLE [dbo].[RecPlans] ADD CONSTRAINT FK_RecPlans_RecPlanStatusId FOREIGN KEY ([RecPlanStatusID])  REFERENCES [dbo].[RecPlanStatus] ([RecPlanStatusID])
