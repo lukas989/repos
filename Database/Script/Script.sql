@@ -172,3 +172,4 @@ CREATE TABLE [dbo].[Stocks]
 	[Description] [varchar] (255) NULL
 )
 ALTER TABLE [dbo].[Stocks] ADD CONSTRAINT FK_Stocks_Regions FOREIGN KEY ([RegionID]) REFERENCES [dbo].[Regions] ([RegionID]) 
+
