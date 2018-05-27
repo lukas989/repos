@@ -10,6 +10,7 @@
 [LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 [LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
 CONSTRAINT [PK_RecPlans] PRIMARY KEY CLUSTERED ([RecPlanId]),
-CONSTRAINT FK_Supplier_RecPlans FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
-CONSTRAINT FK_Stock_RecPlans FOREIGN KEY ([StockId])  REFERENCES Stocks([StockId])
+CONSTRAINT [FK_Supplier_RecPlans] FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
+CONSTRAINT [FK_Stock_RecPlans] FOREIGN KEY ([StockId])  REFERENCES Stocks([StockId]),
+CONSTRAINT [FK_RecPlanStatus_RecPlans] FOREIGN KEY ([RecPlanStatusId])  REFERENCES RecPlanStatus([RecPlanStatusId])
 )

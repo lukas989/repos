@@ -8,5 +8,4 @@ CREATE TABLE [dbo].[CustomerAddressTypes]
 	[Name] [VARCHAR] (32) NOT NULL, 
 	[Description] [VARCHAR] (255) NULL,
 	CONSTRAINT [PK_CustomerAddressTypes] PRIMARY KEY CLUSTERED ([CustomerAddressTypeId]),
-	--CONSTRAINT FK_PurchaseOrder_PurchaseOrderStatus FOREIGN KEY ([PurchaseOrderStatusId])  REFERENCES PurchaseOrders([PurchaseOrderStatusId])
 )

@@ -12,6 +12,7 @@
 [LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 [LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
 CONSTRAINT [PK_RecPlanLines] PRIMARY KEY CLUSTERED ([RecPlanId],[RecPlanLineNo]),
-CONSTRAINT FK_RecPlans_RecPlanLines FOREIGN KEY ([RecPlanId])  REFERENCES RecPlans([RecPlanId]),
-CONSTRAINT FK_PurchaseOrder_RecPlanLines FOREIGN KEY ([PurchaseOrderId])  REFERENCES PurchaseOrders([PurchaseOrderId])
+CONSTRAINT [FK_RecPlans_RecPlanLines] FOREIGN KEY ([RecPlanId])  REFERENCES RecPlans([RecPlanId]),
+CONSTRAINT [FK_PurchaseOrder_RecPlanLines] FOREIGN KEY ([PurchaseOrderId])  REFERENCES PurchaseOrders([PurchaseOrderId]),
+CONSTRAINT [FK_PurchaseOrderLines_RecPlanLines] FOREIGN KEY ([PurchaseOrderId], [PurchaseOrderLineNo])  REFERENCES dbo.PurchaseOrderLines([PurchaseOrderId], [PurchaseOrderLineNo])
 )

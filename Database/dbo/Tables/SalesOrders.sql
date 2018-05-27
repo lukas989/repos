@@ -12,6 +12,6 @@
 	[LastAuthor] [VARCHAR] (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 	[LastUpdate] [DATETIME] NOT NULL  DEFAULT (GETDATE()),
 	CONSTRAINT [PK_SalesOrder] PRIMARY KEY CLUSTERED ([SalesOrderId])    ,
-	CONSTRAINT FK_Customers_SalesOrder FOREIGN KEY ([CustomerId])  REFERENCES Customers([CustomerId]),
-	CONSTRAINT [FK_SalesOrders_SalesOrderStatus] FOREIGN KEY ([SalesOrderStatusId])  REFERENCES SalesOrderStatus([SalesOrderStatusId])
+	CONSTRAINT [FK_Customers_SalesOrders] FOREIGN KEY ([CustomerId])  REFERENCES Customers([CustomerId]),
+	CONSTRAINT [FK_SalesOrderStatus_SalesOrders] FOREIGN KEY ([SalesOrderStatusId])  REFERENCES SalesOrderStatus([SalesOrderStatusId])
 )
