@@ -1,5 +1,7 @@
 ﻿--CONSTRAINT FK_RecPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES RecPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
 
+--CONSTRAINT FK_RecPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES RecPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
+
 CREATE TABLE [dbo].[CustomerAddressTypes]
 (
 	[CustomerAddressTypeId] [INT] IDENTITY(1,1) NOT NULL,

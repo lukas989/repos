@@ -279,5 +279,5 @@ CREATE TABLE [dbo].[SalesOrderStatus]
 	[Name] [VARCHAR] (32) NOT NULL, 
 	[Description] [VARCHAR] (255) NULL,
 	CONSTRAINT [PK_SalesOrderStatus] PRIMARY KEY CLUSTERED ([SalesOrderStatusId]),
-	--CONSTRAINT FK_PurchaseOrder_PurchaseOrderStatus FOREIGN KEY ([PurchaseOrderStatusId])  REFERENCES PurchaseOrders([PurchaseOrderStatusId])
+	CONSTRAINT FK_SalesOrders_SalesOrderStatus FOREIGN KEY ([SalesOrderStatusId])  REFERENCES SalesOrders([SalesOrderStatusId])
 )
