@@ -70,7 +70,7 @@ CREATE TABLE [dbo].[PurchaseOrders]
     [PurchaseOrderStatusId] INT NOT NULL,    
 	[SupplierId] INT NOT NULL,
 	[ExpectedDate] datetime NULL,
-	[CurrencyId] [char] (3)  NOT NULL,
+	[CurrencyId] char (3)  NOT NULL,
 	[CurrencyRate] decimal (15, 5) NOT NULL DEFAULT ((1)),
 	[StockId] INT NOT NULL,
 	[EntryAuthor] varchar (32)  NOT NULL  DEFAULT (suser_sname()),
@@ -239,7 +239,7 @@ CREATE TABLE [dbo].[SalesOrders]
     [SalesOrderStatusId] INT NOT NULL,    
 	[CustomerId] INT NOT NULL,
 	[ExpectedDate] datetime NULL,
-	[CurrencyId] [char] (3)  NOT NULL,
+	[CurrencyId] char (3)  NOT NULL,
 	[CurrencyRate] decimal (15, 5) NOT NULL DEFAULT ((1)),
 	[StockId] INT NOT NULL,
 	[EntryAuthor] varchar (32)  NOT NULL  DEFAULT (suser_sname()),
@@ -281,3 +281,4 @@ CREATE TABLE [dbo].[SalesOrderStatus]
 	CONSTRAINT [PK_SalesOrderStatus] PRIMARY KEY CLUSTERED ([SalesOrderStatusId]),
 	CONSTRAINT FK_SalesOrders_SalesOrderStatus FOREIGN KEY ([SalesOrderStatusId])  REFERENCES SalesOrders([SalesOrderStatusId])
 )
+
