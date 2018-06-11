@@ -37,10 +37,23 @@ IF OBJECT_Id('dbo.Customers', 'U') IS NOT NULL
 IF OBJECT_Id('dbo.CustomerAddress', 'U') IS NOT NULL 
  DROP TABLE dbo.CustomerAddress; 
 
+ 
+  CREATE TABLE [dbo].[Producers]
+(
+	[ProducerId] INT IDENTITY(1,1) NOT NULL,
+	[Name] varchar (50) NOT NULL,
+	[Description] varchar (255) NOT NULL,
+	[EntryAuthor] varchar (32) NOT NULL DEFAULT (SUSER_SNAME()),
+	[EntryDate] datetime NOT NULL DEFAULT (GETDATE()),
+	[LastAuthor] varchar (32) NOT NULL DEFAULT (suser_sname()),
+	[LastUpdate] datetime NOT NULL  DEFAULT (getdate()),
+	CONSTRAINT [PK_Producers] PRIMARY KEY CLUSTERED ([ProducerId])
+)
 
   CREATE TABLE [dbo].[Products]
 (
 	[ProductId] INT IDENTITY(1,1) NOT NULL,
+	[ProducerId] INT NOT NULL,
 	[SupplierId] INT NOT NULL,
 	[Name] varchar (50) NOT NULL,
 	[Description] varchar (255) NOT NULL,
@@ -49,7 +62,8 @@ IF OBJECT_Id('dbo.CustomerAddress', 'U') IS NOT NULL
 	[LastAuthor] varchar (32) NOT NULL DEFAULT (suser_sname()),
 	[LastUpdate] datetime NOT NULL  DEFAULT (getdate()),
 	CONSTRAINT [PK_Products] PRIMARY KEY CLUSTERED ([ProductId]),
-	CONSTRAINT [FK_Supplier_Products] FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId])
+	CONSTRAINT [FK_Supplier_Products] FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
+	CONSTRAINT [FK_Producer_Products] FOREIGN KEY ([ProducerId])  REFERENCES Producers([ProducerId])
 )
 
   CREATE TABLE [dbo].[Suppliers]
@@ -281,6 +295,5 @@ CREATE TABLE [dbo].[SalesOrderStatus]
 	[Name] varchar (32) NOT NULL, 
 	[Description] VARCHAR (255) NULL,
 	CONSTRAINT [PK_SalesOrderStatus] PRIMARY KEY CLUSTERED ([SalesOrderStatusId]),
-	CONSTRAINT FK_SalesOrders_SalesOrderStatus FOREIGN KEY ([SalesOrderStatusId])  REFERENCES SalesOrders([SalesOrderStatusId])
 )
 
