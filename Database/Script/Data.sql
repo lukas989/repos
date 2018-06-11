@@ -21,8 +21,33 @@ insert into [dbo].[Regions] ([Name], [Description] ) VALUES  ('zach', 'zachód' 
 
 
 delete from [dbo].[Stocks]
-insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (1, 'WA', 'Warszawa główny magazyn')
-insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (1, 'WR', 'Warszawa magazym reklamacyjny')
-insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (1, 'WT', 'Warszawa magazym transportowy')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (1, 'CA', 'Warszawa główny magazyn')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (1, 'CR', 'Warszawa magazym reklamacyjny')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (1, 'CT', 'Warszawa magazym transportowy')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (1, 'CV', 'Magazyn wirtualny - licencje')
 
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (2, 'NA', 'Północ główny magazyn')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (2, 'NR', 'Północ magazym transportowy')
 
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (3, 'SA', 'Południe główny magazyn')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (3, 'SR', 'Południe magazym transportowy')
+
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (4, 'EA', 'Wschód główny magazyn')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (4, 'ER', 'Wschód magazym transportowy')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (4, 'EE', 'Wschód magazym Export')
+
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (5, 'WA', 'Zachód główny magazyn')
+insert into [dbo].[Stocks] ([RegionId] , [Name], [Description] ) VALUES (5, 'WR', 'Zachód magazym transportowy')
+
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Lenovo ThinkPad X270 (20HN0016PB)','')
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Lenovo IdeaPad 510S (80SJ005PPB)','')
+
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Dell Vostro 5468','')
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Dell Inspiron 15 (5567)','')
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Dell Inspiron 15 (5567)','')
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Dell Inspiron 15 (5567)','')
+
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Small Office Security','')
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Anti-Virus','')
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Internet Security','')
+insert into [dbo].[Products]([Name],[Description]) VALUES ('Total Security','')
