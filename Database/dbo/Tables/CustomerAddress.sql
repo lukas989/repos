@@ -9,10 +9,11 @@
 	[Country]	VARCHAR(2)  NOT NULL,
 	[Description]	VARCHAR(255)  NULL,
 	CONSTRAINT [PK_CustomerAddress] PRIMARY KEY CLUSTERED ([CustomerAddressId]),
-	CONSTRAINT FK_Customers_CustomerAddress FOREIGN KEY ([CustomerId])  REFERENCES Customers([CustomerId])
+	CONSTRAINT FK_Customers_CustomerAddress FOREIGN KEY ([CustomerId])  REFERENCES Customers([CustomerId]),
+	CONSTRAINT FK_CustomerAddressTypes_CustomerAddress FOREIGN KEY ([CustomerAddressTypeId])  REFERENCES [CustomerAddressTypes]([CustomerAddressTypeId])
 	
 )
 
---CONSTRAINT FK_RecPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES RecPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
+--CONSTRAINT FK_ReceiptPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES ReceiptPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
 
 --

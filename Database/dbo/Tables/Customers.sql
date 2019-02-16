@@ -7,7 +7,6 @@
 	[Description] varchar (1500) NULL,
 	[TaxNumber] varchar (20) NULL,
 	[Email] varchar (100) NOT NULL,
-	[NationalCourtRegister] varchar (20) NULL,
 	[IsBlocked] [BIT] NOT NULL DEFAULT 0, 
 	[EntryAuthor] varchar (32) NOT NULL DEFAULT (SUSER_SNAME()),
 	[EntryDate] datetime NOT NULL DEFAULT (GETDATE()),
