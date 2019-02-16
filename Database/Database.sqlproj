@@ -91,5 +91,8 @@
     <Build Include="dbo\Tables\SalesOrders.sql" />
     <Build Include="dbo\Tables\SalesOrderLines.sql" />
     <Build Include="dbo\Tables\SalesOrderStatus.sql" />
+    <Build Include="dbo\Tables\DeliveryPlanStatus.sql" />
+    <Build Include="dbo\Tables\DeliveryPlans.sql" />
+    <Build Include="dbo\Tables\DeliveryPlanLines.sql" />
   </ItemGroup>
 </Project>
