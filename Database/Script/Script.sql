@@ -1,8 +1,8 @@
-﻿IF OBJECT_Id('dbo.RecPlanLines', 'U') IS NOT NULL 
-  DROP TABLE dbo.RecPlanLines; 
+﻿IF OBJECT_Id('dbo.ReceiptPlanLines', 'U') IS NOT NULL 
+  DROP TABLE dbo.ReceiptPlanLines; 
 
-IF OBJECT_Id('dbo.RecPlans', 'U') IS NOT NULL 
-  DROP TABLE dbo.RecPlans; 
+IF OBJECT_Id('dbo.ReceiptPlans', 'U') IS NOT NULL 
+  DROP TABLE dbo.ReceiptPlans; 
   
 IF OBJECT_Id('dbo.PurchaseOrderLines', 'U') IS NOT NULL 
   DROP TABLE dbo.PurchaseOrderLines; 
@@ -22,8 +22,8 @@ IF OBJECT_Id('dbo.Products', 'U') IS NOT NULL
 IF OBJECT_Id('dbo.DiscountTypes', 'U') IS NOT NULL 
   DROP TABLE dbo.DiscountTypes; 
 
-IF OBJECT_Id('dbo.RecPlanStatus', 'U') IS NOT NULL 
-  DROP TABLE dbo.RecPlanStatus; 
+IF OBJECT_Id('dbo.ReceiptPlanStatus', 'U') IS NOT NULL 
+  DROP TABLE dbo.ReceiptPlanStatus; 
 
 IF OBJECT_Id('dbo.Stocks', 'U') IS NOT NULL 
   DROP TABLE dbo.Stocks; 
@@ -125,10 +125,10 @@ CREATE TABLE [dbo].[PurchaseOrderLines]
 	
 )
 
-CREATE TABLE [dbo].[RecPlans]
+CREATE TABLE [dbo].[ReceiptPlans]
 (
-[RecPlanId] INT IDENTITY(1,1) NOT NULL,
-[RecPlanStatusId] INT NOT NULL, 
+[ReceiptPlanId] INT IDENTITY(1,1) NOT NULL,
+[ReceiptPlanStatusId] INT NOT NULL, 
 [SupplierId] INT NOT NULL,
 [ExpectedDate] datetime NULL,
 [StockId] INT not null,
@@ -136,18 +136,18 @@ CREATE TABLE [dbo].[RecPlans]
 [EntryDate] datetime NOT NULL  DEFAULT (GETDATE()),
 [LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 [LastUpdate] datetime NOT NULL  DEFAULT (GETDATE()),
-CONSTRAINT [PK_RecPlans] PRIMARY KEY CLUSTERED ([RecPlanId]),
-CONSTRAINT FK_Supplier_RecPlans FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
-CONSTRAINT FK_Stock_RecPlans FOREIGN KEY ([StockId])  REFERENCES Stocks([StockId])
+CONSTRAINT [PK_ReceiptPlans] PRIMARY KEY CLUSTERED ([ReceiptPlanId]),
+CONSTRAINT FK_Supplier_ReceiptPlans FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
+CONSTRAINT FK_Stock_ReceiptPlans FOREIGN KEY ([StockId])  REFERENCES Stocks([StockId])
 )
 
 
 
 
-CREATE TABLE [dbo].[RecPlanLines]
+CREATE TABLE [dbo].[ReceiptPlanLines]
 (
-[RecPlanId] INT NOT NULL,
-[RecPlanLineNo] INT NOT NULL,
+[ReceiptPlanId] INT NOT NULL,
+[ReceiptPlanLineNo] INT NOT NULL,
 [PurchaseOrderId] INT NOT NULL,
 [PurchaseOrderLineNo] INT NOT NULL,
 [ExpectedQty] INT NOT NULL,
@@ -157,9 +157,9 @@ CREATE TABLE [dbo].[RecPlanLines]
 [EntryDate] datetime NOT NULL  DEFAULT (GETDATE()),
 [LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 [LastUpdate] datetime NOT NULL  DEFAULT (GETDATE()),
-CONSTRAINT [PK_RecPlanLines] PRIMARY KEY CLUSTERED ([RecPlanId],[RecPlanLineNo]),
-CONSTRAINT FK_RecPlans_RecPlanLines FOREIGN KEY ([RecPlanId])  REFERENCES RecPlans([RecPlanId]),
-CONSTRAINT FK_PurchaseOrder_RecPlanLines FOREIGN KEY ([PurchaseOrderId])  REFERENCES PurchaseOrders([PurchaseOrderId])
+CONSTRAINT [PK_ReceiptPlanLines] PRIMARY KEY CLUSTERED ([ReceiptPlanId],[ReceiptPlanLineNo]),
+CONSTRAINT FK_ReceiptPlans_ReceiptPlanLines FOREIGN KEY ([ReceiptPlanId])  REFERENCES ReceiptPlans([ReceiptPlanId]),
+CONSTRAINT FK_PurchaseOrder_ReceiptPlanLines FOREIGN KEY ([PurchaseOrderId])  REFERENCES PurchaseOrders([PurchaseOrderId])
 )
 CREATE TABLE [dbo].[PurchaseOrderStatus]
 (
@@ -178,12 +178,12 @@ CREATE TABLE [dbo].[DiscountTypes]
 	CONSTRAINT [PK_DiscountTypes] PRIMARY KEY CLUSTERED ([DiscountTypeId])
 )
 
-CREATE TABLE [dbo].[RecPlanStatus]
+CREATE TABLE [dbo].[ReceiptPlanStatus]
 (
-	[RecPlanStatusId] INT IDENTITY(1,1) NOT NULL,
+	[ReceiptPlanStatusId] INT IDENTITY(1,1) NOT NULL,
 	[Name] varchar (32) NOT NULL, 
 	[Description] varchar (255) NULL,
-	CONSTRAINT [PK_RecPlanStatus] PRIMARY KEY CLUSTERED ([RecPlanStatusId])
+	CONSTRAINT [PK_ReceiptPlanStatus] PRIMARY KEY CLUSTERED ([ReceiptPlanStatusId])
 )
 
 CREATE TABLE [dbo].[Regions]
@@ -237,7 +237,7 @@ CREATE TABLE [dbo].[CustomerAddress]
 	
 )
 
---CONSTRAINT FK_RecPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES RecPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
+--CONSTRAINT FK_ReceiptPlanLines_PurchaseOrderLines FOREIGN KEY ([PurchaseOrderId],[PurchaseOrderLineNo])  REFERENCES ReceiptPlanLines([PurchaseOrderId],[PurchaseOrderLineNo])
 
 CREATE TABLE [dbo].[CustomerAddressTypes]
 (
