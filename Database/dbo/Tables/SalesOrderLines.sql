@@ -13,5 +13,6 @@
 	[LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 	[LastUpdate] datetime NOT NULL  DEFAULT (GETDATE()),
 	CONSTRAINT [PK_SalesOrderLines] PRIMARY KEY CLUSTERED ([SalesOrderId],[SalesOrderLineNo]),
+	CONSTRAINT FK_SalesOrders_SalesOrderLines FOREIGN KEY ([SalesOrderId])  REFERENCES SalesOrders([SalesOrderId]),
 	CONSTRAINT FK_Products_SalesOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId])
 )

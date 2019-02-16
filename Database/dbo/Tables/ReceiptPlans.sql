@@ -9,5 +9,6 @@
 [LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 [LastUpdate] datetime NOT NULL  DEFAULT (GETDATE()),
 CONSTRAINT [PK_ReceiptPlans] PRIMARY KEY CLUSTERED ([ReceiptPlanId]),
-CONSTRAINT FK_Supplier_ReceiptPlans FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId])
+CONSTRAINT FK_Supplier_ReceiptPlans FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
+CONSTRAINT FK_ReceiptPlanStatus_ReceiptPlans FOREIGN KEY ([ReceiptPlanStatusId])  REFERENCES ReceiptPlanStatus([ReceiptPlanStatusId])
 )

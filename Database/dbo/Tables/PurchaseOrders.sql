@@ -11,6 +11,7 @@
 	[LastAuthor] varchar (32)  NOT NULL  DEFAULT (suser_sname()),
 	[LastUpdate] datetime NOT NULL  DEFAULT (getdate()),
 	CONSTRAINT [PK_PurchaseOrders] PRIMARY KEY CLUSTERED ([PurchaseOrderId]),
-	CONSTRAINT FK_Supplier_PurchaseOrders FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId])
-    
+	CONSTRAINT FK_Supplier_PurchaseOrders FOREIGN KEY ([SupplierId])  REFERENCES Suppliers([SupplierId]),
+	CONSTRAINT FK_PurchaseOrderStatus_PurchaseOrders FOREIGN KEY ([PurchaseOrderStatusId])  REFERENCES PurchaseOrderStatus([PurchaseOrderStatusId])
+	   
 )
