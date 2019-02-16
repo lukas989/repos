@@ -82,3 +82,33 @@ insert into [dbo].[CustomerAddress]([CustomerId],[CustomerAddressTypeId],[Street
 (@CustomerId, @CustomerAddressType , 'ul. Kowalczewskiego Sylwestra 26', 'Kielce', '25-635', 'PL', ''),
 (@CustomerId, @CustomerAddressType , 'ul. Ordona Juliana 18', 'Katowice' , '40-163', 'PL', ''),
 (@CustomerId, @CustomerAddressType , 'ul. Prząśniczki 86', 'Poznań', '61-070',  'PL', '')
+
+delete from [dbo].[SalesOrderStatus]
+insert into [dbo].[SalesOrderStatus]([Name],[Description])values
+ ('Nowe','Nowe zamówienie'),
+ ('Anulowane','Zamówienie zostało anulowane'),
+ ('Realizacja','Zamówienie jest w trakcje realizacji'),
+ ('Zablokowane','Zamówienie zostało zablokowane'),
+ ('Zakończone','Zamówienie zostało zrealizowane')
+go
+delete from [dbo].[PurchaseOrderStatus]
+insert into [dbo].[PurchaseOrderStatus]([Name],[Description])values
+ ('Nowe','Nowe zamówienie'),
+ ('Anulowane','Zamówienie zostało anulowane'),
+ ('Oczekuje na akceptacje','Zamówienie czeka na akceptacje'),
+ ('Zaakceptowane','Zamówienie zostało zaakceptowane'),
+ ('Zakończone','Zamówienie zostało wysłane do dostawcy')
+go
+delete from [dbo].[ReceiptPlanStatus]
+insert into [dbo].[ReceiptPlanStatus]([Name],[Description])values
+ ('Nowe','Nowy plan dostawy'),
+ ('Anulowane','Plan dostawy został anulowane'),
+ ('Zakończone','Plan dostawy został wysłane do WMS-a')
+go
+delete from [dbo].[DeliveryPlanStatus]
+insert into [dbo].[DeliveryPlanStatus]([Name],[Description])values 
+ ('Nowe','Nowy plan wydania'),
+ ('Anulowane','Plan wydania został anulowane'),
+ ('Realizacja','Plan wydania zostało wysłane do WMS-a'),
+ ('Zakończone','Plan wydania zostało zrealizowany')
+go

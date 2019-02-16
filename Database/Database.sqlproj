@@ -65,12 +65,8 @@
     <Folder Include="Snapshots" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Script\Script.sql" />
     <None Include="Snapshots\Database_20180528_00-04-56.dacpac" />
-    <None Include="Database.publish.xml" />
     <None Include="Script\Data.sql" />
-    <None Include="Database_1.publish.xml" />
-    <None Include="Database_2.publish.xml" />
     <None Include="Local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
