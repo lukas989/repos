@@ -6,7 +6,6 @@
 [PurchaseOrderLineNo] INT NOT NULL,
 [ExpectedQty] INT NOT NULL,
 [RecivedQty] INT NULL,
-[DeliveryDate] datetime NULL,
 [EntryAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 [EntryDate] datetime NOT NULL  DEFAULT (GETDATE()),
 [LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),

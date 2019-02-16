@@ -69,6 +69,8 @@
     <None Include="Snapshots\Database_20180528_00-04-56.dacpac" />
     <None Include="Database.publish.xml" />
     <None Include="Script\Data.sql" />
+    <None Include="Database_1.publish.xml" />
+    <None Include="Database_2.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
@@ -81,16 +83,12 @@
     <Build Include="dbo\Tables\RecPlans.sql" />
     <Build Include="dbo\Tables\RecPlanLines.sql" />
     <Build Include="dbo\Tables\PurchaseOrderStatus.sql" />
-    <Build Include="dbo\Tables\DiscountTypes.sql" />
     <Build Include="dbo\Tables\RecPlanStatus.sql" />
-    <Build Include="dbo\Tables\Regions.sql" />
-    <Build Include="dbo\Tables\Stocks.sql" />
     <Build Include="dbo\Tables\Customers.sql" />
     <Build Include="dbo\Tables\CustomerAddress.sql" />
     <Build Include="dbo\Tables\CustomerAddressTypes.sql" />
     <Build Include="dbo\Tables\SalesOrders.sql" />
     <Build Include="dbo\Tables\SalesOrderLines.sql" />
     <Build Include="dbo\Tables\SalesOrderStatus.sql" />
-    <Build Include="dbo\Tables\Producers.sql" />
   </ItemGroup>
 </Project>

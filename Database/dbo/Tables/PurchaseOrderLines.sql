@@ -8,7 +8,6 @@
 	[PriceTypeId] int NOT NULL,
 	[PurchaseOrderPrice] decimal (15, 5) NOT NULL DEFAULT ((1)),
 	[ExpectedDate] datetime NULL,
-	[DeliveryDate] datetime NULL,
 	[DiscountTypeId] INT NOT NULL  DEFAULT ((1)),
 	[DiscountValue] INT NULL,
 	[EntryAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
@@ -16,8 +15,7 @@
 	[LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
 	[LastUpdate] datetime NOT NULL  DEFAULT (GETDATE()),
 	CONSTRAINT [PK_PurchaseOrderLines] PRIMARY KEY CLUSTERED ([PurchaseOrderId],[PurchaseOrderLineNo]),
-	CONSTRAINT FK_Products_PurchaseOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId]),
-	CONSTRAINT FK_DiscountTypes_PurchaseOrderLines FOREIGN KEY (DiscountTypeId)  REFERENCES DiscountTypes([DiscountTypeId]),
+	CONSTRAINT FK_Products_PurchaseOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId])
 	
 
 	
