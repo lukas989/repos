@@ -16,37 +16,38 @@ namespace WebApplication.Controllers
         // GET: Suppliers
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            IEnumerable<Suppliers> suppliers =await new HttpClientLib().GetAsync<IEnumerable<Suppliers>>("WebApplicationAPI", "/api/Suppliers");
+            IEnumerable<Suppliers> suppliers =await new HttpClientLib().GetAsync<IEnumerable<Suppliers>>("WebApplicationAPI", "/api/Suppliers/");
             return View(suppliers);
         }
 
         // GET: Suppliers/Details/5
-        //public ActionResult Details(int id)
-        //{
-        //    return View();
-        //}
+        public async System.Threading.Tasks.Task<ActionResult> Details(int id)
+        {
+            Suppliers supplier = await new HttpClientLib().GetByIdAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/",id);
+            return View(supplier);
+        }
 
-        //// GET: Suppliers/Create
-        //public ActionResult Create()
-        //{
-        //    return View();
-        //}
+        // GET: Suppliers/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-        //// POST: Suppliers/Create
-        //[HttpPost]
-        //public ActionResult Create(FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add insert logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        // POST: Suppliers/Create
+        [HttpPost]
+        public async System.Threading.Tasks.Task<ActionResult> Create(Suppliers supplier)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                await new HttpClientLib().PostAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/", supplier);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         //// GET: Suppliers/Edit/5
         //public ActionResult Edit(int id)
@@ -54,7 +55,7 @@ namespace WebApplication.Controllers
         //    return View();
         //}
 
-        //// POST: Suppliers/Edit/5
+        // POST: Suppliers/Edit/5
         //[HttpPost]
         //public ActionResult Edit(int id, FormCollection collection)
         //{

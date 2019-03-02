@@ -206,6 +206,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Suppliers\Index.cshtml" />
     <Content Include="Views\Suppliers\Details.cshtml" />
+    <Content Include="Views\Suppliers\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
