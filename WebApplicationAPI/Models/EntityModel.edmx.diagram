@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3d82d088bb8e48a4a64f5c1ed6dc115f" Name="Diagram1">
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.CustomerAddress" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.CustomerAddressTypes" Width="1.5" PointX="0.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.Customers" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.DeliveryPlanLines" Width="1.5" PointX="8.25" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.DeliveryPlans" Width="1.5" PointX="6" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.DeliveryPlanStatus" Width="1.5" PointX="3.75" PointY="14.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.ProductBarcodes" Width="1.5" PointX="5.25" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.Products" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.PurchaseOrderLines" Width="1.5" PointX="8.25" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.PurchaseOrders" Width="1.5" PointX="6" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.PurchaseOrderStatus" Width="1.5" PointX="3.75" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.ReceiptPlanLines" Width="1.5" PointX="11.25" PointY="14.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.ReceiptPlans" Width="1.5" PointX="9" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.ReceiptPlanStatus" Width="1.5" PointX="6.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.SalesOrderLines" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.SalesOrders" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.SalesOrderStatus" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WmsIntegration_v2Model.Suppliers" Width="1.5" PointX="0.75" PointY="10.25" IsExpanded="true" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_CustomerAddressTypes_CustomerAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Customers_CustomerAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Customer_DeliveryPlans" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Customers_SalesOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_DeliveryPlans_DeliveryPlanLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_SalesOrder_DeliveryPlanLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_DeliveryPlanStatus_DeliveryPlans" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Products_ProductBarcodes" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Products_PurchaseOrderLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Products_SalesOrderLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Supplier_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_PurchaseOrders_PurchaseOrderLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_PurchaseOrder_ReceiptPlanLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_PurchaseOrderStatus_PurchaseOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Supplier_PurchaseOrders" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_ReceiptPlans_ReceiptPlanLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_ReceiptPlanStatus_ReceiptPlans" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_Supplier_ReceiptPlans" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_SalesOrders_SalesOrderLines" ManuallyRouted="false" />
+        <AssociationConnector Association="WmsIntegration_v2Model.FK_SalesOrderStatus_SalesOrder" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

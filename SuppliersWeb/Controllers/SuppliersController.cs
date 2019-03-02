@@ -80,6 +80,9 @@ namespace SuppliersWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "SupplierId,Name,Description,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] Suppliers suppliers)
         {
+            var user = System.Web.HttpContext.Current.User.Identity.Name;
+            suppliers.LastAuthor = user;
+            suppliers.LastUpdate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 db.Entry(suppliers).State = EntityState.Modified;
