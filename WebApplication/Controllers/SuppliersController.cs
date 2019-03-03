@@ -39,6 +39,7 @@ namespace WebApplication.Controllers
         {
             try
             {
+                new ObjectLib().InitObjec(supplier, Request.RequestContext.HttpContext.User.Identity.Name);
                 // TODO: Add insert logic here
                 await new HttpClientLib().PostAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/", supplier);
                 return RedirectToAction("Index");

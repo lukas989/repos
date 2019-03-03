@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="HttpClientLib.cs" />
+    <Compile Include="ObjectLib.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingLib.cs" />
   </ItemGroup>
