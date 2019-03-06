@@ -14,7 +14,7 @@ namespace WebApplicationLib
             SetReflectionProperty(objectValues, "LastUpdate", DateTime.Now);
             SetReflectionProperty(objectValues, "EntryDate", DateTime.Now);
             SetReflectionProperty(objectValues, "LastAuthor", login);
-            SetReflectionProperty(objectValues, "EntryAutho", login);
+            SetReflectionProperty(objectValues, "EntryAuthor", login);
 
             return objectValues;
         }

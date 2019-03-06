@@ -50,48 +50,28 @@ namespace WebApplication.Controllers
             }
         }
 
-        //// GET: Suppliers/Edit/5
-        //public ActionResult Edit(int id)
-        //{
-        //    return View();
-        //}
+        // GET: Suppliers/Edit/5
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
+        {
+            Suppliers supplier = await new HttpClientLib().GetByIdAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/", id);
+            return View(supplier);
+        }
 
         // POST: Suppliers/Edit/5
-        //[HttpPost]
-        //public ActionResult Edit(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add update logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
-
-        //// GET: Suppliers/Delete/5
-        //public ActionResult Delete(int id)
-        //{
-        //    return View();
-        //}
-
-        //// POST: Suppliers/Delete/5
-        //[HttpPost]
-        //public ActionResult Delete(int id, FormCollection collection)
-        //{
-        //    try
-        //    {
-        //        // TODO: Add delete logic here
-
-        //        return RedirectToAction("Index");
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        [HttpPost]
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int id, Suppliers supplier)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                new ObjectLib().UpdateObject(supplier, Request.RequestContext.HttpContext.User.Identity.Name);
+                await new HttpClientLib().PutAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/"+ id, supplier);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

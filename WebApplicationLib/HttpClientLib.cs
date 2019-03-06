@@ -46,5 +46,17 @@ namespace WebApplicationLib
             byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             await client.PostAsync(urlAppSetting + apiController, byteContent);
         }
+
+        public async Task PutAsync<T>(string appSetting, string apiController, T data)
+        {
+            HttpClient client = new HttpClient();
+            var urlAppSetting = SettingLib.GetAppSetting(appSetting);
+
+            var myContent = JsonConvert.SerializeObject(data);
+            var buffer = System.Text.Encoding.UTF8.GetBytes(myContent);
+            var byteContent = new ByteArrayContent(buffer);
+            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            await client.PutAsync(urlAppSetting + apiController, byteContent);
+        }
     }
 }
