@@ -8,7 +8,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using Newtonsoft.Json;
 
-namespace WebApplicationAPI
+namespace API
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
