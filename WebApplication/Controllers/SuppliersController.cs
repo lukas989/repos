@@ -16,14 +16,14 @@ namespace WebApplication.Controllers
         // GET: Suppliers
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            IEnumerable<Suppliers> suppliers =await new HttpClientLib().GetAsync<IEnumerable<Suppliers>>("WebApplicationAPI", "/api/Suppliers/");
+            IEnumerable<Suppliers> suppliers =await new HttpClientLib().GetAsync<IEnumerable<Suppliers>>("API", "/api/Suppliers/");
             return View(suppliers);
         }
 
         // GET: Suppliers/Details/5
         public async System.Threading.Tasks.Task<ActionResult> Details(int id)
         {
-            Suppliers supplier = await new HttpClientLib().GetByIdAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/",id);
+            Suppliers supplier = await new HttpClientLib().GetByIdAsync<Suppliers>("API", "/api/Suppliers/",id);
             return View(supplier);
         }
 
@@ -41,7 +41,7 @@ namespace WebApplication.Controllers
             {
                 new ObjectLib().InitObjec(supplier, Request.RequestContext.HttpContext.User.Identity.Name);
                 // TODO: Add insert logic here
-                await new HttpClientLib().PostAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/", supplier);
+                await new HttpClientLib().PostAsync<Suppliers>("API", "/api/Suppliers/", supplier);
                 return RedirectToAction("Index");
             }
             catch
@@ -53,7 +53,7 @@ namespace WebApplication.Controllers
         // GET: Suppliers/Edit/5
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {
-            Suppliers supplier = await new HttpClientLib().GetByIdAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/", id);
+            Suppliers supplier = await new HttpClientLib().GetByIdAsync<Suppliers>("API", "/api/Suppliers/", id);
             return View(supplier);
         }
 
@@ -65,7 +65,7 @@ namespace WebApplication.Controllers
             {
                 // TODO: Add update logic here
                 new ObjectLib().UpdateObject(supplier, Request.RequestContext.HttpContext.User.Identity.Name);
-                await new HttpClientLib().PutAsync<Suppliers>("WebApplicationAPI", "/api/Suppliers/"+ id, supplier);
+                await new HttpClientLib().PutAsync<Suppliers>("API", "/api/Suppliers/"+ id, supplier);
                 return RedirectToAction("Index");
             }
             catch
