@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{3BA1A7BF-F3F2-4109-B873-E4F20C406878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationAPI", "WebApplicationAPI\WebApplicationAPI.csproj", "{B2F4DF12-2F73-40F7-8792-D3A9004C5C44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "WebApplicationAPI\API.csproj", "{B2F4DF12-2F73-40F7-8792-D3A9004C5C44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication", "WebApplication\WebApplication.csproj", "{21CF7ED6-9A57-43E1-B387-89EAF2B1CD8C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationLib", "WebApplicationLib\WebApplicationLib.csproj", "{3F95ED88-AD6D-443B-A5EA-0192BEE271B4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib", "WebApplicationLib\Lib.csproj", "{3F95ED88-AD6D-443B-A5EA-0192BEE271B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{EE459F7C-A9CB-49D5-A7EA-FA839C6C3628}"
 EndProject

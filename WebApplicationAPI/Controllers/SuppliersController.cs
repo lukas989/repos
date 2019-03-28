@@ -10,7 +10,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 
-namespace WebApplicationAPI.Controllers
+namespace API.Controllers
 {
     public class SuppliersController : ApiController
     {

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using WebApplicationAPI.Models;
 using System.Net.Http;
-using WebApplicationLib;
+using Lib;
+using Models;
 
 namespace WebApplication.Controllers
 {

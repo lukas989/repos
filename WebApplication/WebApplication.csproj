@@ -230,13 +230,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApplicationAPI\WebApplicationAPI.csproj">
-      <Project>{b2f4df12-2f73-40f7-8792-d3a9004c5c44}</Project>
-      <Name>WebApplicationAPI</Name>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{ee459f7c-a9cb-49d5-a7ea-fa839c6c3628}</Project>
+      <Name>Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebApplicationLib\WebApplicationLib.csproj">
+    <ProjectReference Include="..\WebApplicationLib\Lib.csproj">
       <Project>{3f95ed88-ad6d-443b-a5ea-0192bee271b4}</Project>
-      <Name>WebApplicationLib</Name>
+      <Name>Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

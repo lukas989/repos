@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 
-namespace WebApplicationLib
+namespace Lib
 {
     public class HttpClientLib
     {
