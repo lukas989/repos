@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Models;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,13 +9,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using WebApplicationAPI.Models;
 
 namespace WebApplicationAPI.Controllers
 {
     public class SuppliersController : ApiController
     {
-        private WmsIntegration_v2Entities1 db = new WmsIntegration_v2Entities1();
+        private WmsConnectionEntities db = new WmsConnectionEntities();
 
         // GET: api/Suppliers
         public IQueryable<Suppliers> GetSuppliers()
