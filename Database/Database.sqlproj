@@ -68,6 +68,7 @@
     <None Include="Snapshots\Database_20180528_00-04-56.dacpac" />
     <None Include="Script\Data.sql" />
     <None Include="Local.publish.xml" />
+    <None Include="Snapshots\Database_20190302_21-26-54.dacpac" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\ScriptsIgnoredOnImport.sql" />
