@@ -19,8 +19,9 @@ namespace Models
             : base("name=WmsConnectionEntities")
         {
             this.Configuration.LazyLoadingEnabled = false;
+
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
