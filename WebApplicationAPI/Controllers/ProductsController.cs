@@ -55,7 +55,15 @@ namespace WebApplicationAPI.Controllers
 
             try
             {
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex);
+                }
+                
             }
             catch (DbUpdateConcurrencyException)
             {

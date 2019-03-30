@@ -3,7 +3,7 @@
 	[ProductId] INT IDENTITY(1,1) NOT NULL,
 	[SupplierId] INT NOT NULL,
 	[Name] varchar (50) NOT NULL,
-	[Description] varchar (255) NOT NULL,
+	[Description] varchar (255) NULL,
 	[Weight] [decimal] (18, 2) NULL,
 	[Height] [decimal] (10, 2) NULL,
 	[Width] [decimal] (10, 2) NULL,
