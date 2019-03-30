@@ -123,6 +123,9 @@
     <Compile Include="sysdiagrams.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VProducts.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

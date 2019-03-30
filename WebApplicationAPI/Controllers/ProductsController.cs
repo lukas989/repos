@@ -17,9 +17,9 @@ namespace WebApplicationAPI.Controllers
         private WmsConnectionEntities db = new WmsConnectionEntities();
 
         // GET: api/Products
-        public IQueryable<Products> GetProducts()
+        public IQueryable<VProducts> GetProducts()
         {
-            return db.Products;
+            return db.VProducts;
         }
 
         // GET: api/Products/5

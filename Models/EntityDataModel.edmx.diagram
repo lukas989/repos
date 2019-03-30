@@ -44,6 +44,7 @@
         <AssociationConnector Association="WmsModel.FK_Supplier_ReceiptPlans" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_SalesOrders_SalesOrderLines" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_SalesOrderStatus_SalesOrder" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WmsModel.VProducts" Width="1.5" PointX="10.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
