@@ -93,5 +93,6 @@
     <Build Include="dbo\Tables\DeliveryPlanLines.sql" />
     <Build Include="dbo\Tables\ProductBarcodes.sql" />
     <Build Include="dbo\VProducts.sql" />
+    <Build Include="dbo\VPurchaseOrders.sql" />
   </ItemGroup>
 </Project>
