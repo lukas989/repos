@@ -24,7 +24,9 @@ namespace Models
         }
     
         public int SupplierId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
         public string EntryAuthor { get; set; }
         public System.DateTime EntryDate { get; set; }
