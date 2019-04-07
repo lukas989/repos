@@ -11,7 +11,8 @@ namespace Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Products
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,7 +25,10 @@ namespace Models
     
         public int ProductId { get; set; }
         public int SupplierId { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
+        [StringLength(2500, MinimumLength = 3, ErrorMessage = "Invalid")]
         public string Description { get; set; }
         public Nullable<decimal> Weight { get; set; }
         public Nullable<decimal> Height { get; set; }

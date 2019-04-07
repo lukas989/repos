@@ -17,9 +17,9 @@ namespace WebApplicationAPI.Controllers
         private WmsConnectionEntities db = new WmsConnectionEntities();
 
         // GET: api/Products
-        public IQueryable<Products> GetProducts()
+        public IQueryable<VProducts> GetProducts()
         {
-            return db.Products;
+            return db.VProducts;
         }
 
         // GET: api/Products/5
@@ -27,6 +27,8 @@ namespace WebApplicationAPI.Controllers
         public IHttpActionResult GetProducts(int id)
         {
             Products products = db.Products.Find(id);
+            products.ProductBarcodes = db.ProductBarcodes.Where(x=> x.ProductId == id).ToList();
+
             if (products == null)
             {
                 return NotFound();
@@ -53,7 +55,15 @@ namespace WebApplicationAPI.Controllers
 
             try
             {
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+                    Console.Write(ex);
+                }
+                
             }
             catch (DbUpdateConcurrencyException)
             {
