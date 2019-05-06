@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Lib;
@@ -33,7 +34,20 @@ namespace WebApplication.Controllers
         {
             PurchaseOrderEdit PurchaseOrder = new PurchaseOrderEdit();
             PurchaseOrder.PurchaseOrderStatusList = await LoadSelectListItemPurchaseOrderStatusAsync();
+            PurchaseOrder.SupplierList = await LoadSelectListItemSupplierAsync();
             return View(PurchaseOrder);
+        }
+
+        private async Task<IEnumerable<SelectListItem>> LoadSelectListItemSupplierAsync()
+        {
+            var purchaseOrderStatus = await new HttpClientLib().GetAsync<IEnumerable<Suppliers>>("API", "/api/Suppliers/");
+            return from s in purchaseOrderStatus
+                   select new SelectListItem
+                   {
+                       Selected = s.SupplierId.ToString() == "Active",
+                       Text = s.Name,
+                       Value = s.SupplierId.ToString()
+                   };
         }
 
         // POST: PurchaseOrders/Create
@@ -58,6 +72,8 @@ namespace WebApplication.Controllers
         {
             PurchaseOrderEdit PurchaseOrder = await new HttpClientLib().GetByIdAsync<PurchaseOrderEdit>("API", "/api/PurchaseOrders/", id);
             PurchaseOrder.PurchaseOrderStatusList = await LoadSelectListItemPurchaseOrderStatusAsync();
+            PurchaseOrder.SupplierList = await LoadSelectListItemSupplierAsync();
+
             return View(PurchaseOrder);
         }
 

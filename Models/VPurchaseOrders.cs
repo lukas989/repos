@@ -21,7 +21,6 @@ namespace Models
         public int SupplierId { get; set; }
         public string Supplier { get; set; }
         public Nullable<int> Line { get; set; }
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> ExpectedDate { get; set; }
         public string CurrencyId { get; set; }
         public decimal CurrencyRate { get; set; }

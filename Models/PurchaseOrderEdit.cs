@@ -9,7 +9,9 @@ namespace Models
 {
     public class PurchaseOrderEdit : PurchaseOrders
     {
-        public string Supplier { get; set; }
+        public IEnumerable<SelectListItem> SupplierList { get; set; }
+
+        public DateTime ExpectedDateValue { get; set; }
 
         public IEnumerable<SelectListItem> PurchaseOrderStatusList { get; set; }
     }

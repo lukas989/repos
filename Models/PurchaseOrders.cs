@@ -25,8 +25,14 @@ namespace Models
         public int PurchaseOrderId { get; set; }
         public int PurchaseOrderStatusId { get; set; }
         public int SupplierId { get; set; }
+
         [DataType(DataType.Date)]
-        public Nullable<System.DateTime> ExpectedDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> ExpectedDate
+        {
+            get;
+            set;
+        }
         public string CurrencyId { get; set; }
         public decimal CurrencyRate { get; set; }
         public string EntryAuthor { get; set; }

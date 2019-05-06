@@ -26,14 +26,17 @@ namespace WebApplicationAPI.Controllers
         [ResponseType(typeof(PurchaseOrders))]
         public IHttpActionResult GetPurchaseOrders(int id)
         {
+            PurchaseOrderEdit purchaseOrderEdit = new PurchaseOrderEdit();
             PurchaseOrders purchaseOrders = db.PurchaseOrders.Find(id);
             if (purchaseOrders == null)
             {
                 return NotFound();
             }
-
+            Suppliers supplier = db.Suppliers.Find(purchaseOrders.SupplierId);
+            purchaseOrderEdit = purchaseOrders as PurchaseOrderEdit;
+            //purchaseOrderEdit.Supplier = supplier.Name;
             return Ok(purchaseOrders);
-        }
+        } 
 
         // PUT: api/PurchaseOrders/5
         [ResponseType(typeof(void))]

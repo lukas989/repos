@@ -1,0 +1,4 @@
+﻿@model System.DateTime?
+<span>
+    @if (Model.HasValue) { @Model.Value.ToShortDateString(); }
+</span>
