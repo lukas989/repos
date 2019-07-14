@@ -130,6 +130,9 @@
     <Compile Include="VProducts.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VPurchaseOrderLines.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VPurchaseOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>

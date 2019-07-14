@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\PurchaseOrderLinesController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -364,6 +365,11 @@
     <Content Include="Views\PurchaseOrders\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
+    <Content Include="Views\PurchaseOrderLines\Create.cshtml" />
+    <Content Include="Views\PurchaseOrderLines\Delete.cshtml" />
+    <Content Include="Views\PurchaseOrderLines\Details.cshtml" />
+    <Content Include="Views\PurchaseOrderLines\Edit.cshtml" />
+    <Content Include="Views\PurchaseOrderLines\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

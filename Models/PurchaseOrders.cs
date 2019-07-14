@@ -11,8 +11,7 @@ namespace Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class PurchaseOrders
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,14 +24,7 @@ namespace Models
         public int PurchaseOrderId { get; set; }
         public int PurchaseOrderStatusId { get; set; }
         public int SupplierId { get; set; }
-
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> ExpectedDate
-        {
-            get;
-            set;
-        }
+        public Nullable<System.DateTime> ExpectedDate { get; set; }
         public string CurrencyId { get; set; }
         public decimal CurrencyRate { get; set; }
         public string EntryAuthor { get; set; }
