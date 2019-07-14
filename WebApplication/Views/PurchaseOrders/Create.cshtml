@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>PurchaseOrders</h4>
         <hr />
@@ -34,8 +34,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ExpectedDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ExpectedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ExpectedDate, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.ExpectedDate, "{0:MM/dd/yyyy}", new { @class = "datepicker form-control" })
+                @*@Html.ValidationMessageFor(model => model.ExpectedDate, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
@@ -69,4 +69,19 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
-}
+       @Scripts.Render("~/bundles/jqueryui")
+        @Styles.Render("~/Content/cssjqryUi")
+
+        <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: "mm/dd/yyyy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0",
+                language: "pl"
+            });
+
+        });
+        </script>
+    }
