@@ -14,5 +14,7 @@ namespace Models
         public DateTime ExpectedDateValue { get; set; }
 
         public IEnumerable<SelectListItem> PurchaseOrderStatusList { get; set; }
+
+        public IEnumerable<VPurchaseOrderLines> PurchaseOrderLines { get; set; }
     }
 }

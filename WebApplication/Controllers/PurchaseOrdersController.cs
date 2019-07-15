@@ -73,6 +73,9 @@ namespace WebApplication.Controllers
             PurchaseOrderEdit PurchaseOrder = await new HttpClientLib().GetByIdAsync<PurchaseOrderEdit>("API", "/api/PurchaseOrders/", id);
             PurchaseOrder.PurchaseOrderStatusList = await LoadSelectListItemPurchaseOrderStatusAsync();
             PurchaseOrder.SupplierList = await LoadSelectListItemSupplierAsync();
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("purchaseOrderId", id.ToString());
+            PurchaseOrder.PurchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/", paramList);
 
             return View(PurchaseOrder);
         }

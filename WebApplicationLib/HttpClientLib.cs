@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using Newtonsoft.Json;
 
 namespace Lib
@@ -28,6 +29,30 @@ namespace Lib
             HttpClient client = new HttpClient();
             var urlAppSetting = SettingLib.GetAppSetting(appSetting);
             HttpResponseMessage response = await client.GetAsync(urlAppSetting + apiController + id.ToString());
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsAsync<T>();
+            }
+            return await Task.FromResult(default(T));
+        }
+
+        public async Task<T> GetByAsync<T>(string appSetting, string apiController, Dictionary<string,string> paramList)
+        {
+            HttpClient client = new HttpClient();
+            var urlAppSetting = SettingLib.GetAppSetting(appSetting);
+
+            var builder = new UriBuilder(urlAppSetting.ToString() + apiController);
+            builder.Port = -1;
+            var query = HttpUtility.ParseQueryString(builder.Query);
+
+            foreach (var param in paramList)
+            {
+                query[param.Key] = param.Value;
+            }
+            builder.Query = query.ToString();
+            string url = builder.ToString();
+
+            HttpResponseMessage response = await client.GetAsync(url);
             if (response.IsSuccessStatusCode)
             {
                 return await response.Content.ReadAsAsync<T>();
