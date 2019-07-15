@@ -75,7 +75,7 @@ namespace WebApplication.Controllers
             PurchaseOrder.SupplierList = await LoadSelectListItemSupplierAsync();
             Dictionary<string, string> paramList = new Dictionary<string, string>();
             paramList.Add("purchaseOrderId", id.ToString());
-            PurchaseOrder.PurchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/", paramList);
+            PurchaseOrder.VPurchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/", paramList);
 
             return View(PurchaseOrder);
         }
@@ -94,7 +94,7 @@ namespace WebApplication.Controllers
 
         // POST: PurchaseOrders/Edit/5
         [HttpPost]
-        public async System.Threading.Tasks.Task<ActionResult> Edit(int id, PurchaseOrders PurchaseOrder)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int id, PurchaseOrderEdit PurchaseOrder)
         {
             try
             {

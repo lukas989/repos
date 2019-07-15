@@ -15,6 +15,6 @@ namespace Models
 
         public IEnumerable<SelectListItem> PurchaseOrderStatusList { get; set; }
 
-        public IEnumerable<VPurchaseOrderLines> PurchaseOrderLines { get; set; }
+        public IEnumerable<VPurchaseOrderLines> VPurchaseOrderLines { get; set; }
     }
 }
