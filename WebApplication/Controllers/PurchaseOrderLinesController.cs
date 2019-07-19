@@ -65,19 +65,25 @@ namespace WebApplication.Controllers
         }
 
         // GET: PurchaseOrderLines/Edit/5
-        public ActionResult Edit(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int? purchaseOrderId, int? purchaseOrderLineNo)
         {
-            if (id == null)
+            if (purchaseOrderId == null || purchaseOrderLineNo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PurchaseOrderLines purchaseOrderLines = db.PurchaseOrderLines.Find(id);
+
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("PurchaseOrderId", purchaseOrderId.ToString());
+            paramList.Add("PurchaseOrderLineNo", purchaseOrderLineNo.ToString());
+
+            PurchaseOrderLines purchaseOrderLines = await new HttpClientLib().GetByAsync<PurchaseOrderLines>("API", "/api/PurchaseOrderLines/", paramList);
             if (purchaseOrderLines == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", purchaseOrderLines.ProductId);
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId", purchaseOrderLines.PurchaseOrderId);
+
+            Products product = await new HttpClientLib().GetByIdAsync<Products>("API", "/api/Products/", purchaseOrderLines.ProductId);
+            purchaseOrderLines.Products = product;
             return View(purchaseOrderLines);
         }
 
