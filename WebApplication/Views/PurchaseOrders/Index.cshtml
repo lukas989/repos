@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Models.VPurchaseOrders>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PurchaseOrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CurrencyRate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PurchaseOrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrencyId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CurrencyRate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryAuthor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastAuthor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdate)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseOrderId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.PurchaseOrderId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -101,7 +101,7 @@
           <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
           <Property Name="Weight" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Height" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Width" Type="decimal" Precision="10" Scale="2" />
@@ -261,11 +261,11 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
             <PropertyRef Name="ProductId" />
             <PropertyRef Name="Product" />
             <PropertyRef Name="SupplierId" />
-            <PropertyRef Name="Description" />
             <PropertyRef Name="EntryAuthor" />
             <PropertyRef Name="EntryDate" />
             <PropertyRef Name="LastAuthor" />
             <PropertyRef Name="LastUpdate" />
+            <PropertyRef Name="Description" />
           </Key>
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="Product" Type="varchar" MaxLength="50" Nullable="false" />
@@ -277,6 +277,66 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
           <Property Name="Height" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Width" Type="decimal" Precision="10" Scale="2" />
           <Property Name="Depth" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrderLines' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VPurchaseOrderLines">
+          <Key>
+            <PropertyRef Name="PurchaseOrderId" />
+            <PropertyRef Name="PurchaseOrderLineNo" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="OrderedQty" />
+            <PropertyRef Name="PriceTypeId" />
+            <PropertyRef Name="PurchaseOrderPrice" />
+            <PropertyRef Name="DiscountTypeId" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
+          <Property Name="PurchaseOrderLineNo" Type="int" Nullable="false" />
+          <Property Name="ProductId" Type="int" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="OrderedQty" Type="int" Nullable="false" />
+          <Property Name="RecivedQty" Type="int" />
+          <Property Name="PriceTypeId" Type="int" Nullable="false" />
+          <Property Name="PurchaseOrderPrice" Type="decimal" Precision="15" Scale="5" Nullable="false" />
+          <Property Name="ExpectedDate" Type="datetime" />
+          <Property Name="DiscountTypeId" Type="int" Nullable="false" />
+          <Property Name="DiscountValue" Type="int" />
+          <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VPurchaseOrders">
+          <Key>
+            <PropertyRef Name="PurchaseOrderId" />
+            <PropertyRef Name="PurchaseOrderStatusId" />
+            <PropertyRef Name="SupplierId" />
+            <PropertyRef Name="CurrencyId" />
+            <PropertyRef Name="CurrencyRate" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
+          <Property Name="PurchaseOrderStatusId" Type="int" Nullable="false" />
+          <Property Name="PurchaseOrderStatus" Type="varchar" MaxLength="32" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="Supplier" Type="varchar" MaxLength="50" />
+          <Property Name="Line" Type="int" />
+          <Property Name="ExpectedDate" Type="datetime" />
+          <Property Name="CurrencyId" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="CurrencyRate" Type="decimal" Precision="15" Scale="5" Nullable="false" />
           <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
@@ -560,6 +620,42 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
     [VProducts].[LastUpdate] AS [LastUpdate]
     FROM [dbo].[VProducts] AS [VProducts]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="VPurchaseOrderLines" EntityType="Self.VPurchaseOrderLines" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VPurchaseOrderLines].[PurchaseOrderId] AS [PurchaseOrderId], 
+    [VPurchaseOrderLines].[PurchaseOrderLineNo] AS [PurchaseOrderLineNo], 
+    [VPurchaseOrderLines].[ProductId] AS [ProductId], 
+    [VPurchaseOrderLines].[ProductName] AS [ProductName], 
+    [VPurchaseOrderLines].[OrderedQty] AS [OrderedQty], 
+    [VPurchaseOrderLines].[RecivedQty] AS [RecivedQty], 
+    [VPurchaseOrderLines].[PriceTypeId] AS [PriceTypeId], 
+    [VPurchaseOrderLines].[PurchaseOrderPrice] AS [PurchaseOrderPrice], 
+    [VPurchaseOrderLines].[ExpectedDate] AS [ExpectedDate], 
+    [VPurchaseOrderLines].[DiscountTypeId] AS [DiscountTypeId], 
+    [VPurchaseOrderLines].[DiscountValue] AS [DiscountValue], 
+    [VPurchaseOrderLines].[EntryAuthor] AS [EntryAuthor], 
+    [VPurchaseOrderLines].[EntryDate] AS [EntryDate], 
+    [VPurchaseOrderLines].[LastAuthor] AS [LastAuthor], 
+    [VPurchaseOrderLines].[LastUpdate] AS [LastUpdate]
+    FROM [dbo].[VPurchaseOrderLines] AS [VPurchaseOrderLines]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VPurchaseOrders" EntityType="Self.VPurchaseOrders" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VPurchaseOrders].[PurchaseOrderId] AS [PurchaseOrderId], 
+    [VPurchaseOrders].[PurchaseOrderStatusId] AS [PurchaseOrderStatusId], 
+    [VPurchaseOrders].[PurchaseOrderStatus] AS [PurchaseOrderStatus], 
+    [VPurchaseOrders].[SupplierId] AS [SupplierId], 
+    [VPurchaseOrders].[Supplier] AS [Supplier], 
+    [VPurchaseOrders].[Line] AS [Line], 
+    [VPurchaseOrders].[ExpectedDate] AS [ExpectedDate], 
+    [VPurchaseOrders].[CurrencyId] AS [CurrencyId], 
+    [VPurchaseOrders].[CurrencyRate] AS [CurrencyRate], 
+    [VPurchaseOrders].[EntryAuthor] AS [EntryAuthor], 
+    [VPurchaseOrders].[EntryDate] AS [EntryDate], 
+    [VPurchaseOrders].[LastAuthor] AS [LastAuthor], 
+    [VPurchaseOrders].[LastUpdate] AS [LastUpdate]
+    FROM [dbo].[VPurchaseOrders] AS [VPurchaseOrders]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_Customer_DeliveryPlans" Association="Self.FK_Customer_DeliveryPlans">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="DeliveryPlans" EntitySet="DeliveryPlans" />
@@ -754,7 +850,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
           <Property Name="ProductId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SupplierId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Weight" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Height" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Width" Type="Decimal" Precision="10" Scale="2" />
@@ -1275,6 +1371,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
             <End Role="SalesOrders" EntitySet="SalesOrders" />
           </AssociationSet>
           <EntitySet Name="VProducts" EntityType="WmsModel.VProducts" />
+          <EntitySet Name="VPurchaseOrders" EntityType="WmsModel.VPurchaseOrders" />
+          <EntitySet Name="VPurchaseOrderLines" EntityType="WmsModel.VPurchaseOrderLines" />
         </EntityContainer>
         <EntityType Name="VProducts">
           <Key>
@@ -1297,6 +1395,62 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
           <Property Name="Height" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Width" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Depth" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="EntryAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VPurchaseOrders">
+          <Key>
+            <PropertyRef Name="PurchaseOrderId" />
+            <PropertyRef Name="PurchaseOrderStatusId" />
+            <PropertyRef Name="SupplierId" />
+            <PropertyRef Name="CurrencyId" />
+            <PropertyRef Name="CurrencyRate" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseOrderStatusId" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseOrderStatus" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="Supplier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Line" Type="Int32" />
+          <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrencyId" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CurrencyRate" Type="Decimal" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="EntryAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VPurchaseOrderLines">
+          <Key>
+            <PropertyRef Name="PurchaseOrderId" />
+            <PropertyRef Name="PurchaseOrderLineNo" />
+            <PropertyRef Name="ProductId" />
+            <PropertyRef Name="OrderedQty" />
+            <PropertyRef Name="PriceTypeId" />
+            <PropertyRef Name="PurchaseOrderPrice" />
+            <PropertyRef Name="DiscountTypeId" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseOrderLineNo" Type="Int32" Nullable="false" />
+          <Property Name="ProductId" Type="Int32" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="OrderedQty" Type="Int32" Nullable="false" />
+          <Property Name="RecivedQty" Type="Int32" />
+          <Property Name="PriceTypeId" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseOrderPrice" Type="Decimal" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
+          <Property Name="DiscountTypeId" Type="Int32" Nullable="false" />
+          <Property Name="DiscountValue" Type="Int32" />
           <Property Name="EntryAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
@@ -1587,6 +1741,46 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
                 <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
                 <ScalarProperty Name="Product" ColumnName="Product" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VPurchaseOrders">
+            <EntityTypeMapping TypeName="WmsModel.VPurchaseOrders">
+              <MappingFragment StoreEntitySet="VPurchaseOrders">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryAuthor" ColumnName="EntryAuthor" />
+                <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="Line" ColumnName="Line" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="PurchaseOrderStatus" ColumnName="PurchaseOrderStatus" />
+                <ScalarProperty Name="PurchaseOrderStatusId" ColumnName="PurchaseOrderStatusId" />
+                <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VPurchaseOrderLines">
+            <EntityTypeMapping TypeName="WmsModel.VPurchaseOrderLines">
+              <MappingFragment StoreEntitySet="VPurchaseOrderLines">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryAuthor" ColumnName="EntryAuthor" />
+                <ScalarProperty Name="DiscountValue" ColumnName="DiscountValue" />
+                <ScalarProperty Name="DiscountTypeId" ColumnName="DiscountTypeId" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="PurchaseOrderPrice" ColumnName="PurchaseOrderPrice" />
+                <ScalarProperty Name="PriceTypeId" ColumnName="PriceTypeId" />
+                <ScalarProperty Name="RecivedQty" ColumnName="RecivedQty" />
+                <ScalarProperty Name="OrderedQty" ColumnName="OrderedQty" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="PurchaseOrderLineNo" ColumnName="PurchaseOrderLineNo" />
+                <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

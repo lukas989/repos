@@ -92,6 +92,8 @@
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseOrderCreate.cs" />
+    <Compile Include="PurchaseOrderEdit.cs" />
     <Compile Include="PurchaseOrderLines.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -126,6 +128,12 @@
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VProducts.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VPurchaseOrderLines.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VPurchaseOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
