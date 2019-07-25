@@ -56,7 +56,7 @@ namespace WebApplication.Controllers
         // GET: Products/Edit/5
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {
-            ProductEdit product = await new HttpClientLib().GetByIdAsync<ProductEdit>("API", "/api/Products/", id);
+            ProductEdit product = await new HttpClientLib().GetByIdAsync<ProductEdit>("API", "/api/Products/GetProductsById/", id);
             product.SuppliersList = await LoadSelectListItemSuppliersAsync();
             return View(product);
         }

@@ -38,10 +38,11 @@ namespace WebApplication.Controllers
         }
 
         // GET: PurchaseOrderLines/Create
-        public ActionResult Create()
+        public async System.Threading.Tasks.Task<ActionResult> Create(int purchaseOrderId, int supplierId)
         {
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name");
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId");
+            IEnumerable<Products> products = await new HttpClientLib().GetByIdAsync<IEnumerable<Products>>("API", "/api/Products/GetProductsBySupplierId/", supplierId);
+            ViewBag.PurchaseOrderId = purchaseOrderId;
+            ViewBag.Products = products;
             return View();
         }
 
@@ -50,18 +51,11 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PurchaseOrderId,PurchaseOrderLineNo,ProductId,OrderedQty,RecivedQty,PriceTypeId,PurchaseOrderPrice,ExpectedDate,DiscountTypeId,DiscountValue,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] PurchaseOrderLines purchaseOrderLines)
+        public async System.Threading.Tasks.Task<ActionResult> Create([Bind(Include = "PurchaseOrderId,PurchaseOrderLineNo,ProductId,OrderedQty,RecivedQty,PriceTypeId,PurchaseOrderPrice,ExpectedDate,DiscountTypeId,DiscountValue,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] PurchaseOrderLines purchaseOrderLines)
         {
-            if (ModelState.IsValid)
-            {
-                db.PurchaseOrderLines.Add(purchaseOrderLines);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", purchaseOrderLines.ProductId);
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId", purchaseOrderLines.PurchaseOrderId);
-            return View(purchaseOrderLines);
+            new ObjectLib().InitObjec(purchaseOrderLines, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PostAsync("API", "/api/PurchaseOrderLines/", purchaseOrderLines);
+            return RedirectToAction("Edit", "PurchaseOrders", new { id = purchaseOrderLines.PurchaseOrderId });
         }
 
         // GET: PurchaseOrderLines/Edit/5
@@ -92,27 +86,25 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PurchaseOrderId,PurchaseOrderLineNo,ProductId,OrderedQty,RecivedQty,PriceTypeId,PurchaseOrderPrice,ExpectedDate,DiscountTypeId,DiscountValue,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] PurchaseOrderLines purchaseOrderLines)
+        public async System.Threading.Tasks.Task<ActionResult> Edit([Bind(Include = "PurchaseOrderId,PurchaseOrderLineNo,ProductId,OrderedQty,RecivedQty,PriceTypeId,PurchaseOrderPrice,ExpectedDate,DiscountTypeId,DiscountValue,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] PurchaseOrderLines purchaseOrderLines)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(purchaseOrderLines).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", purchaseOrderLines.ProductId);
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId", purchaseOrderLines.PurchaseOrderId);
-            return View(purchaseOrderLines);
+            new ObjectLib().UpdateObject(purchaseOrderLines, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PutAsync("API", "/api/PurchaseOrderLines/", purchaseOrderLines);
+            return RedirectToAction("Edit", "PurchaseOrders", new { id = purchaseOrderLines.PurchaseOrderId });
         }
 
         // GET: PurchaseOrderLines/Delete/5
-        public ActionResult Delete(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Delete(int? purchaseOrderId, int? purchaseOrderLineNo)
         {
-            if (id == null)
+            if (purchaseOrderId == null || purchaseOrderLineNo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            PurchaseOrderLines purchaseOrderLines = db.PurchaseOrderLines.Find(id);
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("PurchaseOrderId", purchaseOrderId.ToString());
+            paramList.Add("PurchaseOrderLineNo", purchaseOrderLineNo.ToString());
+
+            PurchaseOrderLines purchaseOrderLines = await new HttpClientLib().GetByAsync<PurchaseOrderLines>("API", "/api/PurchaseOrderLines/", paramList);
             if (purchaseOrderLines == null)
             {
                 return HttpNotFound();
@@ -123,12 +115,13 @@ namespace WebApplication.Controllers
         // POST: PurchaseOrderLines/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async System.Threading.Tasks.Task<ActionResult> DeleteConfirmed(int? purchaseOrderId, int? purchaseOrderLineNo)
         {
-            PurchaseOrderLines purchaseOrderLines = db.PurchaseOrderLines.Find(id);
-            db.PurchaseOrderLines.Remove(purchaseOrderLines);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("PurchaseOrderId", purchaseOrderId.ToString());
+            paramList.Add("PurchaseOrderLineNo", purchaseOrderLineNo.ToString());
+            await new HttpClientLib().DeleteAsync("API", "/api/PurchaseOrderLines/", paramList);
+            return RedirectToAction("Edit", "PurchaseOrders", new { id = purchaseOrderId });
         }
 
         protected override void Dispose(bool disposing)

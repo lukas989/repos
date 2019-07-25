@@ -72,6 +72,24 @@ namespace Lib
             await client.PostAsync(urlAppSetting + apiController, byteContent);
         }
 
+        public async Task DeleteAsync(string appSetting, string apiController, Dictionary<string, string> paramList)
+        {
+            HttpClient client = new HttpClient();
+            var urlAppSetting = SettingLib.GetAppSetting(appSetting);
+
+            var builder = new UriBuilder(urlAppSetting.ToString() + apiController);
+            builder.Port = -1;
+            var query = HttpUtility.ParseQueryString(builder.Query);
+
+            foreach (var param in paramList)
+            {
+                query[param.Key] = param.Value;
+            }
+            builder.Query = query.ToString();
+            string url = builder.ToString();
+            var result = await client.DeleteAsync(url);
+        }
+
         public async Task PutAsync<T>(string appSetting, string apiController, T data)
         {
             HttpClient client = new HttpClient();

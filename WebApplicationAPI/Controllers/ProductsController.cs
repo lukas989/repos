@@ -23,12 +23,15 @@ namespace WebApplicationAPI.Controllers
         }
 
         // GET: api/Products/5
+        [HttpGet]
         [ResponseType(typeof(Products))]
-        public IHttpActionResult GetProducts(int id)
+        public IHttpActionResult GetProductsById(int id)
         {
             Products products = db.Products.Find(id);
-            products.ProductBarcodes = db.ProductBarcodes.Where(x=> x.ProductId == id).ToList();
-
+            var listProductBarcodes =  db.ProductBarcodes.Where(x => x.ProductId == id).ToList();
+            if (listProductBarcodes != null && listProductBarcodes.Count !=  0)
+            { products.ProductBarcodes = listProductBarcodes; }
+            
             if (products == null)
             {
                 return NotFound();
@@ -36,6 +39,12 @@ namespace WebApplicationAPI.Controllers
 
             return Ok(products);
         }
+        [HttpGet]
+        public IQueryable<Products> GetProductsBySupplierId(int id)
+        {
+            return db.Products.Where(x => x.SupplierId == id);
+        }
+
 
         // PUT: api/Products/5
         [ResponseType(typeof(void))]

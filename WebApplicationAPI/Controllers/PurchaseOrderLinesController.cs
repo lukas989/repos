@@ -38,16 +38,11 @@ namespace WebApplicationAPI.Controllers
 
         // PUT: api/PurchaseOrderLines/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutPurchaseOrderLines(int id, PurchaseOrderLines purchaseOrderLines)
+        public IHttpActionResult PutPurchaseOrderLines(PurchaseOrderLines purchaseOrderLines)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != purchaseOrderLines.PurchaseOrderId)
-            {
-                return BadRequest();
             }
 
             db.Entry(purchaseOrderLines).State = EntityState.Modified;
@@ -58,14 +53,7 @@ namespace WebApplicationAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PurchaseOrderLinesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
                     throw;
-                }
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -79,7 +67,7 @@ namespace WebApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
-
+            purchaseOrderLines.PurchaseOrderLineNo = setMaxPurchaseOrderLineNo(purchaseOrderLines.PurchaseOrderId);
             db.PurchaseOrderLines.Add(purchaseOrderLines);
 
             try
@@ -101,11 +89,24 @@ namespace WebApplicationAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = purchaseOrderLines.PurchaseOrderId }, purchaseOrderLines);
         }
 
+        private int setMaxPurchaseOrderLineNo(int purchaseOrderId)
+        {
+            int nextPurchaseOrderLineNo = 1;
+            var purchaseOrderLines = db.PurchaseOrderLines.Where(x => x.PurchaseOrderId == purchaseOrderId);
+            if (purchaseOrderLines.Count() > 0)
+            {
+                int maxPurchaseOrderLineNo = db.PurchaseOrderLines.Where(x => x.PurchaseOrderId == purchaseOrderId).Max(p => p.PurchaseOrderLineNo);
+                nextPurchaseOrderLineNo = maxPurchaseOrderLineNo + 1;
+
+            }
+            return nextPurchaseOrderLineNo;
+        }
+
         // DELETE: api/PurchaseOrderLines/5
         [ResponseType(typeof(PurchaseOrderLines))]
-        public IHttpActionResult DeletePurchaseOrderLines(int id)
+        public IHttpActionResult DeletePurchaseOrderLines(int purchaseOrderId, int purchaseOrderLineNo)
         {
-            PurchaseOrderLines purchaseOrderLines = db.PurchaseOrderLines.Find(id);
+            PurchaseOrderLines purchaseOrderLines = db.PurchaseOrderLines.Find(purchaseOrderId, purchaseOrderLineNo);
             if (purchaseOrderLines == null)
             {
                 return NotFound();

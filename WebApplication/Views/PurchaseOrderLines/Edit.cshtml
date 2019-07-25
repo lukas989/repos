@@ -18,7 +18,13 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.PurchaseOrderId)
     @Html.HiddenFor(model => model.ProductId)
-    @Html.HiddenFor(model => model.PurchaseOrderLineNo)
+    @Html.HiddenFor(model => model.PriceTypeId)
+    @Html.HiddenFor(model => model.EntryAuthor)
+    @Html.HiddenFor(model => model.EntryDate)
+    @Html.HiddenFor(model => model.LastAuthor)
+    @Html.HiddenFor(model => model.LastUpdate)
+    @Html.HiddenFor(model => model.DiscountTypeId)
+    @Html.HiddenFor(model => model.DiscountValue)
 
     <div class="form-group">
         @Html.LabelFor(model => model.OrderedQty, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -37,14 +43,6 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.PriceTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PriceTypeId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PriceTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
         @Html.LabelFor(model => model.PurchaseOrderPrice, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.PurchaseOrderPrice, new { htmlAttributes = new { @class = "form-control" } })
@@ -59,55 +57,7 @@
             @*@Html.ValidationMessageFor(model => model.ExpectedDate, "", new { @class = "text-danger" })*@
         </div>
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiscountTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DiscountTypeId, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DiscountTypeId, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.DiscountValue, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DiscountValue, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DiscountValue, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.EntryAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EntryAuthor, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.EntryAuthor, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.EntryDate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.EntryDate, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.EntryDate, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.LastAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.LastAuthor, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.LastAuthor, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.LastUpdate, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.LastUpdate, "{0:MM/dd/yyyy}", new { @class = "datepicker form-control" })
-            @*@Html.ValidationMessageFor(model => model.LastUpdate, "", new { @class = "text-danger" })*@
-        </div>
-    </div>
-
+    
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Save" class="btn btn-default" />

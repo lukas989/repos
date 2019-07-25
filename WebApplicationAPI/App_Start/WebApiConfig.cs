@@ -19,6 +19,12 @@ namespace API
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.Routes.MapHttpRoute(
+                name: "Default2Api",
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { moduleId = RouteParameter.Optional }
+            );
+
         }
     }
 }
