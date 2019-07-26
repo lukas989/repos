@@ -163,6 +163,8 @@
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\PurchaseOrderLinesController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
+    <Compile Include="Controllers\ReceiptPlanLinesController.cs" />
+    <Compile Include="Controllers\ReceiptPlansController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -370,6 +372,17 @@
     <Content Include="Views\PurchaseOrderLines\Details.cshtml" />
     <Content Include="Views\PurchaseOrderLines\Edit.cshtml" />
     <Content Include="Views\PurchaseOrderLines\Index.cshtml" />
+    <Content Include="Views\ReceiptPlans\Create.cshtml" />
+    <Content Include="Views\ReceiptPlans\Delete.cshtml" />
+    <Content Include="Views\ReceiptPlans\Details.cshtml" />
+    <Content Include="Views\ReceiptPlans\Edit.cshtml" />
+    <Content Include="Views\ReceiptPlanLines\Create.cshtml" />
+    <Content Include="Views\ReceiptPlanLines\Delete.cshtml" />
+    <Content Include="Views\ReceiptPlanLines\Details.cshtml" />
+    <Content Include="Views\ReceiptPlanLines\Edit.cshtml" />
+    <Content Include="Views\ReceiptPlans\Index.cshtml" />
+    <Content Include="Views\ReceiptPlanLines\Index.cshtml" />
+    <Content Include="Views\PurchaseOrderLines\IndexAsync.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
