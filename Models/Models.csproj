@@ -136,6 +136,12 @@
     <Compile Include="VPurchaseOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VReceiptPlanLines.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VReceiptPlans.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

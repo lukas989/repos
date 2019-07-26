@@ -342,6 +342,55 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrders' does not ha
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlanLines' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VReceiptPlanLines">
+          <Key>
+            <PropertyRef Name="ReceiptPlanId" />
+            <PropertyRef Name="ReceiptPlanLineNo" />
+            <PropertyRef Name="ExpectedQty" />
+            <PropertyRef Name="PurchaseOrderId" />
+            <PropertyRef Name="PurchaseOrderLineNo" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="ReceiptPlanId" Type="int" Nullable="false" />
+          <Property Name="ReceiptPlanLineNo" Type="int" Nullable="false" />
+          <Property Name="Product" Type="varchar" MaxLength="50" />
+          <Property Name="ExpectedQty" Type="int" Nullable="false" />
+          <Property Name="RecivedQty" Type="int" />
+          <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
+          <Property Name="PurchaseOrderLineNo" Type="int" Nullable="false" />
+          <Property Name="OrderedQty" Type="int" />
+          <Property Name="OrderRecivedQty" Type="int" />
+          <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VReceiptPlans">
+          <Key>
+            <PropertyRef Name="ReceiptPlanId" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="ReceiptPlanId" Type="int" Nullable="false" />
+          <Property Name="ReceiptPlanStatus" Type="varchar" MaxLength="32" />
+          <Property Name="Supplier" Type="varchar" MaxLength="50" />
+          <Property Name="Orders" Type="int" />
+          <Property Name="Lines" Type="int" />
+          <Property Name="ExpectedDate" Type="datetime" />
+          <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+        </EntityType>
         <Association Name="FK_Customer_DeliveryPlans">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="DeliveryPlans" Type="Self.DeliveryPlans" Multiplicity="*" />
@@ -655,6 +704,37 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrders' does not ha
     [VPurchaseOrders].[LastAuthor] AS [LastAuthor], 
     [VPurchaseOrders].[LastUpdate] AS [LastUpdate]
     FROM [dbo].[VPurchaseOrders] AS [VPurchaseOrders]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VReceiptPlanLines" EntityType="Self.VReceiptPlanLines" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VReceiptPlanLines].[ReceiptPlanId] AS [ReceiptPlanId], 
+    [VReceiptPlanLines].[ReceiptPlanLineNo] AS [ReceiptPlanLineNo], 
+    [VReceiptPlanLines].[Product] AS [Product], 
+    [VReceiptPlanLines].[ExpectedQty] AS [ExpectedQty], 
+    [VReceiptPlanLines].[RecivedQty] AS [RecivedQty], 
+    [VReceiptPlanLines].[PurchaseOrderId] AS [PurchaseOrderId], 
+    [VReceiptPlanLines].[PurchaseOrderLineNo] AS [PurchaseOrderLineNo], 
+    [VReceiptPlanLines].[OrderedQty] AS [OrderedQty], 
+    [VReceiptPlanLines].[OrderRecivedQty] AS [OrderRecivedQty], 
+    [VReceiptPlanLines].[EntryAuthor] AS [EntryAuthor], 
+    [VReceiptPlanLines].[EntryDate] AS [EntryDate], 
+    [VReceiptPlanLines].[LastAuthor] AS [LastAuthor], 
+    [VReceiptPlanLines].[LastUpdate] AS [LastUpdate]
+    FROM [dbo].[VReceiptPlanLines] AS [VReceiptPlanLines]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VReceiptPlans" EntityType="Self.VReceiptPlans" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VReceiptPlans].[ReceiptPlanId] AS [ReceiptPlanId], 
+    [VReceiptPlans].[ReceiptPlanStatus] AS [ReceiptPlanStatus], 
+    [VReceiptPlans].[Supplier] AS [Supplier], 
+    [VReceiptPlans].[Orders] AS [Orders], 
+    [VReceiptPlans].[Lines] AS [Lines], 
+    [VReceiptPlans].[ExpectedDate] AS [ExpectedDate], 
+    [VReceiptPlans].[EntryAuthor] AS [EntryAuthor], 
+    [VReceiptPlans].[EntryDate] AS [EntryDate], 
+    [VReceiptPlans].[LastAuthor] AS [LastAuthor], 
+    [VReceiptPlans].[LastUpdate] AS [LastUpdate]
+    FROM [dbo].[VReceiptPlans] AS [VReceiptPlans]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Customer_DeliveryPlans" Association="Self.FK_Customer_DeliveryPlans">
             <End Role="Customers" EntitySet="Customers" />
@@ -1373,6 +1453,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrders' does not ha
           <EntitySet Name="VProducts" EntityType="WmsModel.VProducts" />
           <EntitySet Name="VPurchaseOrders" EntityType="WmsModel.VPurchaseOrders" />
           <EntitySet Name="VPurchaseOrderLines" EntityType="WmsModel.VPurchaseOrderLines" />
+          <EntitySet Name="VReceiptPlanLines" EntityType="WmsModel.VReceiptPlanLines" />
+          <EntitySet Name="VReceiptPlans" EntityType="WmsModel.VReceiptPlans" />
         </EntityContainer>
         <EntityType Name="VProducts">
           <Key>
@@ -1451,6 +1533,51 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrders' does not ha
           <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
           <Property Name="DiscountTypeId" Type="Int32" Nullable="false" />
           <Property Name="DiscountValue" Type="Int32" />
+          <Property Name="EntryAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VReceiptPlanLines">
+          <Key>
+            <PropertyRef Name="ReceiptPlanId" />
+            <PropertyRef Name="ReceiptPlanLineNo" />
+            <PropertyRef Name="ExpectedQty" />
+            <PropertyRef Name="PurchaseOrderId" />
+            <PropertyRef Name="PurchaseOrderLineNo" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="ReceiptPlanId" Type="Int32" Nullable="false" />
+          <Property Name="ReceiptPlanLineNo" Type="Int32" Nullable="false" />
+          <Property Name="Product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ExpectedQty" Type="Int32" Nullable="false" />
+          <Property Name="RecivedQty" Type="Int32" />
+          <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseOrderLineNo" Type="Int32" Nullable="false" />
+          <Property Name="OrderedQty" Type="Int32" />
+          <Property Name="OrderRecivedQty" Type="Int32" />
+          <Property Name="EntryAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="VReceiptPlans">
+          <Key>
+            <PropertyRef Name="ReceiptPlanId" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="ReceiptPlanId" Type="Int32" Nullable="false" />
+          <Property Name="ReceiptPlanStatus" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Supplier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Orders" Type="Int32" />
+          <Property Name="Lines" Type="Int32" />
+          <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
           <Property Name="EntryAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
@@ -1781,6 +1908,41 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrders' does not ha
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="PurchaseOrderLineNo" ColumnName="PurchaseOrderLineNo" />
                 <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VReceiptPlanLines">
+            <EntityTypeMapping TypeName="WmsModel.VReceiptPlanLines">
+              <MappingFragment StoreEntitySet="VReceiptPlanLines">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryAuthor" ColumnName="EntryAuthor" />
+                <ScalarProperty Name="OrderRecivedQty" ColumnName="OrderRecivedQty" />
+                <ScalarProperty Name="OrderedQty" ColumnName="OrderedQty" />
+                <ScalarProperty Name="PurchaseOrderLineNo" ColumnName="PurchaseOrderLineNo" />
+                <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+                <ScalarProperty Name="RecivedQty" ColumnName="RecivedQty" />
+                <ScalarProperty Name="ExpectedQty" ColumnName="ExpectedQty" />
+                <ScalarProperty Name="Product" ColumnName="Product" />
+                <ScalarProperty Name="ReceiptPlanLineNo" ColumnName="ReceiptPlanLineNo" />
+                <ScalarProperty Name="ReceiptPlanId" ColumnName="ReceiptPlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VReceiptPlans">
+            <EntityTypeMapping TypeName="WmsModel.VReceiptPlans">
+              <MappingFragment StoreEntitySet="VReceiptPlans">
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryAuthor" ColumnName="EntryAuthor" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="Lines" ColumnName="Lines" />
+                <ScalarProperty Name="Orders" ColumnName="Orders" />
+                <ScalarProperty Name="Supplier" ColumnName="Supplier" />
+                <ScalarProperty Name="ReceiptPlanStatus" ColumnName="ReceiptPlanStatus" />
+                <ScalarProperty Name="ReceiptPlanId" ColumnName="ReceiptPlanId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
