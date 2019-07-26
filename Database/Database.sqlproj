@@ -99,5 +99,7 @@
     <Build Include="dbo\Views\VPurchaseOrderLines.sql" />
     <Build Include="Security\sqlDeploy.sql" />
     <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Views\VReceiptPlans.sql" />
+    <Build Include="dbo\Views\VReceiptPlanLines.sql" />
   </ItemGroup>
 </Project>
