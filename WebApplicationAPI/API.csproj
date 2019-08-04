@@ -175,6 +175,7 @@
     <Compile Include="Controllers\PurchaseOrderStatusController.cs" />
     <Compile Include="Controllers\ReceiptPlanLinesController.cs" />
     <Compile Include="Controllers\ReceiptPlansController.cs" />
+    <Compile Include="Controllers\ReceiptPlanStatusController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

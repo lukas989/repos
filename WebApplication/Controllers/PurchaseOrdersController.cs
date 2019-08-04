@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Lib;
 using Models;
+using WebApplicationLib;
 
 namespace WebApplication.Controllers
 {
@@ -32,22 +33,11 @@ namespace WebApplication.Controllers
 
         public async System.Threading.Tasks.Task<ActionResult> Create()
         {
+            var loadSelectListItem = new LoadSelectListItem();
             PurchaseOrderEdit PurchaseOrder = new PurchaseOrderEdit();
-            PurchaseOrder.PurchaseOrderStatusList = await LoadSelectListItemPurchaseOrderStatusAsync();
-            PurchaseOrder.SupplierList = await LoadSelectListItemSupplierAsync();
+            PurchaseOrder.PurchaseOrderStatusList = await loadSelectListItem.PurchaseOrderStatusAsync();
+            PurchaseOrder.SupplierList = await loadSelectListItem.SupplierAsync();
             return View(PurchaseOrder);
-        }
-
-        private async Task<IEnumerable<SelectListItem>> LoadSelectListItemSupplierAsync()
-        {
-            var purchaseOrderStatus = await new HttpClientLib().GetAsync<IEnumerable<Suppliers>>("API", "/api/Suppliers/");
-            return from s in purchaseOrderStatus
-                   select new SelectListItem
-                   {
-                       Selected = s.SupplierId.ToString() == "Active",
-                       Text = s.Name,
-                       Value = s.SupplierId.ToString()
-                   };
         }
 
         // POST: PurchaseOrders/Create
@@ -70,26 +60,15 @@ namespace WebApplication.Controllers
         // GET: PurchaseOrders/Edit/5
         public async System.Threading.Tasks.Task<ActionResult> Edit(int id)
         {
+            var loadSelectListItem = new LoadSelectListItem();
             PurchaseOrderEdit PurchaseOrder = await new HttpClientLib().GetByIdAsync<PurchaseOrderEdit>("API", "/api/PurchaseOrders/", id);
-            PurchaseOrder.PurchaseOrderStatusList = await LoadSelectListItemPurchaseOrderStatusAsync();
-            PurchaseOrder.SupplierList = await LoadSelectListItemSupplierAsync();
+            PurchaseOrder.PurchaseOrderStatusList = await loadSelectListItem.PurchaseOrderStatusAsync();
+            PurchaseOrder.SupplierList = await loadSelectListItem.SupplierAsync();
             Dictionary<string, string> paramList = new Dictionary<string, string>();
             paramList.Add("purchaseOrderId", id.ToString());
             PurchaseOrder.VPurchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/", paramList);
 
             return View(PurchaseOrder);
-        }
-
-        private async System.Threading.Tasks.Task<IEnumerable<SelectListItem>> LoadSelectListItemPurchaseOrderStatusAsync()
-        {
-            var purchaseOrderStatus = await new HttpClientLib().GetAsync<IEnumerable<PurchaseOrderStatus>>("API", "/api/PurchaseOrderStatus/");
-            return from s in purchaseOrderStatus
-                   select new SelectListItem
-                   {
-                       Selected = s.PurchaseOrderStatusId.ToString() == "Active",
-                       Text = s.Name,
-                       Value = s.PurchaseOrderStatusId.ToString()
-                   };
         }
 
         // POST: PurchaseOrders/Edit/5

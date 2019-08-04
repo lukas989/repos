@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Lib;
 using Models;
+using WebApplicationLib;
 
 namespace WebApplication.Controllers
 {
@@ -38,11 +39,13 @@ namespace WebApplication.Controllers
         }
 
         // GET: ReceiptPlans/Create
-        public ActionResult Create()
+        public async System.Threading.Tasks.Task<ActionResult> Create()
         {
-            ViewBag.ReceiptPlanStatusId = new SelectList(db.ReceiptPlanStatus, "ReceiptPlanStatusId", "Name");
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Name");
-            return View();
+            LoadSelectListItem loadSelectListItem = new LoadSelectListItem();
+            ReceiptPlansEdit receiptPlansEdit = new ReceiptPlansEdit();
+            receiptPlansEdit.ReceiptPlanStatusSelectListItem = await loadSelectListItem.ReceiptPlanStatusAsync();
+            receiptPlansEdit.SuppliersSelectListItem = await loadSelectListItem.SupplierAsync();
+            return View(receiptPlansEdit);
         }
 
         // POST: ReceiptPlans/Create
@@ -50,34 +53,29 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReceiptPlanId,ReceiptPlanStatusId,SupplierId,ExpectedDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlans receiptPlans)
+        public async System.Threading.Tasks.Task<ActionResult> Create([Bind(Include = "ReceiptPlanId,ReceiptPlanStatusId,SupplierId,ExpectedDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlans receiptPlans)
         {
-            if (ModelState.IsValid)
-            {
-                db.ReceiptPlans.Add(receiptPlans);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ReceiptPlanStatusId = new SelectList(db.ReceiptPlanStatus, "ReceiptPlanStatusId", "Name", receiptPlans.ReceiptPlanStatusId);
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Name", receiptPlans.SupplierId);
-            return View(receiptPlans);
+            new ObjectLib().InitObjec(receiptPlans, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PostAsync("API", "/api/ReceiptPlans/", receiptPlans);
+            return RedirectToAction("Index"); 
         }
 
         // GET: ReceiptPlans/Edit/5
-        public ActionResult Edit(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int? id)
         {
+            ReceiptPlansEdit receiptPlans;
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReceiptPlans receiptPlans = db.ReceiptPlans.Find(id);
+            receiptPlans = await new HttpClientLib().GetByIdAsync<ReceiptPlansEdit>("API", "/api/ReceiptPlans/", (int)id);
             if (receiptPlans == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ReceiptPlanStatusId = new SelectList(db.ReceiptPlanStatus, "ReceiptPlanStatusId", "Name", receiptPlans.ReceiptPlanStatusId);
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Name", receiptPlans.SupplierId);
+            LoadSelectListItem loadSelectListItem = new LoadSelectListItem();
+            receiptPlans.ReceiptPlanStatusSelectListItem = await loadSelectListItem.ReceiptPlanStatusAsync();
+            receiptPlans.SuppliersSelectListItem = await loadSelectListItem.SupplierAsync();
             return View(receiptPlans);
         }
 
@@ -86,17 +84,11 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReceiptPlanId,ReceiptPlanStatusId,SupplierId,ExpectedDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlans receiptPlans)
+        public async System.Threading.Tasks.Task<ActionResult> Edit([Bind(Include = "ReceiptPlanId,ReceiptPlanStatusId,SupplierId,ExpectedDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlans receiptPlans)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(receiptPlans).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ReceiptPlanStatusId = new SelectList(db.ReceiptPlanStatus, "ReceiptPlanStatusId", "Name", receiptPlans.ReceiptPlanStatusId);
-            ViewBag.SupplierId = new SelectList(db.Suppliers, "SupplierId", "Name", receiptPlans.SupplierId);
-            return View(receiptPlans);
+            new ObjectLib().UpdateObject(receiptPlans, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PutAsync("API", "/api/ReceiptPlans/", receiptPlans.ReceiptPlanId, receiptPlans);
+            return RedirectToAction("Index");
         }
 
         // GET: ReceiptPlans/Delete/5

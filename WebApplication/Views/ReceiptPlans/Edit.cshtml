@@ -1,4 +1,4 @@
-﻿@model Models.ReceiptPlans
+﻿@model Models.ReceiptPlansEdit
 
 @{
     ViewBag.Title = "Edit";
@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>ReceiptPlans</h4>
         <hr />
@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ReceiptPlanStatusId, "ReceiptPlanStatusId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("ReceiptPlanStatusId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("ReceiptPlanStatusId", Model.ReceiptPlanStatusSelectListItem, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.ReceiptPlanStatusId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.SupplierId, "SupplierId", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("SupplierId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.DropDownList("SupplierId", Model.SuppliersSelectListItem, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.SupplierId, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,42 +36,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.ExpectedDate, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.ExpectedDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ExpectedDate, "", new { @class = "text-danger" })
+                @Html.TextBoxFor(model => model.ExpectedDate, "{0:MM/dd/yyyy}", new { @class = "datepicker form-control" })
+                @*@Html.ValidationMessageFor(model => model.ExpectedDate, "", new { @class = "text-danger" })*@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EntryAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EntryAuthor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EntryAuthor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EntryDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EntryDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EntryDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastAuthor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastAuthor, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.LastUpdate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.LastUpdate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.LastUpdate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @Html.HiddenFor(model => model.EntryAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.HiddenFor(model => model.EntryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.HiddenFor(model => model.LastAuthor, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.HiddenFor(model => model.LastUpdate, htmlAttributes: new { @class = "control-label col-md-2" })
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -87,4 +60,19 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Styles.Render("~/Content/cssjqryUi")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                format: "mm/dd/yyyy",
+                changeMonth: true,
+                changeYear: true,
+                yearRange: "-60:+0",
+                language: "pl"
+            });
+
+        });
+    </script>
 }
