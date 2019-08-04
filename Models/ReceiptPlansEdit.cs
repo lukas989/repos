@@ -11,6 +11,7 @@ namespace Models
     {
         public IEnumerable<SelectListItem> ReceiptPlanStatusSelectListItem { get; set; }
         public IEnumerable<SelectListItem> SuppliersSelectListItem { get; set; }
+        public IEnumerable<VReceiptPlanLines> VReceiptPlanLines { get; set; }
 
     }
 }

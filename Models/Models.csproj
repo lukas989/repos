@@ -106,6 +106,7 @@
     <Compile Include="ReceiptPlanLines.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReceiptPlanLinesEdit.cs" />
     <Compile Include="ReceiptPlans.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>

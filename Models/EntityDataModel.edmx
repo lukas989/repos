@@ -302,6 +302,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrderLines' does no
           <Property Name="PurchaseOrderLineNo" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="ProductName" Type="varchar" MaxLength="50" />
+          <Property Name="SupplierId" Type="int" />
           <Property Name="OrderedQty" Type="int" Nullable="false" />
           <Property Name="RecivedQty" Type="int" />
           <Property Name="PriceTypeId" Type="int" Nullable="false" />
@@ -675,6 +676,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
     [VPurchaseOrderLines].[PurchaseOrderLineNo] AS [PurchaseOrderLineNo], 
     [VPurchaseOrderLines].[ProductId] AS [ProductId], 
     [VPurchaseOrderLines].[ProductName] AS [ProductName], 
+    [VPurchaseOrderLines].[SupplierId] AS [SupplierId], 
     [VPurchaseOrderLines].[OrderedQty] AS [OrderedQty], 
     [VPurchaseOrderLines].[RecivedQty] AS [RecivedQty], 
     [VPurchaseOrderLines].[PriceTypeId] AS [PriceTypeId], 
@@ -1537,6 +1539,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SupplierId" Type="Int32" />
         </EntityType>
         <EntityType Name="VReceiptPlanLines">
           <Key>
@@ -1893,6 +1896,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySetMapping Name="VPurchaseOrderLines">
             <EntityTypeMapping TypeName="WmsModel.VPurchaseOrderLines">
               <MappingFragment StoreEntitySet="VPurchaseOrderLines">
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />

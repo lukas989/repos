@@ -11,8 +11,7 @@ namespace Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class PurchaseOrderLines
     {
         public int PurchaseOrderId { get; set; }
@@ -22,7 +21,6 @@ namespace Models
         public Nullable<int> RecivedQty { get; set; }
         public int PriceTypeId { get; set; }
         public decimal PurchaseOrderPrice { get; set; }
-        [DataType(DataType.Date)]
         public Nullable<System.DateTime> ExpectedDate { get; set; }
         public int DiscountTypeId { get; set; }
         public Nullable<int> DiscountValue { get; set; }
