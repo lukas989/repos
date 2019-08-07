@@ -76,6 +76,9 @@ namespace WebApplication.Controllers
             LoadSelectListItem loadSelectListItem = new LoadSelectListItem();
             receiptPlans.ReceiptPlanStatusSelectListItem = await loadSelectListItem.ReceiptPlanStatusAsync();
             receiptPlans.SuppliersSelectListItem = await loadSelectListItem.SupplierAsync();
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("ReceiptPlanId", id.ToString());
+            receiptPlans.VReceiptPlanLines = await new HttpClientLib().GetByAsync<IEnumerable<VReceiptPlanLines>>("API", "/api/ReceiptPlanLines/", paramList);
             return View(receiptPlans);
         }
 

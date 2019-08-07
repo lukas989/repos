@@ -1,0 +1,119 @@
+﻿@model Models.ReceiptPlanLinesEdit
+
+@{
+    ViewBag.Title = "Create2";
+}
+
+<h2>Create2</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>ReceiptPlanLines</h4>
+    <hr />
+    @Html.HiddenFor(model => model.ReceiptPlanLineNo, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.HiddenFor(model => model.ReceiptPlanId, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.HiddenFor(model => model.PurchaseOrderId, htmlAttributes: new { @class = "control-label col-md-2" })
+    @Html.HiddenFor(model => model.PurchaseOrderLineNo, htmlAttributes: new { @class = "control-label col-md-2" })
+
+
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.OrderedQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.RecivedQty)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.PurchaseOrderPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.ExpectedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.EntryAuthor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.EntryDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.LastAuthor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.VPurchaseOrderLine.LastUpdate)
+            </th>
+        </tr>
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.ProductName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.OrderedQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.RecivedQty)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.PurchaseOrderPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.ExpectedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.EntryAuthor)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.EntryDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.LastAuthor)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.VPurchaseOrderLine.LastUpdate)
+                </td>
+            </tr>
+
+    </table>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ExpectedQty, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ExpectedQty, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ExpectedQty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RecivedQty, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.RecivedQty, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.RecivedQty, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

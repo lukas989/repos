@@ -38,11 +38,27 @@ namespace WebApplication.Controllers
         }
 
         // GET: ReceiptPlanLines/Create
-        public ActionResult Create()
+        public async System.Threading.Tasks.Task<ActionResult> Create(int receiptPlanId, int supplierId)
         {
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId");
-            ViewBag.ReceiptPlanId = new SelectList(db.ReceiptPlans, "ReceiptPlanId", "EntryAuthor");
-            return View();
+            ReceiptPlanLinesEdit receiptPlanLinesEdit = new ReceiptPlanLinesEdit() { ReceiptPlanId = receiptPlanId};
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("supplierId", supplierId.ToString());
+            receiptPlanLinesEdit.VPurchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/GetPurchaseOrderLinesBySupplier/", paramList);
+            return View(receiptPlanLinesEdit);
+        }
+        public async System.Threading.Tasks.Task<ActionResult> Create2(int purchaseOrderId,int purchaseOrderLineNo, int receiptPlanId)
+        {
+            ReceiptPlanLinesEdit receiptPlanLinesEdit = new ReceiptPlanLinesEdit()
+            {
+                PurchaseOrderId = purchaseOrderId,
+                PurchaseOrderLineNo = purchaseOrderLineNo,
+                ReceiptPlanId = receiptPlanId
+            };
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("purchaseOrderId", purchaseOrderId.ToString());
+            IEnumerable<VPurchaseOrderLines> purchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/", paramList);
+            receiptPlanLinesEdit.VPurchaseOrderLine = purchaseOrderLines.FirstOrDefault(x => x.PurchaseOrderId == purchaseOrderId && x.PurchaseOrderLineNo == purchaseOrderLineNo);
+            return View(receiptPlanLinesEdit);
         }
 
         // POST: ReceiptPlanLines/Create
@@ -50,18 +66,11 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ReceiptPlanId,ReceiptPlanLineNo,PurchaseOrderId,PurchaseOrderLineNo,ExpectedQty,RecivedQty,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlanLines receiptPlanLines)
+        public async System.Threading.Tasks.Task<ActionResult> Create2([Bind(Include = "ReceiptPlanId,ReceiptPlanLineNo,PurchaseOrderId,PurchaseOrderLineNo,ExpectedQty,RecivedQty,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlanLines receiptPlanLines)
         {
-            if (ModelState.IsValid)
-            {
-                db.ReceiptPlanLines.Add(receiptPlanLines);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId", receiptPlanLines.PurchaseOrderId);
-            ViewBag.ReceiptPlanId = new SelectList(db.ReceiptPlans, "ReceiptPlanId", "EntryAuthor", receiptPlanLines.ReceiptPlanId);
-            return View(receiptPlanLines);
+            new ObjectLib().InitObjec(receiptPlanLines, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PostAsync("API", "/api/ReceiptPlanLines/", receiptPlanLines);
+            return RedirectToAction("Edit", "ReceiptPlans", new { id = receiptPlanLines.ReceiptPlanId });
         }
 
         // GET: ReceiptPlanLines/Edit/5

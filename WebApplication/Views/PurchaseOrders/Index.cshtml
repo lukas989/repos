@@ -27,54 +27,54 @@
             @Html.DisplayNameFor(model => model.CurrencyRate)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EntryAuthor)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EntryDate)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.LastAuthor)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastUpdate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Supplier)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PurchaseOrderStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpectedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrencyId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CurrencyRate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryAuthor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastAuthor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdate)
-        </td>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Supplier)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PurchaseOrderStatus)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ExpectedDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CurrencyId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CurrencyRate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastUpdate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryDate)
+    </td>
 
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseOrderId })
-        </td>
-    </tr>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.PurchaseOrderId })
+    </td>
+</tr>
 }
 
 </table>

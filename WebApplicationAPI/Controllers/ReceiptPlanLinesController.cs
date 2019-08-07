@@ -17,16 +17,19 @@ namespace WebApplicationAPI.Controllers
         private WmsConnectionEntities db = new WmsConnectionEntities();
 
         // GET: api/ReceiptPlanLines
-        public IQueryable<VReceiptPlanLines> GetReceiptPlanLines()
+        public IHttpActionResult GetReceiptPlanLines(int receiptPlanId)
         {
-            return db.VReceiptPlanLines;
+            //return db.VReceiptPlanLines;
+            var receiptPlanLines = db.VReceiptPlanLines.Where(x => x.ReceiptPlanId == receiptPlanId);
+            return Ok(receiptPlanLines);
         }
+
 
         // GET: api/ReceiptPlanLines/5
         [ResponseType(typeof(ReceiptPlanLines))]
-        public IHttpActionResult GetReceiptPlanLines(int id)
+        public IHttpActionResult GetReceiptPlanLines(int receiptPlanId, int receiptPlanLineNo)
         {
-            ReceiptPlanLines receiptPlanLines = db.ReceiptPlanLines.Find(id);
+            ReceiptPlanLines receiptPlanLines = db.ReceiptPlanLines.Find(receiptPlanId, receiptPlanLineNo);
             if (receiptPlanLines == null)
             {
                 return NotFound();
@@ -78,6 +81,7 @@ namespace WebApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            receiptPlanLines.ReceiptPlanLineNo = setMaxReceiptPlanLineNo(receiptPlanLines.ReceiptPlanId);
 
             db.ReceiptPlanLines.Add(receiptPlanLines);
 
@@ -98,6 +102,19 @@ namespace WebApplicationAPI.Controllers
             }
 
             return CreatedAtRoute("DefaultApi", new { id = receiptPlanLines.ReceiptPlanId }, receiptPlanLines);
+        }
+
+        private int setMaxReceiptPlanLineNo(int receiptPlanId)
+        {
+            int nextReceiptPlanLineNo = 1;
+            var receiptPlanLines = db.ReceiptPlanLines.Where(x => x.ReceiptPlanId == receiptPlanId);
+            if (receiptPlanLines.Count() > 0)
+            {
+                int maxReceiptPlanLineNo = db.ReceiptPlanLines.Where(x => x.ReceiptPlanId == receiptPlanId).Max(p => p.ReceiptPlanLineNo);
+                nextReceiptPlanLineNo = maxReceiptPlanLineNo + 1;
+
+            }
+            return nextReceiptPlanLineNo;
         }
 
         // DELETE: api/ReceiptPlanLines/5

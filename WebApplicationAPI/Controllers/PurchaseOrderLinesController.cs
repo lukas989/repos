@@ -23,6 +23,13 @@ namespace WebApplicationAPI.Controllers
             return Ok(purchaseOrderLines);
         }
 
+        // GET: api/PurchaseOrderLines
+        public IHttpActionResult GetPurchaseOrderLinesBySupplier(int supplierId)
+        {
+            var purchaseOrderLines = db.VPurchaseOrderLines.Where(x => x.SupplierId == supplierId);
+            return Ok(purchaseOrderLines);
+        }
+
         // GET: api/PurchaseOrderLines/5
         [ResponseType(typeof(PurchaseOrderLines))]
         public IHttpActionResult GetPurchaseOrderLines(int purchaseOrderId, int purchaseOrderLineNo)

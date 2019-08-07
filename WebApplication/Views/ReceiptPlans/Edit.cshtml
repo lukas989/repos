@@ -54,6 +54,84 @@
     </div>
 }
 
+
+<p>
+    @Html.ActionLink("New Line", "Create", "ReceiptPlanLines", new { receiptPlanId = Model.ReceiptPlanId, supplierId = Model.SupplierId }, new { @class = "btn btn-default" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().ExpectedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().RecivedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().OrderedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().OrderRecivedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().LastAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().LastUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().EntryAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().EntryDate)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.VReceiptPlanLines)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Product)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ExpectedQty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RecivedQty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderedQty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderRecivedQty)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.LastAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.LastUpdate)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.EntryAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(model => model.EntryDate)
+    </td>
+
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+        @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+    </td>
+</tr>
+    }
+
+</table>
+
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

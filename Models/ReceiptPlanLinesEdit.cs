@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    class ReceiptPlanLinesEdit : ReceiptPlanLines
+    public class ReceiptPlanLinesEdit : ReceiptPlanLines
     {
         public IEnumerable<VPurchaseOrderLines> VPurchaseOrderLines { get; set; }
-        
+        public VPurchaseOrderLines VPurchaseOrderLine { get; set; }
     }
 }
