@@ -74,19 +74,23 @@ namespace WebApplication.Controllers
         }
 
         // GET: ReceiptPlanLines/Edit/5
-        public ActionResult Edit(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int? receiptPlanId, int? receiptPlanLineNo )
         {
-            if (id == null)
+            if (receiptPlanId == null || receiptPlanLineNo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ReceiptPlanLines receiptPlanLines = db.ReceiptPlanLines.Find(id);
-            if (receiptPlanLines == null)
+
+
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("ReceiptPlanId", receiptPlanId.ToString());
+            paramList.Add("ReceiptPlanLineNo", receiptPlanLineNo.ToString());
+
+            ReceiptPlanLines receiptPlanLines = await new HttpClientLib().GetByAsync<ReceiptPlanLines>("API", "/api/ReceiptPlanLines/", paramList);
+            if (receiptPlanLineNo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId", receiptPlanLines.PurchaseOrderId);
-            ViewBag.ReceiptPlanId = new SelectList(db.ReceiptPlans, "ReceiptPlanId", "EntryAuthor", receiptPlanLines.ReceiptPlanId);
             return View(receiptPlanLines);
         }
 
