@@ -40,18 +40,13 @@ namespace WebApplicationAPI.Controllers
 
         // PUT: api/ReceiptPlanLines/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutReceiptPlanLines(int id, ReceiptPlanLines receiptPlanLines)
+        public IHttpActionResult PutReceiptPlanLines(ReceiptPlanLines receiptPlanLines)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            if (id != receiptPlanLines.ReceiptPlanId)
-            {
-                return BadRequest();
-            }
-
+            
             db.Entry(receiptPlanLines).State = EntityState.Modified;
 
             try
@@ -60,16 +55,8 @@ namespace WebApplicationAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ReceiptPlanLinesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
                     throw;
-                }
             }
-
             return StatusCode(HttpStatusCode.NoContent);
         }
 
@@ -91,7 +78,7 @@ namespace WebApplicationAPI.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ReceiptPlanLinesExists(receiptPlanLines.ReceiptPlanId))
+                if (ReceiptPlanLinesExists(receiptPlanLines.ReceiptPlanId, receiptPlanLines.ReceiptPlanLineNo))
                 {
                     return Conflict();
                 }
@@ -119,9 +106,9 @@ namespace WebApplicationAPI.Controllers
 
         // DELETE: api/ReceiptPlanLines/5
         [ResponseType(typeof(ReceiptPlanLines))]
-        public IHttpActionResult DeleteReceiptPlanLines(int id)
+        public IHttpActionResult DeleteReceiptPlanLines(int receiptPlanId, int receiptPlanLineNo)
         {
-            ReceiptPlanLines receiptPlanLines = db.ReceiptPlanLines.Find(id);
+            ReceiptPlanLines receiptPlanLines = db.ReceiptPlanLines.Find(receiptPlanId,receiptPlanLineNo);
             if (receiptPlanLines == null)
             {
                 return NotFound();
@@ -142,9 +129,9 @@ namespace WebApplicationAPI.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ReceiptPlanLinesExists(int id)
+        private bool ReceiptPlanLinesExists(int receiptPlanId, int receiptPlanLineNo)
         {
-            return db.ReceiptPlanLines.Count(e => e.ReceiptPlanId == id) > 0;
+            return db.ReceiptPlanLines.Count(e => e.ReceiptPlanId == receiptPlanId && e.ReceiptPlanLineNo == receiptPlanLineNo) > 0;
         }
     }
 }

@@ -99,27 +99,25 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ReceiptPlanId,ReceiptPlanLineNo,PurchaseOrderId,PurchaseOrderLineNo,ExpectedQty,RecivedQty,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlanLines receiptPlanLines)
+        public async System.Threading.Tasks.Task<ActionResult> Edit([Bind(Include = "ReceiptPlanId,ReceiptPlanLineNo,PurchaseOrderId,PurchaseOrderLineNo,ExpectedQty,RecivedQty,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] ReceiptPlanLines receiptPlanLines)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(receiptPlanLines).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.PurchaseOrderId = new SelectList(db.PurchaseOrders, "PurchaseOrderId", "CurrencyId", receiptPlanLines.PurchaseOrderId);
-            ViewBag.ReceiptPlanId = new SelectList(db.ReceiptPlans, "ReceiptPlanId", "EntryAuthor", receiptPlanLines.ReceiptPlanId);
-            return View(receiptPlanLines);
+            new ObjectLib().UpdateObject(receiptPlanLines, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PutAsync("API", "/api/ReceiptPlanLines/", receiptPlanLines);
+            return RedirectToAction("Edit", "ReceiptPlans", new { id = receiptPlanLines.ReceiptPlanId });
         }
 
         // GET: ReceiptPlanLines/Delete/5
-        public ActionResult Delete(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Delete(int? receiptPlanId, int? receiptPlanLineNo)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            ReceiptPlanLines receiptPlanLines = db.ReceiptPlanLines.Find(id);
+            if (receiptPlanId == null || receiptPlanLineNo == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("ReceiptPlanId", receiptPlanId.ToString());
+            paramList.Add("ReceiptPlanLineNo", receiptPlanLineNo.ToString());
+
+            ReceiptPlanLines receiptPlanLines = await new HttpClientLib().GetByAsync<ReceiptPlanLines>("API", "/api/ReceiptPlanLines/", paramList);
             if (receiptPlanLines == null)
             {
                 return HttpNotFound();
@@ -127,16 +125,18 @@ namespace WebApplication.Controllers
             return View(receiptPlanLines);
         }
 
-        // POST: ReceiptPlanLines/Delete/5
+        // POST: PurchaseOrderLines/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async System.Threading.Tasks.Task<ActionResult> DeleteConfirmed(int? receiptPlanId, int? receiptPlanLineNo)
         {
-            ReceiptPlanLines receiptPlanLines = db.ReceiptPlanLines.Find(id);
-            db.ReceiptPlanLines.Remove(receiptPlanLines);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("ReceiptPlanId", receiptPlanId.ToString());
+            paramList.Add("ReceiptPlanLineNo", receiptPlanLineNo.ToString());
+            await new HttpClientLib().DeleteAsync("API", "/api/ReceiptPlanLines/", paramList);
+            return RedirectToAction("Edit", "ReceiptPlans", new { id = receiptPlanId });
         }
+
 
         protected override void Dispose(bool disposing)
         {
