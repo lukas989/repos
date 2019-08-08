@@ -173,6 +173,9 @@
     <Compile Include="Controllers\PurchaseOrderLinesController.cs" />
     <Compile Include="Controllers\PurchaseOrdersController.cs" />
     <Compile Include="Controllers\PurchaseOrderStatusController.cs" />
+    <Compile Include="Controllers\ReceiptPlanLinesController.cs" />
+    <Compile Include="Controllers\ReceiptPlansController.cs" />
+    <Compile Include="Controllers\ReceiptPlanStatusController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -195,7 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

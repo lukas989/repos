@@ -12,24 +12,20 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PurchaseOrderLines
+    public partial class VReceiptPlanLines
     {
+        public int ReceiptPlanId { get; set; }
+        public int ReceiptPlanLineNo { get; set; }
+        public string Product { get; set; }
+        public int ExpectedQty { get; set; }
+        public Nullable<int> RecivedQty { get; set; }
         public int PurchaseOrderId { get; set; }
         public int PurchaseOrderLineNo { get; set; }
-        public int ProductId { get; set; }
-        public int OrderedQty { get; set; }
-        public Nullable<int> RecivedQty { get; set; }
-        public int PriceTypeId { get; set; }
-        public decimal PurchaseOrderPrice { get; set; }
-        public Nullable<System.DateTime> ExpectedDate { get; set; }
-        public int DiscountTypeId { get; set; }
-        public Nullable<int> DiscountValue { get; set; }
+        public Nullable<int> OrderedQty { get; set; }
+        public Nullable<int> OrderRecivedQty { get; set; }
         public string EntryAuthor { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
-    
-        public virtual Products Products { get; set; }
-        public virtual PurchaseOrders PurchaseOrders { get; set; }
     }
 }

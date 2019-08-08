@@ -48,5 +48,7 @@ namespace Models
         public virtual DbSet<VProducts> VProducts { get; set; }
         public virtual DbSet<VPurchaseOrders> VPurchaseOrders { get; set; }
         public virtual DbSet<VPurchaseOrderLines> VPurchaseOrderLines { get; set; }
+        public virtual DbSet<VReceiptPlans> VReceiptPlans { get; set; }
+        public virtual DbSet<VReceiptPlanLines> VReceiptPlanLines { get; set; }
     }
 }
