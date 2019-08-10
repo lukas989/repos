@@ -377,6 +377,7 @@
     <Content Include="Views\ReceiptPlanLines\Index.cshtml" />
     <Content Include="Views\PurchaseOrderLines\IndexAsync.cshtml" />
     <Content Include="Views\ReceiptPlanLines\Create2.cshtml" />
+    <Content Include="Views\PurchaseOrderLines\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
