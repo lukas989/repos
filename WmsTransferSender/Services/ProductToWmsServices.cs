@@ -47,6 +47,7 @@ namespace WmsTransferSender.Services
                 db.Products.Attach(product);
                 db.Entry(product).Property(x => x.WmsUpdate).IsModified = true;
                 db.SaveChanges();
+                System.Console.WriteLine("Product:" +product.ProductId + " \nName:" + product.Name + "\nSend to Wms");
             }
                 
         }

@@ -119,6 +119,7 @@
     <Compile Include="ReceiptPlanStatus.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReceiptPlanStatusId.cs" />
     <Compile Include="SalesOrderLines.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>

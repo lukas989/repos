@@ -20,6 +20,10 @@ namespace WmsTransferSender
             {
                 new ProductToWmsServices().StartProcessing();
             }
+            else if (args[0] == "ReceiptPlans")
+            {
+                new ReceiptPlansToWmsServices().StartProcessing();
+            }
         }
 
         [Obsolete]
