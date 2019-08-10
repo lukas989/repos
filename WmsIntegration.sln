@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2027
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{3BA1A7BF-F3F2-4109-B873-E4F20C406878}"
 EndProject
@@ -12,6 +12,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lib", "WebApplicationLib\Lib.csproj", "{3F95ED88-AD6D-443B-A5EA-0192BEE271B4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{EE459F7C-A9CB-49D5-A7EA-FA839C6C3628}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmsTransferReceiver", "WmsTransfer\WmsTransferReceiver.csproj", "{936203FA-585E-4ABB-8188-C34E7D685026}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmsTransferSender", "WmsTransferSender\WmsTransferSender.csproj", "{B6C660DB-0408-41EB-A908-9A707341A717}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WmsSimulator", "WmsSimulator\WmsSimulator.csproj", "{339F6457-D926-4219-B4E7-337D169FE372}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +47,18 @@ Global
 		{EE459F7C-A9CB-49D5-A7EA-FA839C6C3628}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE459F7C-A9CB-49D5-A7EA-FA839C6C3628}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE459F7C-A9CB-49D5-A7EA-FA839C6C3628}.Release|Any CPU.Build.0 = Release|Any CPU
+		{936203FA-585E-4ABB-8188-C34E7D685026}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{936203FA-585E-4ABB-8188-C34E7D685026}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{936203FA-585E-4ABB-8188-C34E7D685026}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{936203FA-585E-4ABB-8188-C34E7D685026}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6C660DB-0408-41EB-A908-9A707341A717}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6C660DB-0408-41EB-A908-9A707341A717}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6C660DB-0408-41EB-A908-9A707341A717}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6C660DB-0408-41EB-A908-9A707341A717}.Release|Any CPU.Build.0 = Release|Any CPU
+		{339F6457-D926-4219-B4E7-337D169FE372}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{339F6457-D926-4219-B4E7-337D169FE372}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{339F6457-D926-4219-B4E7-337D169FE372}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{339F6457-D926-4219-B4E7-337D169FE372}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -65,6 +65,8 @@
     <Folder Include="Snapshots" />
     <Folder Include="dbo\Views\" />
     <Folder Include="Security\" />
+    <Folder Include="WmsSimulator\" />
+    <Folder Include="WmsSimulator\Tables\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Snapshots\Database_20180528_00-04-56.dacpac" />
@@ -101,5 +103,8 @@
     <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Views\VReceiptPlans.sql" />
     <Build Include="dbo\Views\VReceiptPlanLines.sql" />
+    <Build Include="WmsSimulator\Tables\XmlOut.sql" />
+    <Build Include="WmsSimulator\Tables\XmlIn.sql" />
+    <Build Include="Security\WmsSimulator.sql" />
   </ItemGroup>
 </Project>
