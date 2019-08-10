@@ -21,8 +21,15 @@ namespace WmsSimulator.Controllers
             if (String.IsNullOrWhiteSpace(content))
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
-            Products products = new Products();
-            db.Products.Add(products);
+            XmlIn xmlIn = new XmlIn()
+            {
+                Content = content,
+                Body = "TEST_2",
+                EntryDate = DateTime.Now
+             
+            };
+
+            db.XmlIn.Add(xmlIn);
             db.SaveChanges();
 
             return Request.CreateResponse(HttpStatusCode.OK);
