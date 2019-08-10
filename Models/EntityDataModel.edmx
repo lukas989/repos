@@ -255,6 +255,29 @@
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <!--Errors Found During Generation:
+warning 6002: The table/view 'WmsIntegration_v2.WmsSimulator.XmlIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="XmlIn">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EntryDate" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="Content" Type="varchar" MaxLength="255" />
+          <Property Name="Body" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WmsIntegration_v2.WmsSimulator.XmlOut' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="XmlOut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" />
+          <Property Name="Content" Type="varchar" MaxLength="255" />
+          <Property Name="Body" Type="nvarchar(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
 warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="VProducts">
           <Key>
@@ -652,6 +675,22 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySet Name="SalesOrderStatus" EntityType="Self.SalesOrderStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XmlIn" EntityType="Self.XmlIn" store:Type="Tables" store:Schema="WmsSimulator">
+            <DefiningQuery>SELECT 
+    [XmlIn].[Id] AS [Id], 
+    [XmlIn].[EntryDate] AS [EntryDate], 
+    [XmlIn].[Content] AS [Content], 
+    [XmlIn].[Body] AS [Body]
+    FROM [WmsSimulator].[XmlIn] AS [XmlIn]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="XmlOut" EntityType="Self.XmlOut" store:Type="Tables" store:Schema="WmsSimulator">
+            <DefiningQuery>SELECT 
+    [XmlOut].[Id] AS [Id], 
+    [XmlOut].[EntryDate] AS [EntryDate], 
+    [XmlOut].[Content] AS [Content], 
+    [XmlOut].[Body] AS [Body]
+    FROM [WmsSimulator].[XmlOut] AS [XmlOut]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="VProducts" EntityType="Self.VProducts" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VProducts].[ProductId] AS [ProductId], 
@@ -1457,6 +1496,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySet Name="VPurchaseOrderLines" EntityType="WmsModel.VPurchaseOrderLines" />
           <EntitySet Name="VReceiptPlanLines" EntityType="WmsModel.VReceiptPlanLines" />
           <EntitySet Name="VReceiptPlans" EntityType="WmsModel.VReceiptPlans" />
+          <EntitySet Name="XmlIn" EntityType="WmsModel.XmlIn" />
+          <EntitySet Name="XmlOut" EntityType="WmsModel.XmlOut" />
         </EntityContainer>
         <EntityType Name="VProducts">
           <Key>
@@ -1585,6 +1626,25 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="XmlIn">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="EntryDate" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="XmlOut">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Precision="3" />
+          <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1947,6 +2007,26 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
                 <ScalarProperty Name="Supplier" ColumnName="Supplier" />
                 <ScalarProperty Name="ReceiptPlanStatus" ColumnName="ReceiptPlanStatus" />
                 <ScalarProperty Name="ReceiptPlanId" ColumnName="ReceiptPlanId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XmlIn">
+            <EntityTypeMapping TypeName="WmsModel.XmlIn">
+              <MappingFragment StoreEntitySet="XmlIn">
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XmlOut">
+            <EntityTypeMapping TypeName="WmsModel.XmlOut">
+              <MappingFragment StoreEntitySet="XmlOut">
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

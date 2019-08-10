@@ -84,6 +84,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EntityDataModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDataModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="ProductBarcodes.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -144,12 +149,18 @@
     <Compile Include="VReceiptPlans.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="XmlIn.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="XmlOut.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <EntityDeploy Include="EntityDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityDataModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>EntityDataModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="EntityDataModel.edmx.diagram">
       <DependentUpon>EntityDataModel.edmx</DependentUpon>
