@@ -254,20 +254,15 @@
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'WmsIntegration_v2.WmsSimulator.XmlIn' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="XmlIn">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="EntryDate" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="Content" Type="varchar" MaxLength="255" />
           <Property Name="Body" Type="nvarchar(max)" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'WmsIntegration_v2.WmsSimulator.XmlOut' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="XmlOut">
           <Key>
             <PropertyRef Name="Id" />
@@ -675,22 +670,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySet Name="SalesOrderStatus" EntityType="Self.SalesOrderStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Suppliers" EntityType="Self.Suppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="XmlIn" EntityType="Self.XmlIn" store:Type="Tables" store:Schema="WmsSimulator">
-            <DefiningQuery>SELECT 
-    [XmlIn].[Id] AS [Id], 
-    [XmlIn].[EntryDate] AS [EntryDate], 
-    [XmlIn].[Content] AS [Content], 
-    [XmlIn].[Body] AS [Body]
-    FROM [WmsSimulator].[XmlIn] AS [XmlIn]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="XmlOut" EntityType="Self.XmlOut" store:Type="Tables" store:Schema="WmsSimulator">
-            <DefiningQuery>SELECT 
-    [XmlOut].[Id] AS [Id], 
-    [XmlOut].[EntryDate] AS [EntryDate], 
-    [XmlOut].[Content] AS [Content], 
-    [XmlOut].[Body] AS [Body]
-    FROM [WmsSimulator].[XmlOut] AS [XmlOut]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="XmlIn" EntityType="Self.XmlIn" Schema="WmsSimulator" store:Type="Tables" />
+          <EntitySet Name="XmlOut" EntityType="Self.XmlOut" Schema="WmsSimulator" store:Type="Tables" />
           <EntitySet Name="VProducts" EntityType="Self.VProducts" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [VProducts].[ProductId] AS [ProductId], 
@@ -1630,7 +1611,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
         <EntityType Name="XmlIn">
           <Key>
             <PropertyRef Name="Id" />
-            <PropertyRef Name="EntryDate" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
