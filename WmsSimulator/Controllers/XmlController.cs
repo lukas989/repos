@@ -21,6 +21,7 @@ namespace WmsSimulator.Controllers
             if (String.IsNullOrWhiteSpace(content))
                 return Request.CreateResponse(HttpStatusCode.BadRequest);
 
+            Products products = new Products();
             db.Products.Add(products);
             db.SaveChanges();
 
