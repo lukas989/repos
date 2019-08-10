@@ -20,8 +20,7 @@ namespace WmsTransferSender.Services
             System.Console.WriteLine("Start processing product");
 
             //GET
-            IQueryable<Products> products = getAllPrudectsToSend();
-
+            List<Products> products = getAllPrudectsToSend();
 
             foreach (var product in products)
             {
@@ -45,7 +44,8 @@ namespace WmsTransferSender.Services
             if (sendResult)
             {
                 product.WmsUpdate = DateTime.Now;
-                db.Products.Add(product);
+                db.Products.Attach(product);
+                db.Entry(product).Property(x => x.WmsUpdate).IsModified = true;
                 db.SaveChanges();
             }
                 
@@ -58,9 +58,9 @@ namespace WmsTransferSender.Services
             return result;
         }
 
-        private IQueryable<Products> getAllPrudectsToSend()
+        private List<Products> getAllPrudectsToSend()
         {
-            return db.Products.Where(x => x.WmsUpdate == null || x.WmsUpdate < x.LastUpdate);
+            return db.Products.Where(x => x.WmsUpdate == null || x.WmsUpdate < x.LastUpdate).ToList();
         }
     }
 }
