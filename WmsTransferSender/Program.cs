@@ -11,6 +11,7 @@ namespace WmsTransferSender
     {
         static void Main(string[] args)
         {
+            Init();
             if (args.Length == 0)
             {
                 System.Console.WriteLine("Please enter a argument.");
@@ -19,6 +20,12 @@ namespace WmsTransferSender
             {
                 new ProductToWmsServices().StartProcessing();
             }
+        }
+
+        [Obsolete]
+        private static void Init()
+        { 
+            _ = new Mappers();
         }
     }
 }

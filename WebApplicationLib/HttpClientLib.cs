@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
 using Newtonsoft.Json;
 
 namespace Lib
@@ -118,5 +123,27 @@ namespace Lib
             {
             }
         }
+        public async Task<bool> PutXmlAsync<T>(string appSetting, string apiController, T data)
+        {
+
+            HttpClient client = new HttpClient();
+            var httpContent = new StringContent(ToXML(data));
+            var urlAppSetting = SettingLib.GetAppSetting(appSetting);
+            var result = await client.PutAsync(urlAppSetting + apiController, httpContent);
+            return result.IsSuccessStatusCode;
+        }
+
+        public string ToXML<T>(T data)
+        {
+            using (var stringwriter = new System.IO.StringWriter())
+            {
+                XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
+                ns.Add("", "");
+                var serializer = new XmlSerializer(data.GetType());
+                serializer.Serialize(stringwriter, data, ns);
+                return stringwriter.ToString();
+            }
+        }
+
     }
 }

@@ -1,8 +1,12 @@
-﻿using System;
+﻿using AutoMapper;
+using Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace WmsTransferSender.Models.Wms
 {
@@ -12,9 +16,9 @@ namespace WmsTransferSender.Models.Wms
         public string PartNumber { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public Nullable<decimal> Weight { get; set; }
-        public Nullable<decimal> Height { get; set; }
-        public Nullable<decimal> Width { get; set; }
-        public Nullable<decimal> Depth { get; set; }
+        public decimal Weight { get; set; }
+        public decimal Height { get; set; }
+        public decimal Width { get; set; }
+        public decimal Depth { get; set; }
     }
 }
