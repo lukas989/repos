@@ -12,6 +12,7 @@ namespace API
 {
     public class WebApiApplication : System.Web.HttpApplication
     {
+        [Obsolete]
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -28,6 +29,8 @@ namespace API
             config.Formatters.JsonFormatter
                         .SerializerSettings
                         .ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+
+            _ = new WmsTransferSender.Mappers();
         }
     }
 }

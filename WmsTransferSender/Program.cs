@@ -29,7 +29,7 @@ namespace WmsTransferSender
         [Obsolete]
         private static void Init()
         { 
-            _ = new Mappers();
+            _ = new WmsTransferSender.Mappers();
         }
     }
 }

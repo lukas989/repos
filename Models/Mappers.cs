@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Models;
+using Models.Wms;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using WmsTransferSender.Models.Wms;
 
 namespace WmsTransferSender
 {
-    internal class Mappers
+    public class Mappers
     {
         [Obsolete]
         public Mappers()
@@ -23,6 +24,8 @@ namespace WmsTransferSender
                 cfg.CreateMap<Suppliers, Supplier>().ForMember(dest => dest.SupplierName, p => p.MapFrom(scr => scr.Name)).ForMember(dest => dest.SupplierCode, p => p.MapFrom(scr => scr.SupplierId));
 
                 cfg.CreateMap<VReceiptPlanLines, ReceiptLine>().ForMember(dest => dest.PartNumber, p => p.MapFrom(scr => scr.ProductId)).ForMember(dest => dest.ExpectedQuantity, p => p.MapFrom(scr => scr.ExpectedQty));
+
+                cfg.CreateMap<ItemExport, Products>().ForMember(dest => dest.ProductId, p => p.MapFrom(scr => scr.PartNumber));
 
             }
             ); 
