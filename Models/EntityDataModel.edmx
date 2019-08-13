@@ -381,6 +381,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlanLines' does not 
           <Property Name="ReceiptPlanId" Type="int" Nullable="false" />
           <Property Name="ReceiptPlanLineNo" Type="int" Nullable="false" />
           <Property Name="Product" Type="varchar" MaxLength="50" />
+          <Property Name="ProductId" Type="int" />
           <Property Name="ExpectedQty" Type="int" Nullable="false" />
           <Property Name="RecivedQty" Type="int" />
           <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
@@ -735,6 +736,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
     [VReceiptPlanLines].[ReceiptPlanId] AS [ReceiptPlanId], 
     [VReceiptPlanLines].[ReceiptPlanLineNo] AS [ReceiptPlanLineNo], 
     [VReceiptPlanLines].[Product] AS [Product], 
+    [VReceiptPlanLines].[ProductId] AS [ProductId], 
     [VReceiptPlanLines].[ExpectedQty] AS [ExpectedQty], 
     [VReceiptPlanLines].[RecivedQty] AS [RecivedQty], 
     [VReceiptPlanLines].[PurchaseOrderId] AS [PurchaseOrderId], 
@@ -1594,6 +1596,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductId" Type="Int32" />
         </EntityType>
         <EntityType Name="VReceiptPlans">
           <Key>
@@ -1967,6 +1970,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySetMapping Name="VReceiptPlanLines">
             <EntityTypeMapping TypeName="WmsModel.VReceiptPlanLines">
               <MappingFragment StoreEntitySet="VReceiptPlanLines">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />

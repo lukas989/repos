@@ -17,7 +17,7 @@ namespace WmsTransferSender
             System.Console.WriteLine("Start processing product");
 
             //GET
-            List<ReceiptPlans> receiptPlans = getAllReceiptPlansToSend();
+            List<ReceiptPlanToWms> receiptPlans = getAllReceiptPlansToSend();
 
             foreach (var receiptPlan in receiptPlans)
             {
@@ -27,7 +27,7 @@ namespace WmsTransferSender
                 var sendResult = sendToWms(receipt);
 
                 //UPDATE
-                //updateReceiptPlan(receiptPlan, sendResult);
+                updateReceiptPlan(receiptPlan.ReceiptPlans, sendResult);
             }
 
 
@@ -35,13 +35,16 @@ namespace WmsTransferSender
 
         }
 
-        private Receipt mapRecipt(ReceiptPlans receiptPlan)
+        private Receipt mapRecipt(ReceiptPlanToWms receiptPlan)
         {
-            Suppliers suppliers =  db.Suppliers.FirstOrDefault(x => x.SupplierId == receiptPlan.SupplierId);
-            List<ReceiptPlanLines> receiptPlanLines = db.ReceiptPlanLines.Where(x => x.ReceiptPlanId == receiptPlan.ReceiptPlanId).ToList();
 
-            Receipt receipt = new Receipt();
-            receipt.ReceiptHeader = Mapper.Map<ReceiptPlans,ReceiptHeader>(receiptPlan);
+            Receipt receipt = new Receipt
+            {
+                Supplier = Mapper.Map<Suppliers, Supplier>(receiptPlan.Supplier),
+                ReceiptHeader = Mapper.Map<ReceiptPlans, ReceiptHeader>(receiptPlan.ReceiptPlans),
+                ReceiptLines = Mapper.Map< List < VReceiptPlanLines > ,List<ReceiptLine>>(receiptPlan.VReceiptPlanLines)
+            };
+
             return receipt;
         }
 
@@ -65,9 +68,24 @@ namespace WmsTransferSender
             return result;
         }
 
-        private List<ReceiptPlans> getAllReceiptPlansToSend()
+        private List<ReceiptPlanToWms> getAllReceiptPlansToSend()
         {
-            return db.ReceiptPlans.Where(x => x.WmsUpdate == null && x.ReceiptPlanStatusId == (int)ReceiptPlanStatusId.Ended).ToList();
+            var receiptPlanToWmsList = new List<ReceiptPlanToWms>();
+            var receiptPlans = db.ReceiptPlans.Where(x => x.WmsUpdate == null && x.ReceiptPlanStatusId == (int)ReceiptPlanStatusId.Ended).ToList();
+            foreach (var receiptPlan in receiptPlans)
+            {
+                var supplier = db.Suppliers.FirstOrDefault(x=> x.SupplierId == receiptPlan.SupplierId);
+                var receiptplanlines = db.VReceiptPlanLines.Where(x => x.ReceiptPlanId == receiptPlan.ReceiptPlanId).ToList();
+                var receiptPlanToWms = new ReceiptPlanToWms()
+                {
+                    ReceiptPlans = receiptPlan,
+                    Supplier = supplier,
+                    VReceiptPlanLines = receiptplanlines
+                };
+                receiptPlanToWmsList.Add(receiptPlanToWms);
+            }
+
+            return receiptPlanToWmsList;
         }
     }
 }

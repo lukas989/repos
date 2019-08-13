@@ -64,6 +64,7 @@
     <Compile Include="Models\Wms\Receipt.cs" />
     <Compile Include="Services\ReceiptPlansToWmsServices.cs" />
     <Compile Include="Services\ProductToWmsServices.cs" />
+    <Compile Include="Models\ReceiptPlanToWms.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

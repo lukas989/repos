@@ -27,5 +27,6 @@ namespace Models
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
+        public Nullable<int> ProductId { get; set; }
     }
 }
