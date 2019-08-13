@@ -152,6 +152,9 @@
     </Compile>
     <Compile Include="Wms\Item.cs" />
     <Compile Include="Wms\Receipt.cs" />
+    <Compile Include="Wms\ReceiptExport.cs" />
+    <Compile Include="Wms\ReceiptExportHeader.cs" />
+    <Compile Include="Wms\ReceiptExportLine.cs" />
     <Compile Include="Wms\ReceiptHeader.cs" />
     <Compile Include="Wms\ReceiptLine.cs" />
     <Compile Include="Wms\ReceiptPlanToWms.cs" />
