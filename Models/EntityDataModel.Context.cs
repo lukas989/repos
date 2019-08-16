@@ -18,8 +18,9 @@ namespace Models
         public WmsConnectionEntities()
             : base("name=WmsConnectionEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -51,5 +52,6 @@ namespace Models
         public virtual DbSet<VReceiptPlans> VReceiptPlans { get; set; }
         public virtual DbSet<XmlIn> XmlIn { get; set; }
         public virtual DbSet<XmlOut> XmlOut { get; set; }
+        public virtual DbSet<ReceiptPlanLineConfirmWms> ReceiptPlanLineConfirmWms { get; set; }
     }
 }

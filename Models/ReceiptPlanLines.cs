@@ -19,7 +19,7 @@ namespace Models
         public int PurchaseOrderId { get; set; }
         public int PurchaseOrderLineNo { get; set; }
         public int ExpectedQty { get; set; }
-        public Nullable<int> RecivedQty { get; set; }
+        public int RecivedQty { get; set; }
         public string EntryAuthor { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
