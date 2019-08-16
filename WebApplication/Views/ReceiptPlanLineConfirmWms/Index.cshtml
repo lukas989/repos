@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Models.ReceiptPlanLineConfirmWms>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ReferenceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ErCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LogisticSite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PartNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReceivedQuantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WmsDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReferenceNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ErCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LogisticSite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PartNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReceivedQuantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.WmsDate)
+        </td>
+    </tr>
+}
+
+</table>

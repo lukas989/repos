@@ -15,6 +15,13 @@ namespace WebApplicationAPI.Controllers
     {
         private WmsConnectionEntities db = new WmsConnectionEntities();
 
+
+        [HttpGet]
+        [Route("api/Wms/ReceiptPlanLineConfirmWms")]
+        public IQueryable<ReceiptPlanLineConfirmWms> ReceiptPlanLineConfirmWms()
+        {
+            return db.ReceiptPlanLineConfirmWms;
+        }
         [HttpPut]
         [Route("api/Wms/ReceiptExport")]
         public IHttpActionResult ReceiptExport([FromBody]ReceiptExport receiptExport)
