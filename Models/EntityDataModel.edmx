@@ -122,7 +122,7 @@
           <Property Name="PurchaseOrderLineNo" Type="int" Nullable="false" />
           <Property Name="ProductId" Type="int" Nullable="false" />
           <Property Name="OrderedQty" Type="int" Nullable="false" />
-          <Property Name="RecivedQty" Type="int" />
+          <Property Name="RecivedQty" Type="int" Nullable="false" />
           <Property Name="PriceTypeId" Type="int" Nullable="false" />
           <Property Name="PurchaseOrderPrice" Type="decimal" Precision="15" Scale="5" Nullable="false" />
           <Property Name="ExpectedDate" Type="datetime" />
@@ -156,6 +156,19 @@
           <Property Name="Name" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="ReceiptPlanLineConfirmWms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="varchar" MaxLength="10" />
+          <Property Name="ErCode" Type="varchar" MaxLength="10" />
+          <Property Name="LogisticSite" Type="varchar" MaxLength="10" />
+          <Property Name="PartNumber" Type="varchar" MaxLength="10" />
+          <Property Name="ExpectedQuantity" Type="varchar" MaxLength="10" />
+          <Property Name="ReceivedQuantity" Type="varchar" MaxLength="10" />
+          <Property Name="WmsDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="ReceiptPlanLines">
           <Key>
             <PropertyRef Name="ReceiptPlanId" />
@@ -166,7 +179,7 @@
           <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
           <Property Name="PurchaseOrderLineNo" Type="int" Nullable="false" />
           <Property Name="ExpectedQty" Type="int" Nullable="false" />
-          <Property Name="RecivedQty" Type="int" />
+          <Property Name="RecivedQty" Type="int" Nullable="false" />
           <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
@@ -371,6 +384,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlanLines' does not 
             <PropertyRef Name="ReceiptPlanId" />
             <PropertyRef Name="ReceiptPlanLineNo" />
             <PropertyRef Name="ExpectedQty" />
+            
             <PropertyRef Name="PurchaseOrderId" />
             <PropertyRef Name="PurchaseOrderLineNo" />
             <PropertyRef Name="EntryAuthor" />
@@ -383,7 +397,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlanLines' does not 
           <Property Name="Product" Type="varchar" MaxLength="50" />
           <Property Name="ProductId" Type="int" />
           <Property Name="ExpectedQty" Type="int" Nullable="false" />
-          <Property Name="RecivedQty" Type="int" />
+          <Property Name="RecivedQty" Type="int" Nullable="false" />
           <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
           <Property Name="PurchaseOrderLineNo" Type="int" Nullable="false" />
           <Property Name="OrderedQty" Type="int" />
@@ -666,6 +680,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySet Name="PurchaseOrderLines" EntityType="Self.PurchaseOrderLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrders" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrderStatus" EntityType="Self.PurchaseOrderStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReceiptPlanLineConfirmWms" EntityType="Self.ReceiptPlanLineConfirmWms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptPlanLines" EntityType="Self.ReceiptPlanLines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptPlans" EntityType="Self.ReceiptPlans" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReceiptPlanStatus" EntityType="Self.ReceiptPlanStatus" Schema="dbo" store:Type="Tables" />
@@ -982,7 +997,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="PurchaseOrderLineNo" Type="Int32" Nullable="false" />
           <Property Name="ProductId" Type="Int32" Nullable="false" />
           <Property Name="OrderedQty" Type="Int32" Nullable="false" />
-          <Property Name="RecivedQty" Type="Int32" />
+          <Property Name="RecivedQty" Type="Int32" Nullable="false" />
           <Property Name="PriceTypeId" Type="Int32" Nullable="false" />
           <Property Name="PurchaseOrderPrice" Type="Decimal" Precision="15" Scale="5" Nullable="false" />
           <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
@@ -1033,7 +1048,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" />
           <Property Name="PurchaseOrderLineNo" Type="Int32" Nullable="false" />
           <Property Name="ExpectedQty" Type="Int32" Nullable="false" />
-          <Property Name="RecivedQty" Type="Int32" />
+          <Property Name="RecivedQty" Type="Int32" Nullable="false" />
           <Property Name="EntryAuthor" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
@@ -1487,6 +1502,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySet Name="VReceiptPlans" EntityType="WmsModel.VReceiptPlans" />
           <EntitySet Name="XmlIn" EntityType="WmsModel.XmlIn" />
           <EntitySet Name="XmlOut" EntityType="WmsModel.XmlOut" />
+          <EntitySet Name="ReceiptPlanLineConfirmWms" EntityType="WmsModel.ReceiptPlanLineConfirmWms" />
         </EntityContainer>
         <EntityType Name="VProducts">
           <Key>
@@ -1587,7 +1603,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="ReceiptPlanLineNo" Type="Int32" Nullable="false" />
           <Property Name="Product" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ExpectedQty" Type="Int32" Nullable="false" />
-          <Property Name="RecivedQty" Type="Int32" />
+          <Property Name="RecivedQty" Type="Int32" Nullable="false" />
           <Property Name="PurchaseOrderId" Type="Int32" Nullable="false" />
           <Property Name="PurchaseOrderLineNo" Type="Int32" Nullable="false" />
           <Property Name="OrderedQty" Type="Int32" />
@@ -1634,6 +1650,19 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="EntryDate" Type="DateTime" Precision="3" />
           <Property Name="Content" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Body" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ReceiptPlanLineConfirmWms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ErCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LogisticSite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PartNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ExpectedQuantity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="ReceivedQuantity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="WmsDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2019,6 +2048,20 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
                 <ScalarProperty Name="Body" ColumnName="Body" />
                 <ScalarProperty Name="Content" ColumnName="Content" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReceiptPlanLineConfirmWms">
+            <EntityTypeMapping TypeName="WmsModel.ReceiptPlanLineConfirmWms">
+              <MappingFragment StoreEntitySet="ReceiptPlanLineConfirmWms">
+                <ScalarProperty Name="WmsDate" ColumnName="WmsDate" />
+                <ScalarProperty Name="ReceivedQuantity" ColumnName="ReceivedQuantity" />
+                <ScalarProperty Name="ExpectedQuantity" ColumnName="ExpectedQuantity" />
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+                <ScalarProperty Name="LogisticSite" ColumnName="LogisticSite" />
+                <ScalarProperty Name="ErCode" ColumnName="ErCode" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

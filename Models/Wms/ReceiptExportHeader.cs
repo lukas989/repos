@@ -10,6 +10,6 @@ namespace Models.Wms
     {
         public string ErCode { get; set; }
         public string LogisticSite { get; set; }
-        public int ReferenceNumber { get; set; }
+        public string ReferenceNumber { get; set; }
     }
 }

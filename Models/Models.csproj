@@ -112,6 +112,9 @@
     <Compile Include="PurchaseOrderStatus.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReceiptPlanLineConfirmWms.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ReceiptPlanLines.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>

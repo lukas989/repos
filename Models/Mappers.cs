@@ -27,6 +27,9 @@ namespace WmsTransferSender
 
                 cfg.CreateMap<ItemExport, Products>().ForMember(dest => dest.ProductId, p => p.MapFrom(scr => scr.PartNumber));
 
+                cfg.CreateMap<ReceiptExportHeader, ReceiptPlanLineConfirmWms>();
+                cfg.CreateMap<ReceiptExportLine, ReceiptPlanLineConfirmWms>();
+
             }
             ); 
   

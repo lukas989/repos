@@ -18,7 +18,7 @@ namespace Models
         public int ReceiptPlanLineNo { get; set; }
         public string Product { get; set; }
         public int ExpectedQty { get; set; }
-        public Nullable<int> RecivedQty { get; set; }
+        public int RecivedQty { get; set; }
         public int PurchaseOrderId { get; set; }
         public int PurchaseOrderLineNo { get; set; }
         public Nullable<int> OrderedQty { get; set; }
