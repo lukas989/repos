@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Lib;
 using Models;
+using WebApplicationLib;
 
 namespace WebApplication.Controllers
 {
@@ -38,11 +39,19 @@ namespace WebApplication.Controllers
         }
 
         // GET: SalesOrders/Create
-        public ActionResult Create()
+        public async System.Threading.Tasks.Task<ActionResult> Create()
         {
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name");
-            ViewBag.SalesOrderStatusId = new SelectList(db.SalesOrderStatus, "SalesOrderStatusId", "Name");
-            return View();
+            IEnumerable<Customers> customers = await new HttpClientLib().GetAsync<IEnumerable<Customers>>("API", "/api/Customers/");
+            return View(customers);
+        }
+
+        public async System.Threading.Tasks.Task<ActionResult> Create2(int CustomerId)
+        {
+            var loadSelectListItem = new LoadSelectListItem();
+            var salesOrderEdit = new SalesOrderEdit() { CustomerId = CustomerId };
+            salesOrderEdit.SalesOrderStatusSelectListItem = await loadSelectListItem.SalesOrderStatusAsync();
+
+            return View(salesOrderEdit);
         }
 
         // POST: SalesOrders/Create
@@ -50,18 +59,19 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SalesOrderId,SalesOrderStatusId,CustomerId,ExpectedDate,CurrencyId,CurrencyRate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrders salesOrders)
+        public async System.Threading.Tasks.Task<ActionResult> Create2([Bind(Include = "SalesOrderId,SalesOrderStatusId,CustomerId,ExpectedDate,CurrencyId,CurrencyRate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrders salesOrders)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.SalesOrders.Add(salesOrders);
-                db.SaveChanges();
+                new ObjectLib().InitObjec(salesOrders, Request.RequestContext.HttpContext.User.Identity.Name);
+                // TODO: Add insert logic here
+                await new HttpClientLib().PostAsync<SalesOrders>("API", "/api/SalesOrders/", salesOrders);
                 return RedirectToAction("Index");
             }
-
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name", salesOrders.CustomerId);
-            ViewBag.SalesOrderStatusId = new SelectList(db.SalesOrderStatus, "SalesOrderStatusId", "Name", salesOrders.SalesOrderStatusId);
-            return View(salesOrders);
+            catch
+            {
+                return View();
+            }
         }
 
         // GET: SalesOrders/Edit/5

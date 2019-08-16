@@ -48,5 +48,17 @@ namespace WebApplicationLib
                        Value = s.ReceiptPlanStatusId.ToString()
                    };
         }
+
+        public async Task<IEnumerable<SelectListItem>> SalesOrderStatusAsync()
+        {
+            var salesOrderStatuses = await new HttpClientLib().GetAsync<IEnumerable<SalesOrderStatus>>("API", "/api/SalesOrderStatus/");
+            return from s in salesOrderStatuses
+                   select new SelectListItem
+                   {
+                       Selected = s.SalesOrderStatusId.ToString() == "Active",
+                       Text = s.Name,
+                       Value = s.SalesOrderStatusId.ToString()
+                   };
+        }
     }
 }
