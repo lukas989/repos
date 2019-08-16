@@ -43,44 +43,6 @@
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="DeliveryPlanLines">
-          <Key>
-            <PropertyRef Name="DeliveryPlanId" />
-            <PropertyRef Name="DeliveryPlanLineNo" />
-          </Key>
-          <Property Name="DeliveryPlanId" Type="int" Nullable="false" />
-          <Property Name="DeliveryPlanLineNo" Type="int" Nullable="false" />
-          <Property Name="SalesOrderId" Type="int" Nullable="false" />
-          <Property Name="SalesOrderLineNo" Type="int" Nullable="false" />
-          <Property Name="ExpectedQty" Type="int" Nullable="false" />
-          <Property Name="RecivedQty" Type="int" />
-          <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="DeliveryPlans">
-          <Key>
-            <PropertyRef Name="DeliveryPlanId" />
-          </Key>
-          <Property Name="DeliveryPlanId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DeliveryPlanStatusId" Type="int" Nullable="false" />
-          <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="ExpectedDate" Type="datetime" />
-          <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="EntryDate" Type="datetime" Nullable="false" />
-          <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
-          <Property Name="WmsUpdate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="DeliveryPlanStatus">
-          <Key>
-            <PropertyRef Name="DeliveryPlanStatusId" />
-          </Key>
-          <Property Name="DeliveryPlanStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="ProductBarcodes">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -428,18 +390,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Customer_DeliveryPlans">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="DeliveryPlans" Type="Self.DeliveryPlans" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="DeliveryPlans">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_CustomerAddressTypes_CustomerAddress">
           <End Role="CustomerAddressTypes" Type="Self.CustomerAddressTypes" Multiplicity="1" />
           <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
@@ -473,30 +423,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
             </Principal>
             <Dependent Role="SalesOrders">
               <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DeliveryPlans_DeliveryPlanLines">
-          <End Role="DeliveryPlans" Type="Self.DeliveryPlans" Multiplicity="1" />
-          <End Role="DeliveryPlanLines" Type="Self.DeliveryPlanLines" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DeliveryPlans">
-              <PropertyRef Name="DeliveryPlanId" />
-            </Principal>
-            <Dependent Role="DeliveryPlanLines">
-              <PropertyRef Name="DeliveryPlanId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_DeliveryPlanStatus_DeliveryPlans">
-          <End Role="DeliveryPlanStatus" Type="Self.DeliveryPlanStatus" Multiplicity="1" />
-          <End Role="DeliveryPlans" Type="Self.DeliveryPlans" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="DeliveryPlanStatus">
-              <PropertyRef Name="DeliveryPlanStatusId" />
-            </Principal>
-            <Dependent Role="DeliveryPlans">
-              <PropertyRef Name="DeliveryPlanStatusId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -596,18 +522,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_SalesOrder_DeliveryPlanLines">
-          <End Role="SalesOrders" Type="Self.SalesOrders" Multiplicity="1" />
-          <End Role="DeliveryPlanLines" Type="Self.DeliveryPlanLines" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SalesOrders">
-              <PropertyRef Name="SalesOrderId" />
-            </Principal>
-            <Dependent Role="DeliveryPlanLines">
-              <PropertyRef Name="SalesOrderId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SalesOrders_SalesOrderLines">
           <End Role="SalesOrders" Type="Self.SalesOrders" Multiplicity="1" />
           <End Role="SalesOrderLines" Type="Self.SalesOrderLines" Multiplicity="*" />
@@ -672,9 +586,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAddressTypes" EntityType="Self.CustomerAddressTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DeliveryPlanLines" EntityType="Self.DeliveryPlanLines" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DeliveryPlans" EntityType="Self.DeliveryPlans" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="DeliveryPlanStatus" EntityType="Self.DeliveryPlanStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductBarcodes" EntityType="Self.ProductBarcodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrderLines" EntityType="Self.PurchaseOrderLines" Schema="dbo" store:Type="Tables" />
@@ -778,10 +689,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
     [VReceiptPlans].[LastUpdate] AS [LastUpdate]
     FROM [dbo].[VReceiptPlans] AS [VReceiptPlans]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Customer_DeliveryPlans" Association="Self.FK_Customer_DeliveryPlans">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="DeliveryPlans" EntitySet="DeliveryPlans" />
-          </AssociationSet>
           <AssociationSet Name="FK_CustomerAddressTypes_CustomerAddress" Association="Self.FK_CustomerAddressTypes_CustomerAddress">
             <End Role="CustomerAddressTypes" EntitySet="CustomerAddressTypes" />
             <End Role="CustomerAddress" EntitySet="CustomerAddress" />
@@ -793,14 +700,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <AssociationSet Name="FK_Customers_SalesOrder" Association="Self.FK_Customers_SalesOrder">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="SalesOrders" EntitySet="SalesOrders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DeliveryPlans_DeliveryPlanLines" Association="Self.FK_DeliveryPlans_DeliveryPlanLines">
-            <End Role="DeliveryPlans" EntitySet="DeliveryPlans" />
-            <End Role="DeliveryPlanLines" EntitySet="DeliveryPlanLines" />
-          </AssociationSet>
-          <AssociationSet Name="FK_DeliveryPlanStatus_DeliveryPlans" Association="Self.FK_DeliveryPlanStatus_DeliveryPlans">
-            <End Role="DeliveryPlanStatus" EntitySet="DeliveryPlanStatus" />
-            <End Role="DeliveryPlans" EntitySet="DeliveryPlans" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_ProductBarcodes" Association="Self.FK_Products_ProductBarcodes">
             <End Role="Products" EntitySet="Products" />
@@ -833,10 +732,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <AssociationSet Name="FK_ReceiptPlanStatus_ReceiptPlans" Association="Self.FK_ReceiptPlanStatus_ReceiptPlans">
             <End Role="ReceiptPlanStatus" EntitySet="ReceiptPlanStatus" />
             <End Role="ReceiptPlans" EntitySet="ReceiptPlans" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SalesOrder_DeliveryPlanLines" Association="Self.FK_SalesOrder_DeliveryPlanLines">
-            <End Role="SalesOrders" EntitySet="SalesOrders" />
-            <End Role="DeliveryPlanLines" EntitySet="DeliveryPlanLines" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesOrders_SalesOrderLines" Association="Self.FK_SalesOrders_SalesOrderLines">
             <End Role="SalesOrders" EntitySet="SalesOrders" />
@@ -1708,46 +1603,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
                 <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DeliveryPlanLines">
-            <EntityTypeMapping TypeName="WmsModel.DeliveryPlanLines">
-              <MappingFragment StoreEntitySet="DeliveryPlanLines">
-                <ScalarProperty Name="DeliveryPlanId" ColumnName="DeliveryPlanId" />
-                <ScalarProperty Name="DeliveryPlanLineNo" ColumnName="DeliveryPlanLineNo" />
-                <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
-                <ScalarProperty Name="SalesOrderLineNo" ColumnName="SalesOrderLineNo" />
-                <ScalarProperty Name="ExpectedQty" ColumnName="ExpectedQty" />
-                <ScalarProperty Name="RecivedQty" ColumnName="RecivedQty" />
-                <ScalarProperty Name="EntryAuthor" ColumnName="EntryAuthor" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DeliveryPlans">
-            <EntityTypeMapping TypeName="WmsModel.DeliveryPlans">
-              <MappingFragment StoreEntitySet="DeliveryPlans">
-                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
-                <ScalarProperty Name="DeliveryPlanId" ColumnName="DeliveryPlanId" />
-                <ScalarProperty Name="DeliveryPlanStatusId" ColumnName="DeliveryPlanStatusId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
-                <ScalarProperty Name="EntryAuthor" ColumnName="EntryAuthor" />
-                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
-                <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
-                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="DeliveryPlanStatus">
-            <EntityTypeMapping TypeName="WmsModel.DeliveryPlanStatus">
-              <MappingFragment StoreEntitySet="DeliveryPlanStatus">
-                <ScalarProperty Name="DeliveryPlanStatusId" ColumnName="DeliveryPlanStatusId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
