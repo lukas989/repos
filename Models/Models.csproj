@@ -148,6 +148,9 @@
     <Compile Include="VReceiptPlans.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VSalesOrders.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Wms\Item.cs" />
     <Compile Include="Wms\ItemExport.cs" />
     <Compile Include="Wms\Receipt.cs" />

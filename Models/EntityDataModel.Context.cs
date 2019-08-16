@@ -49,5 +49,6 @@ namespace Models
         public virtual DbSet<XmlIn> XmlIn { get; set; }
         public virtual DbSet<XmlOut> XmlOut { get; set; }
         public virtual DbSet<ReceiptPlanLineConfirmWms> ReceiptPlanLineConfirmWms { get; set; }
+        public virtual DbSet<VSalesOrders> VSalesOrders { get; set; }
     }
 }

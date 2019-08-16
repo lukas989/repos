@@ -1,0 +1,90 @@
+﻿@model Models.SalesOrders
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>SalesOrders</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpectedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpectedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrencyId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrencyId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CurrencyRate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CurrencyRate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntryAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EntryDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastAuthor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastAuthor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastUpdate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customers.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customers.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalesOrderStatus.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalesOrderStatus.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SalesOrderId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

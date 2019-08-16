@@ -390,6 +390,37 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VSalesOrders">
+          <Key>
+            <PropertyRef Name="SalesOrderId" />
+            <PropertyRef Name="SalesOrderStatusId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="CurrencyId" />
+            <PropertyRef Name="CurrencyRate" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="SalesOrderId" Type="int" Nullable="false" />
+          <Property Name="SalesOrderStatusId" Type="int" Nullable="false" />
+          <Property Name="SalesOrderStatus" Type="varchar" MaxLength="32" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="NameCustomer" Type="varchar" MaxLength="200" />
+          <Property Name="FirstNameCustomer" Type="varchar" MaxLength="200" />
+          <Property Name="LastNameCustomer" Type="varchar" MaxLength="200" />
+          <Property Name="SalesOrderLines" Type="int" />
+          <Property Name="ExpectedDate" Type="datetime" />
+          <Property Name="CurrencyId" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="CurrencyRate" Type="decimal" Precision="15" Scale="5" Nullable="false" />
+          <Property Name="EntryAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="EntryDate" Type="datetime" Nullable="false" />
+          <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="Description" Type="varchar" MaxLength="1500" />
+        </EntityType>
         <Association Name="FK_CustomerAddressTypes_CustomerAddress">
           <End Role="CustomerAddressTypes" Type="Self.CustomerAddressTypes" Multiplicity="1" />
           <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
@@ -688,6 +719,26 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
     [VReceiptPlans].[LastAuthor] AS [LastAuthor], 
     [VReceiptPlans].[LastUpdate] AS [LastUpdate]
     FROM [dbo].[VReceiptPlans] AS [VReceiptPlans]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VSalesOrders" EntityType="Self.VSalesOrders" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VSalesOrders].[SalesOrderId] AS [SalesOrderId], 
+    [VSalesOrders].[SalesOrderStatusId] AS [SalesOrderStatusId], 
+    [VSalesOrders].[SalesOrderStatus] AS [SalesOrderStatus], 
+    [VSalesOrders].[CustomerId] AS [CustomerId], 
+    [VSalesOrders].[NameCustomer] AS [NameCustomer], 
+    [VSalesOrders].[FirstNameCustomer] AS [FirstNameCustomer], 
+    [VSalesOrders].[LastNameCustomer] AS [LastNameCustomer], 
+    [VSalesOrders].[SalesOrderLines] AS [SalesOrderLines], 
+    [VSalesOrders].[ExpectedDate] AS [ExpectedDate], 
+    [VSalesOrders].[CurrencyId] AS [CurrencyId], 
+    [VSalesOrders].[CurrencyRate] AS [CurrencyRate], 
+    [VSalesOrders].[EntryAuthor] AS [EntryAuthor], 
+    [VSalesOrders].[EntryDate] AS [EntryDate], 
+    [VSalesOrders].[LastAuthor] AS [LastAuthor], 
+    [VSalesOrders].[LastUpdate] AS [LastUpdate], 
+    [VSalesOrders].[Description] AS [Description]
+    FROM [dbo].[VSalesOrders] AS [VSalesOrders]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_CustomerAddressTypes_CustomerAddress" Association="Self.FK_CustomerAddressTypes_CustomerAddress">
             <End Role="CustomerAddressTypes" EntitySet="CustomerAddressTypes" />
@@ -1285,6 +1336,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySet Name="XmlIn" EntityType="WmsModel.XmlIn" />
           <EntitySet Name="XmlOut" EntityType="WmsModel.XmlOut" />
           <EntitySet Name="ReceiptPlanLineConfirmWms" EntityType="WmsModel.ReceiptPlanLineConfirmWms" />
+          <EntitySet Name="VSalesOrders" EntityType="WmsModel.VSalesOrders" />
         </EntityContainer>
         <EntityType Name="VProducts">
           <Key>
@@ -1445,6 +1497,35 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="ExpectedQuantity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="ReceivedQuantity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="WmsDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="VSalesOrders">
+          <Key>
+            <PropertyRef Name="SalesOrderId" />
+            <PropertyRef Name="SalesOrderStatusId" />
+            <PropertyRef Name="CustomerId" />
+            <PropertyRef Name="CurrencyId" />
+            <PropertyRef Name="CurrencyRate" />
+            <PropertyRef Name="EntryAuthor" />
+            <PropertyRef Name="EntryDate" />
+            <PropertyRef Name="LastAuthor" />
+            <PropertyRef Name="LastUpdate" />
+          </Key>
+          <Property Name="SalesOrderId" Type="Int32" Nullable="false" />
+          <Property Name="SalesOrderStatusId" Type="Int32" Nullable="false" />
+          <Property Name="SalesOrderStatus" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="NameCustomer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FirstNameCustomer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="LastNameCustomer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SalesOrderLines" Type="Int32" />
+          <Property Name="ExpectedDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrencyId" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="CurrencyRate" Type="Decimal" Nullable="false" Precision="15" Scale="5" />
+          <Property Name="EntryAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1805,6 +1886,28 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
                 <ScalarProperty Name="ErCode" ColumnName="ErCode" />
                 <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VSalesOrders">
+            <EntityTypeMapping TypeName="WmsModel.VSalesOrders">
+              <MappingFragment StoreEntitySet="VSalesOrders">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
+                <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="EntryAuthor" ColumnName="EntryAuthor" />
+                <ScalarProperty Name="CurrencyRate" ColumnName="CurrencyRate" />
+                <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+                <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
+                <ScalarProperty Name="SalesOrderLines" ColumnName="SalesOrderLines" />
+                <ScalarProperty Name="LastNameCustomer" ColumnName="LastNameCustomer" />
+                <ScalarProperty Name="FirstNameCustomer" ColumnName="FirstNameCustomer" />
+                <ScalarProperty Name="NameCustomer" ColumnName="NameCustomer" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="SalesOrderStatus" ColumnName="SalesOrderStatus" />
+                <ScalarProperty Name="SalesOrderStatusId" ColumnName="SalesOrderStatusId" />
+                <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
