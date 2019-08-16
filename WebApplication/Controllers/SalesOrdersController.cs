@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Lib;
 using Models;
 
 namespace WebApplication.Controllers
@@ -15,9 +16,10 @@ namespace WebApplication.Controllers
         private WmsConnectionEntities db = new WmsConnectionEntities();
 
         // GET: SalesOrders
-        public ActionResult Index()
+        public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            return View(db.VSalesOrders.ToList());
+            IEnumerable<VSalesOrders> vSalesOrders = await new HttpClientLib().GetAsync<IEnumerable<VSalesOrders>>("API", "/api/SalesOrders/");
+            return View(vSalesOrders.ToList());
         }
 
         // GET: SalesOrders/Details/5
