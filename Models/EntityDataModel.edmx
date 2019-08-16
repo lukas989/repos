@@ -71,6 +71,7 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="WmsUpdate" Type="datetime" />
         </EntityType>
         <EntityType Name="DeliveryPlanStatus">
           <Key>
@@ -110,6 +111,7 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="WmsUpdate" Type="datetime" />
         </EntityType>
         <EntityType Name="PurchaseOrderLines">
           <Key>
@@ -182,6 +184,7 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="WmsUpdate" Type="datetime" />
         </EntityType>
         <EntityType Name="ReceiptPlanStatus">
           <Key>
@@ -378,6 +381,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlanLines' does not 
           <Property Name="ReceiptPlanId" Type="int" Nullable="false" />
           <Property Name="ReceiptPlanLineNo" Type="int" Nullable="false" />
           <Property Name="Product" Type="varchar" MaxLength="50" />
+          <Property Name="ProductId" Type="int" />
           <Property Name="ExpectedQty" Type="int" Nullable="false" />
           <Property Name="RecivedQty" Type="int" />
           <Property Name="PurchaseOrderId" Type="int" Nullable="false" />
@@ -732,6 +736,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
     [VReceiptPlanLines].[ReceiptPlanId] AS [ReceiptPlanId], 
     [VReceiptPlanLines].[ReceiptPlanLineNo] AS [ReceiptPlanLineNo], 
     [VReceiptPlanLines].[Product] AS [Product], 
+    [VReceiptPlanLines].[ProductId] AS [ProductId], 
     [VReceiptPlanLines].[ExpectedQty] AS [ExpectedQty], 
     [VReceiptPlanLines].[RecivedQty] AS [RecivedQty], 
     [VReceiptPlanLines].[PurchaseOrderId] AS [PurchaseOrderId], 
@@ -920,6 +925,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_DeliveryPlans" FromRole="DeliveryPlans" ToRole="Customers" />
           <NavigationProperty Name="DeliveryPlanLines" Relationship="Self.FK_DeliveryPlans_DeliveryPlanLines" FromRole="DeliveryPlans" ToRole="DeliveryPlanLines" />
           <NavigationProperty Name="DeliveryPlanStatus" Relationship="Self.FK_DeliveryPlanStatus_DeliveryPlans" FromRole="DeliveryPlans" ToRole="DeliveryPlanStatus" />
+          <Property Name="WmsUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="DeliveryPlanStatus">
           <Key>
@@ -965,6 +971,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <NavigationProperty Name="PurchaseOrderLines" Relationship="Self.FK_Products_PurchaseOrderLines" FromRole="Products" ToRole="PurchaseOrderLines" />
           <NavigationProperty Name="SalesOrderLines" Relationship="Self.FK_Products_SalesOrderLines" FromRole="Products" ToRole="SalesOrderLines" />
           <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_Products" FromRole="Products" ToRole="Suppliers" />
+          <Property Name="WmsUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="PurchaseOrderLines">
           <Key>
@@ -1049,6 +1056,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <NavigationProperty Name="ReceiptPlanLines" Relationship="Self.FK_ReceiptPlans_ReceiptPlanLines" FromRole="ReceiptPlans" ToRole="ReceiptPlanLines" />
           <NavigationProperty Name="ReceiptPlanStatus" Relationship="Self.FK_ReceiptPlanStatus_ReceiptPlans" FromRole="ReceiptPlans" ToRole="ReceiptPlanStatus" />
           <NavigationProperty Name="Suppliers" Relationship="Self.FK_Supplier_ReceiptPlans" FromRole="ReceiptPlans" ToRole="Suppliers" />
+          <Property Name="WmsUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="ReceiptPlanStatus">
           <Key>
@@ -1588,6 +1596,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ProductId" Type="Int32" />
         </EntityType>
         <EntityType Name="VReceiptPlans">
           <Key>
@@ -1692,6 +1701,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySetMapping Name="DeliveryPlans">
             <EntityTypeMapping TypeName="WmsModel.DeliveryPlans">
               <MappingFragment StoreEntitySet="DeliveryPlans">
+                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
                 <ScalarProperty Name="DeliveryPlanId" ColumnName="DeliveryPlanId" />
                 <ScalarProperty Name="DeliveryPlanStatusId" ColumnName="DeliveryPlanStatusId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -1728,6 +1738,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySetMapping Name="Products">
             <EntityTypeMapping TypeName="WmsModel.Products">
               <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1807,6 +1818,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySetMapping Name="ReceiptPlans">
             <EntityTypeMapping TypeName="WmsModel.ReceiptPlans">
               <MappingFragment StoreEntitySet="ReceiptPlans">
+                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
                 <ScalarProperty Name="ReceiptPlanId" ColumnName="ReceiptPlanId" />
                 <ScalarProperty Name="ReceiptPlanStatusId" ColumnName="ReceiptPlanStatusId" />
                 <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
@@ -1958,6 +1970,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <EntitySetMapping Name="VReceiptPlanLines">
             <EntityTypeMapping TypeName="WmsModel.VReceiptPlanLines">
               <MappingFragment StoreEntitySet="VReceiptPlanLines">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />

@@ -34,6 +34,7 @@ namespace Models
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
+        public Nullable<System.DateTime> WmsUpdate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductBarcodes> ProductBarcodes { get; set; }

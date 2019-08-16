@@ -3,6 +3,7 @@ AS
 SELECT rpl.ReceiptPlanId,
        rpl.ReceiptPlanLineNo,
 	   p.Name AS Product,
+	   p.ProductId AS ProductId,
        rpl.ExpectedQty,
        rpl.RecivedQty,
        rpl.PurchaseOrderId,

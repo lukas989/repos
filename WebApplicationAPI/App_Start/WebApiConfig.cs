@@ -24,6 +24,8 @@ namespace API
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { moduleId = RouteParameter.Optional }
             );
+            config.Formatters.XmlFormatter.UseXmlSerializer = true;
+            
 
         }
     }

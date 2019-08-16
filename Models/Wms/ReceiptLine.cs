@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace WmsTransferSender.Models.Wms
 {
-    class Item
+    public class ReceiptLine
     {
+        public string PartNumber { get; set; }
+        public int ExpectedQuantity { get; set; }
     }
 }

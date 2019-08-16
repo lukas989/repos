@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -89,6 +92,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Mappers.cs" />
     <Compile Include="ProductBarcodes.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -119,6 +123,7 @@
     <Compile Include="ReceiptPlanStatus.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReceiptPlanStatusId.cs" />
     <Compile Include="SalesOrderLines.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -149,6 +154,16 @@
     <Compile Include="VReceiptPlans.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Wms\Item.cs" />
+    <Compile Include="Wms\ItemExport.cs" />
+    <Compile Include="Wms\Receipt.cs" />
+    <Compile Include="Wms\ReceiptExport.cs" />
+    <Compile Include="Wms\ReceiptExportHeader.cs" />
+    <Compile Include="Wms\ReceiptExportLine.cs" />
+    <Compile Include="Wms\ReceiptHeader.cs" />
+    <Compile Include="Wms\ReceiptLine.cs" />
+    <Compile Include="Wms\ReceiptPlanToWms.cs" />
+    <Compile Include="Wms\Supplier.cs" />
     <Compile Include="XmlIn.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>

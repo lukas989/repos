@@ -1,14 +1,15 @@
-﻿CREATE TABLE [dbo].[DeliveryPlans]
-(
-[DeliveryPlanId] INT IDENTITY(1,1) NOT NULL,
-[DeliveryPlanStatusId] INT NOT NULL, 
-[CustomerId] INT NOT NULL,
-[ExpectedDate] datetime NULL,
-[EntryAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
-[EntryDate] datetime NOT NULL  DEFAULT (GETDATE()),
-[LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
-[LastUpdate] datetime NOT NULL  DEFAULT (GETDATE()),
-CONSTRAINT [PK_DeliveryPlans] PRIMARY KEY CLUSTERED ([DeliveryPlanId]),
-CONSTRAINT FK_Customer_DeliveryPlans FOREIGN KEY ([CustomerId])  REFERENCES Customers([CustomerId]),
-CONSTRAINT FK_DeliveryPlanStatus_DeliveryPlans FOREIGN KEY ([DeliveryPlanStatusId])  REFERENCES DeliveryPlanStatus([DeliveryPlanStatusId])
-)
+﻿CREATE TABLE [dbo].[DeliveryPlans] (
+    [DeliveryPlanId]       INT          IDENTITY (1, 1) NOT NULL,
+    [DeliveryPlanStatusId] INT          NOT NULL,
+    [CustomerId]           INT          NOT NULL,
+    [ExpectedDate]         DATETIME     NULL,
+    [EntryAuthor]          VARCHAR (32) DEFAULT (suser_sname()) NOT NULL,
+    [EntryDate]            DATETIME     DEFAULT (getdate()) NOT NULL,
+    [LastAuthor]           VARCHAR (32) DEFAULT (suser_sname()) NOT NULL,
+    [LastUpdate]           DATETIME     DEFAULT (getdate()) NOT NULL,
+    [WmsUpdate]            DATETIME     NULL,
+    CONSTRAINT [PK_DeliveryPlans] PRIMARY KEY CLUSTERED ([DeliveryPlanId] ASC),
+    CONSTRAINT [FK_Customer_DeliveryPlans] FOREIGN KEY ([CustomerId]) REFERENCES [dbo].[Customers] ([CustomerId]),
+    CONSTRAINT [FK_DeliveryPlanStatus_DeliveryPlans] FOREIGN KEY ([DeliveryPlanStatusId]) REFERENCES [dbo].[DeliveryPlanStatus] ([DeliveryPlanStatusId])
+);
+
