@@ -17,7 +17,6 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SalesOrders()
         {
-            this.DeliveryPlanLines = new HashSet<DeliveryPlanLines>();
             this.SalesOrderLines = new HashSet<SalesOrderLines>();
         }
     
@@ -33,8 +32,6 @@ namespace Models
         public System.DateTime LastUpdate { get; set; }
     
         public virtual Customers Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryPlanLines> DeliveryPlanLines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrderLines> SalesOrderLines { get; set; }
         public virtual SalesOrderStatus SalesOrderStatus { get; set; }

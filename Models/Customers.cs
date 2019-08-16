@@ -18,7 +18,6 @@ namespace Models
         public Customers()
         {
             this.CustomerAddress = new HashSet<CustomerAddress>();
-            this.DeliveryPlans = new HashSet<DeliveryPlans>();
             this.SalesOrders = new HashSet<SalesOrders>();
         }
     
@@ -37,8 +36,6 @@ namespace Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerAddress> CustomerAddress { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DeliveryPlans> DeliveryPlans { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesOrders> SalesOrders { get; set; }
     }

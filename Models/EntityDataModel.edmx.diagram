@@ -8,9 +8,6 @@
         <EntityTypeShape EntityType="WmsModel.CustomerAddress" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.CustomerAddressTypes" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.Customers" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WmsModel.DeliveryPlanLines" Width="1.5" PointX="8.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="WmsModel.DeliveryPlans" Width="1.5" PointX="6" PointY="6" IsExpanded="true" />
-        <EntityTypeShape EntityType="WmsModel.DeliveryPlanStatus" Width="1.5" PointX="3.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.ProductBarcodes" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.Products" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.PurchaseOrderLines" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
@@ -26,11 +23,7 @@
         <EntityTypeShape EntityType="WmsModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
         <AssociationConnector Association="WmsModel.FK_CustomerAddressTypes_CustomerAddress" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Customers_CustomerAddress" ManuallyRouted="false" />
-        <AssociationConnector Association="WmsModel.FK_Customer_DeliveryPlans" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Customers_SalesOrder" ManuallyRouted="false" />
-        <AssociationConnector Association="WmsModel.FK_DeliveryPlans_DeliveryPlanLines" ManuallyRouted="false" />
-        <AssociationConnector Association="WmsModel.FK_SalesOrder_DeliveryPlanLines" ManuallyRouted="false" />
-        <AssociationConnector Association="WmsModel.FK_DeliveryPlanStatus_DeliveryPlans" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Products_ProductBarcodes" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Products_PurchaseOrderLines" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Products_SalesOrderLines" ManuallyRouted="false" />

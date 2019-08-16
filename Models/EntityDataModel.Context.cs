@@ -18,9 +18,8 @@ namespace Models
         public WmsConnectionEntities()
             : base("name=WmsConnectionEntities")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
-
+    
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
@@ -29,9 +28,6 @@ namespace Models
         public virtual DbSet<CustomerAddress> CustomerAddress { get; set; }
         public virtual DbSet<CustomerAddressTypes> CustomerAddressTypes { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
-        public virtual DbSet<DeliveryPlanLines> DeliveryPlanLines { get; set; }
-        public virtual DbSet<DeliveryPlans> DeliveryPlans { get; set; }
-        public virtual DbSet<DeliveryPlanStatus> DeliveryPlanStatus { get; set; }
         public virtual DbSet<ProductBarcodes> ProductBarcodes { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<PurchaseOrderLines> PurchaseOrderLines { get; set; }
