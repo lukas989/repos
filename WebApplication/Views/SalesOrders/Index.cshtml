@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Models.VSalesOrders>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesOrderStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstNameCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastNameCustomer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalesOrderLines)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpectedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesOrderStatus)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstNameCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastNameCustomer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalesOrderLines)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpectedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { item.SalesOrderId })
+        </td>
+    </tr>
+}
+
+</table>

@@ -12,28 +12,20 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SalesOrders
+    public partial class VSalesOrderLines
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SalesOrders()
-        {
-            this.SalesOrderLines = new HashSet<SalesOrderLines>();
-        }
-    
         public int SalesOrderId { get; set; }
-        public int SalesOrderStatusId { get; set; }
-        public int CustomerId { get; set; }
+        public int SalesOrderLineNo { get; set; }
+        public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public int OrderedQty { get; set; }
+        public int RecivedQty { get; set; }
+        public decimal PurchaseOrderPrice { get; set; }
         public Nullable<System.DateTime> ExpectedDate { get; set; }
-        public string CurrencyId { get; set; }
-        public decimal CurrencyRate { get; set; }
+        public Nullable<System.DateTime> DeliveryDate { get; set; }
         public string EntryAuthor { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
-    
-        public virtual Customers Customers { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesOrderLines> SalesOrderLines { get; set; }
-        public virtual SalesOrderStatus SalesOrderStatus { get; set; }
     }
 }

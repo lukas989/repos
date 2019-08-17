@@ -92,9 +92,6 @@
     <Build Include="dbo\Tables\SalesOrders.sql" />
     <Build Include="dbo\Tables\SalesOrderLines.sql" />
     <Build Include="dbo\Tables\SalesOrderStatus.sql" />
-    <Build Include="dbo\Tables\DeliveryPlanStatus.sql" />
-    <Build Include="dbo\Tables\DeliveryPlans.sql" />
-    <Build Include="dbo\Tables\DeliveryPlanLines.sql" />
     <Build Include="dbo\Tables\ProductBarcodes.sql" />
     <Build Include="dbo\VProducts.sql" />
     <Build Include="dbo\VPurchaseOrders.sql" />
@@ -107,5 +104,7 @@
     <Build Include="WmsSimulator\Tables\XmlIn.sql" />
     <Build Include="Security\WmsSimulator.sql" />
     <Build Include="dbo\Tables\ReceiptPlanLineConfirmWms.sql" />
+    <Build Include="dbo\Views\VSalesOrders.sql" />
+    <Build Include="dbo\Views\VSalesOrderLines.sql" />
   </ItemGroup>
 </Project>

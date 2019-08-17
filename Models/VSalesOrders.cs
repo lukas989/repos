@@ -12,20 +12,23 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DeliveryPlanLines
+    public partial class VSalesOrders
     {
-        public int DeliveryPlanId { get; set; }
-        public int DeliveryPlanLineNo { get; set; }
         public int SalesOrderId { get; set; }
-        public int SalesOrderLineNo { get; set; }
-        public int ExpectedQty { get; set; }
-        public Nullable<int> RecivedQty { get; set; }
+        public int SalesOrderStatusId { get; set; }
+        public string SalesOrderStatus { get; set; }
+        public int CustomerId { get; set; }
+        public string NameCustomer { get; set; }
+        public string FirstNameCustomer { get; set; }
+        public string LastNameCustomer { get; set; }
+        public Nullable<int> SalesOrderLines { get; set; }
+        public Nullable<System.DateTime> ExpectedDate { get; set; }
+        public string CurrencyId { get; set; }
+        public decimal CurrencyRate { get; set; }
         public string EntryAuthor { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
-    
-        public virtual DeliveryPlans DeliveryPlans { get; set; }
-        public virtual SalesOrders SalesOrders { get; set; }
+        public string Description { get; set; }
     }
 }

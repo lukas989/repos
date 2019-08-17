@@ -18,7 +18,7 @@ namespace Models
         public int SalesOrderLineNo { get; set; }
         public int ProductId { get; set; }
         public int OrderedQty { get; set; }
-        public Nullable<int> RecivedQty { get; set; }
+        public int RecivedQty { get; set; }
         public decimal PurchaseOrderPrice { get; set; }
         public Nullable<System.DateTime> ExpectedDate { get; set; }
         public Nullable<System.DateTime> DeliveryDate { get; set; }

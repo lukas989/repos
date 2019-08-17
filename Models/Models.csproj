@@ -63,15 +63,6 @@
     <Compile Include="Customers.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DeliveryPlanLines.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DeliveryPlans.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DeliveryPlanStatus.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="EntityDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -127,6 +118,7 @@
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ReceiptPlanStatusId.cs" />
+    <Compile Include="SalesOrderEdit.cs" />
     <Compile Include="SalesOrderLines.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -155,6 +147,12 @@
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VReceiptPlans.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VSalesOrderLines.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VSalesOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Wms\Item.cs" />

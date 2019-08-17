@@ -29,9 +29,6 @@ namespace Models
         public virtual DbSet<CustomerAddress> CustomerAddress { get; set; }
         public virtual DbSet<CustomerAddressTypes> CustomerAddressTypes { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
-        public virtual DbSet<DeliveryPlanLines> DeliveryPlanLines { get; set; }
-        public virtual DbSet<DeliveryPlans> DeliveryPlans { get; set; }
-        public virtual DbSet<DeliveryPlanStatus> DeliveryPlanStatus { get; set; }
         public virtual DbSet<ProductBarcodes> ProductBarcodes { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<PurchaseOrderLines> PurchaseOrderLines { get; set; }
@@ -53,5 +50,7 @@ namespace Models
         public virtual DbSet<XmlIn> XmlIn { get; set; }
         public virtual DbSet<XmlOut> XmlOut { get; set; }
         public virtual DbSet<ReceiptPlanLineConfirmWms> ReceiptPlanLineConfirmWms { get; set; }
+        public virtual DbSet<VSalesOrders> VSalesOrders { get; set; }
+        public virtual DbSet<VSalesOrderLines> VSalesOrderLines { get; set; }
     }
 }
