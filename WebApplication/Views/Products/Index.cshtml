@@ -47,51 +47,57 @@
         <th>
             @Html.DisplayNameFor(model => model.LastUpdate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WmsUpdate)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Product)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Supplier)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Weight)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Height)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Width)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Depth)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.IsBarcodeSet)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryAuthor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastAuthor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Product)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Supplier)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Weight)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Height)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Width)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Depth)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.IsBarcodeSet)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastUpdate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.WmsUpdate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
+    </td>
+</tr>
 }
 
 </table>

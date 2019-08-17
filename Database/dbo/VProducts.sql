@@ -12,7 +12,8 @@
               p.EntryAuthor ,
               p.EntryDate ,
               p.LastAuthor ,
-              p.LastUpdate
+              p.LastUpdate,
+			  p.WmsUpdate
 	from Products p
 	LEFT JOIN Suppliers s on p.SupplierId = s.SupplierId
 

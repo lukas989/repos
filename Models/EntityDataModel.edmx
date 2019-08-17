@@ -277,6 +277,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VProducts' does not have a p
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="WmsUpdate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'WmsIntegration_v2.dbo.VPurchaseOrderLines' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -676,7 +677,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
     [VProducts].[EntryAuthor] AS [EntryAuthor], 
     [VProducts].[EntryDate] AS [EntryDate], 
     [VProducts].[LastAuthor] AS [LastAuthor], 
-    [VProducts].[LastUpdate] AS [LastUpdate]
+    [VProducts].[LastUpdate] AS [LastUpdate], 
+    [VProducts].[WmsUpdate] AS [WmsUpdate]
     FROM [dbo].[VProducts] AS [VProducts]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VPurchaseOrderLines" EntityType="Self.VPurchaseOrderLines" store:Type="Views" store:Schema="dbo">
@@ -1409,6 +1411,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WmsUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="VPurchaseOrders">
           <Key>
@@ -1833,6 +1836,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <EntitySetMapping Name="VProducts">
             <EntityTypeMapping TypeName="WmsModel.VProducts">
               <MappingFragment StoreEntitySet="VProducts">
+                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
