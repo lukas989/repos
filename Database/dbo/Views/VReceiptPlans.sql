@@ -9,7 +9,8 @@ SELECT rp.ReceiptPlanId,
        rp.EntryAuthor,
        rp.EntryDate,
        rp.LastAuthor,
-       rp.LastUpdate
+       rp.LastUpdate,
+       rp.WmsUpdate
 	   FROM dbo.ReceiptPlans rp
 LEFT JOIN dbo.ReceiptPlanStatus rps ON rps.ReceiptPlanStatusId = rp.ReceiptPlanStatusId
 LEFT JOIN dbo.Suppliers s ON s.SupplierId = rp.SupplierId

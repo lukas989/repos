@@ -390,6 +390,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VReceiptPlans' does not have
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="WmsUpdate" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrderLines' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -747,7 +748,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
     [VReceiptPlans].[EntryAuthor] AS [EntryAuthor], 
     [VReceiptPlans].[EntryDate] AS [EntryDate], 
     [VReceiptPlans].[LastAuthor] AS [LastAuthor], 
-    [VReceiptPlans].[LastUpdate] AS [LastUpdate]
+    [VReceiptPlans].[LastUpdate] AS [LastUpdate], 
+    [VReceiptPlans].[WmsUpdate] AS [WmsUpdate]
     FROM [dbo].[VReceiptPlans] AS [VReceiptPlans]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="VSalesOrderLines" EntityType="Self.VSalesOrderLines" store:Type="Views" store:Schema="dbo">
@@ -1515,6 +1517,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="WmsUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="XmlIn">
           <Key>
@@ -1918,6 +1921,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <EntitySetMapping Name="VReceiptPlans">
             <EntityTypeMapping TypeName="WmsModel.VReceiptPlans">
               <MappingFragment StoreEntitySet="VReceiptPlans">
+                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />
                 <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />

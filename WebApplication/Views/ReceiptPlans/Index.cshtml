@@ -38,6 +38,9 @@
         <th>
             @Html.DisplayNameFor(model => model.EntryDate)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WmsUpdate)
+        </th>
         <th></th>
     </tr>
 
@@ -69,6 +72,9 @@
     </td>
     <td>
         @Html.DisplayFor(modelItem => item.EntryDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.WmsUpdate)
     </td>
     <td>
         @Html.ActionLink("Edit", "Edit", new { id = item.ReceiptPlanId })
