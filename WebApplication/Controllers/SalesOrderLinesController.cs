@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Lib;
 using Models;
 
 namespace WebApplication.Controllers
@@ -37,46 +38,50 @@ namespace WebApplication.Controllers
         }
 
         // GET: SalesOrderLines/Create
-        public ActionResult Create()
+        public ActionResult Create(int salesOrderId, int productId)
         {
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name");
-            ViewBag.SalesOrderId = new SelectList(db.SalesOrders, "SalesOrderId", "CurrencyId");
-            return View();
+            SalesOrderLinesEdit salesOrderLinesEdit = new SalesOrderLinesEdit() { SalesOrderId = salesOrderId, ProductId = productId, ExpectedDate = DateTime.Now };
+            return View(salesOrderLinesEdit);
         }
+
+        public async System.Threading.Tasks.Task<ActionResult> SelectProduct(int salesOrderId)
+        {
+            SalesOrderLinesEdit salesOrderLinesEdit = new SalesOrderLinesEdit() { SalesOrderId= salesOrderId };
+            salesOrderLinesEdit.ProductList = await new HttpClientLib().GetAsync<IEnumerable<VProducts>>("API", "/api/Products/");
+            return View(salesOrderLinesEdit);
+
+        }
+
 
         // POST: SalesOrderLines/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SalesOrderId,SalesOrderLineNo,ProductId,OrderedQty,RecivedQty,PurchaseOrderPrice,ExpectedDate,DeliveryDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrderLines salesOrderLines)
+        public async System.Threading.Tasks.Task<ActionResult> Create([Bind(Include = "SalesOrderId,SalesOrderLineNo,ProductId,OrderedQty,RecivedQty,PurchaseOrderPrice,ExpectedDate,DeliveryDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrderLines salesOrderLines)
         {
-            if (ModelState.IsValid)
-            {
-                db.SalesOrderLines.Add(salesOrderLines);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", salesOrderLines.ProductId);
-            ViewBag.SalesOrderId = new SelectList(db.SalesOrders, "SalesOrderId", "CurrencyId", salesOrderLines.SalesOrderId);
-            return View(salesOrderLines);
+            new ObjectLib().InitObjec(salesOrderLines, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PostAsync("API", "/api/SalesOrderLines/", salesOrderLines);
+            return RedirectToAction("Edit", "SalesOrders", new { SalesOrderId = salesOrderLines.SalesOrderId });
         }
 
         // GET: SalesOrderLines/Edit/5
-        public ActionResult Edit(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int? salesOrderId, int? salesOrderLineNo )
         {
-            if (id == null)
+            if (salesOrderId == null || salesOrderLineNo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SalesOrderLines salesOrderLines = db.SalesOrderLines.Find(id);
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("SalesOrderId", salesOrderId.ToString());
+            paramList.Add("SalesOrderLineNo", salesOrderLineNo.ToString());
+            SalesOrderLines salesOrderLines = await new HttpClientLib().GetByAsync<SalesOrderLines>("API", "/api/SalesOrderLines/", paramList);
             if (salesOrderLines == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", salesOrderLines.ProductId);
-            ViewBag.SalesOrderId = new SelectList(db.SalesOrders, "SalesOrderId", "CurrencyId", salesOrderLines.SalesOrderId);
+            //ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", salesOrderLines.ProductId);
+            //ViewBag.SalesOrderId = new SelectList(db.SalesOrders, "SalesOrderId", "CurrencyId", salesOrderLines.SalesOrderId);
             return View(salesOrderLines);
         }
 
@@ -85,27 +90,24 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SalesOrderId,SalesOrderLineNo,ProductId,OrderedQty,RecivedQty,PurchaseOrderPrice,ExpectedDate,DeliveryDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrderLines salesOrderLines)
+        public async System.Threading.Tasks.Task<ActionResult> Edit([Bind(Include = "SalesOrderId,SalesOrderLineNo,ProductId,OrderedQty,RecivedQty,PurchaseOrderPrice,ExpectedDate,DeliveryDate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrderLines salesOrderLines)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(salesOrderLines).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.ProductId = new SelectList(db.Products, "ProductId", "Name", salesOrderLines.ProductId);
-            ViewBag.SalesOrderId = new SelectList(db.SalesOrders, "SalesOrderId", "CurrencyId", salesOrderLines.SalesOrderId);
-            return View(salesOrderLines);
+            new ObjectLib().UpdateObject(salesOrderLines, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PutAsync("API", "/api/SalesOrderLines/", salesOrderLines);
+            return RedirectToAction("Edit", "SalesOrders", new { salesOrderLines.SalesOrderId });
         }
 
         // GET: SalesOrderLines/Delete/5
-        public ActionResult Delete(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Delete(int? salesOrderId, int? salesOrderLineNo)
         {
-            if (id == null)
+            if (salesOrderId == null || salesOrderLineNo == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SalesOrderLines salesOrderLines = db.SalesOrderLines.Find(id);
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("SalesOrderId", salesOrderId.ToString());
+            paramList.Add("SalesOrderLineNo", salesOrderLineNo.ToString());
+            SalesOrderLines salesOrderLines = await new HttpClientLib().GetByAsync<SalesOrderLines>("API", "/api/SalesOrderLines/", paramList);
             if (salesOrderLines == null)
             {
                 return HttpNotFound();
@@ -116,12 +118,13 @@ namespace WebApplication.Controllers
         // POST: SalesOrderLines/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public async System.Threading.Tasks.Task<ActionResult> DeleteConfirmed(int? salesOrderId, int? salesOrderLineNo)
         {
-            SalesOrderLines salesOrderLines = db.SalesOrderLines.Find(id);
-            db.SalesOrderLines.Remove(salesOrderLines);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("SalesOrderId", salesOrderId.ToString());
+            paramList.Add("SalesOrderLineNo", salesOrderLineNo.ToString());
+            await new HttpClientLib().DeleteAsync("API", "/api/SalesOrderLines/", paramList);
+            return RedirectToAction("Edit", "SalesOrders", new { salesOrderId });
         }
 
         protected override void Dispose(bool disposing)

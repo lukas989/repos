@@ -122,6 +122,7 @@
     <Compile Include="SalesOrderLines.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SalesOrderLinesEdit.cs" />
     <Compile Include="SalesOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
