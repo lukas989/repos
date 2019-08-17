@@ -166,6 +166,7 @@
     <Compile Include="Controllers\ReceiptPlanLineConfirmWmsController.cs" />
     <Compile Include="Controllers\ReceiptPlanLinesController.cs" />
     <Compile Include="Controllers\ReceiptPlansController.cs" />
+    <Compile Include="Controllers\SalesOrderLinesController.cs" />
     <Compile Include="Controllers\SalesOrdersController.cs" />
     <Compile Include="Controllers\SuppliersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -387,6 +388,11 @@
     <Content Include="Views\SalesOrders\Edit.cshtml" />
     <Content Include="Views\SalesOrders\Index.cshtml" />
     <Content Include="Views\SalesOrders\Create2.cshtml" />
+    <Content Include="Views\SalesOrderLines\Create.cshtml" />
+    <Content Include="Views\SalesOrderLines\Delete.cshtml" />
+    <Content Include="Views\SalesOrderLines\Details.cshtml" />
+    <Content Include="Views\SalesOrderLines\Edit.cshtml" />
+    <Content Include="Views\SalesOrderLines\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

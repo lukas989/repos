@@ -10,7 +10,7 @@ namespace Models
     public class SalesOrderEdit : SalesOrders
     {
         public IEnumerable<SelectListItem> SalesOrderStatusSelectListItem { get; set; }
-        public IEnumerable<VSalesOrderLines> vSalesOrderLines { get; set; }
+        public IEnumerable<VSalesOrderLines> VSalesOrderLines { get; set; }
 
     }
 }

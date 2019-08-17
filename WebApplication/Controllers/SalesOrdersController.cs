@@ -75,21 +75,18 @@ namespace WebApplication.Controllers
         }
 
         // GET: SalesOrders/Edit/5
-        public async System.Threading.Tasks.Task<ActionResult> Edit(int? SalesOrderId)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int? salesOrderId)
         {
-            if (SalesOrderId == null)
+            if (salesOrderId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var loadSelectListItem = new LoadSelectListItem();
-            SalesOrderEdit salesOrderEdit = await new HttpClientLib().GetByIdAsync<SalesOrderEdit>("API", "/api/SalesOrders/", (int)SalesOrderId);
-
-            //PurchaseOrder.PurchaseOrderStatusList = await loadSelectListItem.PurchaseOrderStatusAsync();
-            //PurchaseOrder.SupplierList = await loadSelectListItem.SupplierAsync();
-            //Dictionary<string, string> paramList = new Dictionary<string, string>();
-            //paramList.Add("purchaseOrderId", id.ToString());
-            //PurchaseOrder.VPurchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/", paramList);
-
+            SalesOrderEdit salesOrderEdit = await new HttpClientLib().GetByIdAsync<SalesOrderEdit>("API", "/api/SalesOrders/", (int)salesOrderId);
+            salesOrderEdit.SalesOrderStatusSelectListItem = await loadSelectListItem.SalesOrderStatusAsync();
+            Dictionary<string, string> paramList = new Dictionary<string, string>();
+            paramList.Add("salesOrderId", salesOrderId.ToString());
+            salesOrderEdit.VSalesOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VSalesOrderLines>>("API", "/api/SalesOrderLines/", paramList);
             return View(salesOrderEdit);
         }
 
