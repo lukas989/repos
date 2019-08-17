@@ -1,0 +1,1 @@
+"D:\Users\lukaszwz\Source\Repos\lukas989\repos\WmsTransferSender\bin\Debug\WmsTransferSender.exe" Product

@@ -1,0 +1,15 @@
+﻿<ReceiptExport>
+  <Header>
+    <ReferenceNumber>339560</ReferenceNumber>
+    <ErCode>1006</ErCode>
+    <LogisticSite>WA</LogisticSite>
+    <Depositor>3</Depositor>
+  </Header>
+  <Lines>
+    <ReceiptExportLine>
+      <PartNumber>3062</PartNumber>
+      <ExpectedQuantity>50</ExpectedQuantity>
+      <ReceivedQuantity>25</ReceivedQuantity>
+    </ReceiptExportLine>
+  </Lines>
+</ReceiptExport>

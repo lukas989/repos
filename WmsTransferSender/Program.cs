@@ -24,6 +24,7 @@ namespace WmsTransferSender
             {
                 new ReceiptPlansToWmsServices().StartProcessing();
             }
+            Console.ReadKey();
         }
 
         [Obsolete]

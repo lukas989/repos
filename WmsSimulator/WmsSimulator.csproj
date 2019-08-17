@@ -149,6 +149,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Xml\ItemExport.xml" />
+    <Content Include="Xml\ReceiptExport.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
