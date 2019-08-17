@@ -95,5 +95,11 @@ namespace WebApplicationAPI.Controllers
             db.SaveChanges();
             return Ok();
         }
+
+        [HttpPut]
+        [Route("api/Wms/OrderExport")]
+        public IHttpActionResult OrderExport([FromBody]OrderExport orderExport)
+        {
+        }
+        }
     }
-}

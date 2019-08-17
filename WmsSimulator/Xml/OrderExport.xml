@@ -1,0 +1,22 @@
+﻿<OrderExport>
+  <Header>
+    <CustomerCode>15</CustomerCode>
+    <ReferenceNumber>339560</ReferenceNumber>
+    <OrderCode>2</OrderCode>
+    <LogisticSite>WA</LogisticSite>
+  </Header>
+  <Lines>
+    <Line>
+      <OrderLineNo>2</OrderLineNo>
+      <PartNumber>47</PartNumber>
+      <OrderedQuantity>1</OrderedQuantity>
+      <CheckedQuantity>1</CheckedQuantity>
+    </Line>
+    <Line>
+      <OrderLineNo>2</OrderLineNo>
+      <PartNumber>47</PartNumber>
+      <OrderedQuantity>1</OrderedQuantity>
+      <CheckedQuantity>1</CheckedQuantity>
+    </Line>
+  </Lines>
+</OrderExport>

@@ -129,6 +129,7 @@
     <Compile Include="SalesOrderStatus.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SalesOrderStatusId.cs" />
     <Compile Include="Suppliers.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -156,8 +157,15 @@
     <Compile Include="VSalesOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Wms\Customer.cs" />
     <Compile Include="Wms\Item.cs" />
     <Compile Include="Wms\ItemExport.cs" />
+    <Compile Include="Wms\Order.cs" />
+    <Compile Include="Wms\OrderExport.cs" />
+    <Compile Include="Wms\OrderExportHeader.cs" />
+    <Compile Include="Wms\OrderExportLine.cs" />
+    <Compile Include="Wms\OrderHeader.cs" />
+    <Compile Include="Wms\OrderLine.cs" />
     <Compile Include="Wms\Receipt.cs" />
     <Compile Include="Wms\ReceiptExport.cs" />
     <Compile Include="Wms\ReceiptExportHeader.cs" />
@@ -165,6 +173,7 @@
     <Compile Include="Wms\ReceiptHeader.cs" />
     <Compile Include="Wms\ReceiptLine.cs" />
     <Compile Include="Wms\ReceiptPlanToWms.cs" />
+    <Compile Include="Wms\SalesOrderToWms.cs" />
     <Compile Include="Wms\Supplier.cs" />
     <Compile Include="XmlIn.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
