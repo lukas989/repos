@@ -95,17 +95,11 @@ namespace WebApplication.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SalesOrderId,SalesOrderStatusId,CustomerId,ExpectedDate,CurrencyId,CurrencyRate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrders salesOrders)
+        public async System.Threading.Tasks.Task<ActionResult> Edit([Bind(Include = "SalesOrderId,SalesOrderStatusId,CustomerId,ExpectedDate,CurrencyId,CurrencyRate,EntryAuthor,EntryDate,LastAuthor,LastUpdate")] SalesOrders salesOrders)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(salesOrders).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name", salesOrders.CustomerId);
-            ViewBag.SalesOrderStatusId = new SelectList(db.SalesOrderStatus, "SalesOrderStatusId", "Name", salesOrders.SalesOrderStatusId);
-            return View(salesOrders);
+            new ObjectLib().UpdateObject(salesOrders, Request.RequestContext.HttpContext.User.Identity.Name);
+            await new HttpClientLib().PutAsync("API", "/api/SalesOrders/", salesOrders.SalesOrderId, salesOrders);
+            return RedirectToAction("Index");
         }
 
         // GET: SalesOrders/Delete/5

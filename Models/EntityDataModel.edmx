@@ -201,6 +201,7 @@
           <Property Name="EntryDate" Type="datetime" Nullable="false" />
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
+          <Property Name="WmsUpdate" Type="datetime" />
         </EntityType>
         <EntityType Name="SalesOrderStatus">
           <Key>
@@ -442,6 +443,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <Property Name="FirstNameCustomer" Type="varchar" MaxLength="200" />
           <Property Name="LastNameCustomer" Type="varchar" MaxLength="200" />
           <Property Name="SalesOrderLines" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="38" Scale="5" />
           <Property Name="ExpectedDate" Type="datetime" />
           <Property Name="CurrencyId" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="CurrencyRate" Type="decimal" Precision="15" Scale="5" Nullable="false" />
@@ -450,6 +452,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
           <Property Name="Description" Type="varchar" MaxLength="1500" />
+          <Property Name="WmsUpdate" Type="datetime" />
         </EntityType>
         <Association Name="FK_CustomerAddressTypes_CustomerAddress">
           <End Role="CustomerAddressTypes" Type="Self.CustomerAddressTypes" Multiplicity="1" />
@@ -779,6 +782,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
     [VSalesOrders].[FirstNameCustomer] AS [FirstNameCustomer], 
     [VSalesOrders].[LastNameCustomer] AS [LastNameCustomer], 
     [VSalesOrders].[SalesOrderLines] AS [SalesOrderLines], 
+    [VSalesOrders].[Price] AS [Price], 
     [VSalesOrders].[ExpectedDate] AS [ExpectedDate], 
     [VSalesOrders].[CurrencyId] AS [CurrencyId], 
     [VSalesOrders].[CurrencyRate] AS [CurrencyRate], 
@@ -786,7 +790,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
     [VSalesOrders].[EntryDate] AS [EntryDate], 
     [VSalesOrders].[LastAuthor] AS [LastAuthor], 
     [VSalesOrders].[LastUpdate] AS [LastUpdate], 
-    [VSalesOrders].[Description] AS [Description]
+    [VSalesOrders].[Description] AS [Description], 
+    [VSalesOrders].[WmsUpdate] AS [WmsUpdate]
     FROM [dbo].[VSalesOrders] AS [VSalesOrders]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_CustomerAddressTypes_CustomerAddress" Association="Self.FK_CustomerAddressTypes_CustomerAddress">
@@ -1069,6 +1074,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <NavigationProperty Name="Customers" Relationship="Self.FK_Customers_SalesOrder" FromRole="SalesOrders" ToRole="Customers" />
           <NavigationProperty Name="SalesOrderLines" Relationship="Self.FK_SalesOrders_SalesOrderLines" FromRole="SalesOrders" ToRole="SalesOrderLines" />
           <NavigationProperty Name="SalesOrderStatus" Relationship="Self.FK_SalesOrderStatus_SalesOrder" FromRole="SalesOrders" ToRole="SalesOrderStatus" />
+          <Property Name="WmsUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="SalesOrderStatus">
           <Key>
@@ -1578,6 +1584,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Description" Type="String" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Name="Price" Type="Decimal" Precision="38" Scale="5" />
+          <Property Name="WmsUpdate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="VSalesOrderLines">
           <Key>
@@ -1790,6 +1798,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <EntitySetMapping Name="SalesOrders">
             <EntityTypeMapping TypeName="WmsModel.SalesOrders">
               <MappingFragment StoreEntitySet="SalesOrders">
+                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
                 <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
                 <ScalarProperty Name="SalesOrderStatusId" ColumnName="SalesOrderStatusId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
@@ -1972,6 +1981,8 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <EntitySetMapping Name="VSalesOrders">
             <EntityTypeMapping TypeName="WmsModel.VSalesOrders">
               <MappingFragment StoreEntitySet="VSalesOrders">
+                <ScalarProperty Name="WmsUpdate" ColumnName="WmsUpdate" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="LastUpdate" ColumnName="LastUpdate" />
                 <ScalarProperty Name="LastAuthor" ColumnName="LastAuthor" />

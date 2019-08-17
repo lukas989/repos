@@ -18,13 +18,10 @@
             @Html.DisplayNameFor(model => model.NameCustomer)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstNameCustomer)
+            @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastNameCustomer)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SalesOrderLines)
+            @Html.DisplayNameFor(model => model.CurrencyId)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.ExpectedDate)
@@ -32,36 +29,63 @@
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastAuthor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.WmsUpdate)
+        </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SalesOrderStatus)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NameCustomer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstNameCustomer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastNameCustomer)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SalesOrderLines)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ExpectedDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { item.SalesOrderId })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.SalesOrderStatus)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Customer)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Price)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.SalesOrderLines)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ExpectedDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastUpdate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.WmsUpdate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { item.SalesOrderId })
+    </td>
+</tr>
 }
 
 </table>

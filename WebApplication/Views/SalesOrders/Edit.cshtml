@@ -64,12 +64,21 @@
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("New Line", "SelectProduct", "SalesOrderLines", new { salesOrderId = Model.SalesOrderId }, new { @class = "btn btn-default" })
 </p>
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.VSalesOrderLines.FirstOrDefault().SalesOrderLineNo)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.VSalesOrderLines.FirstOrDefault().ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VSalesOrderLines.FirstOrDefault().OrderedQty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VSalesOrderLines.FirstOrDefault().PurchaseOrderPrice)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.VSalesOrderLines.FirstOrDefault().RecivedQty)
@@ -85,23 +94,33 @@
 
     @foreach (var item in Model.VSalesOrderLines)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RecivedQty)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpectedDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DeliveryDate)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.SalesOrderLineNo)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ProductName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.OrderedQty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PurchaseOrderPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.RecivedQty)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ExpectedDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.DeliveryDate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", "SalesOrderLines", new { item.SalesOrderId, item.SalesOrderLineNo }, null) |
+        @Html.ActionLink("Delete", "Delete", "SalesOrderLines", new { item.SalesOrderId, item.SalesOrderLineNo }, null)
+    </td>
+</tr>
     }
 
 </table>

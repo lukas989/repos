@@ -32,9 +32,9 @@ namespace WebApplicationAPI.Controllers
 
         // GET: api/SalesOrderLines/5
         [ResponseType(typeof(SalesOrderLines))]
-        public IHttpActionResult GetSalesOrderLines(int id)
+        public IHttpActionResult GetSalesOrderLines(int salesOrderId, int salesOrderLineNo)
         {
-            SalesOrderLines salesOrderLines = db.SalesOrderLines.Find(id);
+            SalesOrderLines salesOrderLines = db.SalesOrderLines.Find(salesOrderId, salesOrderLineNo);
             if (salesOrderLines == null)
             {
                 return NotFound();
@@ -45,16 +45,11 @@ namespace WebApplicationAPI.Controllers
 
         // PUT: api/SalesOrderLines/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutSalesOrderLines(int id, SalesOrderLines salesOrderLines)
+        public IHttpActionResult PutSalesOrderLines(SalesOrderLines salesOrderLines)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
-
-            if (id != salesOrderLines.SalesOrderId)
-            {
-                return BadRequest();
             }
 
             db.Entry(salesOrderLines).State = EntityState.Modified;
@@ -65,14 +60,7 @@ namespace WebApplicationAPI.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!SalesOrderLinesExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
                     throw;
-                }
             }
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -86,6 +74,7 @@ namespace WebApplicationAPI.Controllers
             {
                 return BadRequest(ModelState);
             }
+            salesOrderLines.SalesOrderLineNo = setMaxSalesOrderLineNo(salesOrderLines.SalesOrderId);
 
             db.SalesOrderLines.Add(salesOrderLines);
 
@@ -108,11 +97,24 @@ namespace WebApplicationAPI.Controllers
             return CreatedAtRoute("DefaultApi", new { id = salesOrderLines.SalesOrderId }, salesOrderLines);
         }
 
+        private int setMaxSalesOrderLineNo(int salesOrderId)
+        {
+            int nextSalesOrderLineNo = 1;
+            var salesOrderLine = db.SalesOrderLines.Where(x => x.SalesOrderId == salesOrderId);
+            if (salesOrderLine.Count() > 0)
+            {
+                int maxSalesOrderLineNo = db.SalesOrderLines.Where(x => x.SalesOrderId == salesOrderId).Max(p => p.SalesOrderLineNo);
+                nextSalesOrderLineNo = maxSalesOrderLineNo + 1;
+
+            }
+            return nextSalesOrderLineNo;
+        }
+
         // DELETE: api/SalesOrderLines/5
         [ResponseType(typeof(SalesOrderLines))]
-        public IHttpActionResult DeleteSalesOrderLines(int id)
+        public IHttpActionResult DeleteSalesOrderLines(int salesOrderId, int salesOrderLineNo)
         {
-            SalesOrderLines salesOrderLines = db.SalesOrderLines.Find(id);
+            SalesOrderLines salesOrderLines = db.SalesOrderLines.Find(salesOrderId, salesOrderLineNo);
             if (salesOrderLines == null)
             {
                 return NotFound();

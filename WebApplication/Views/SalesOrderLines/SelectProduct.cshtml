@@ -1,0 +1,37 @@
+﻿@model Models.SalesOrderLinesEdit
+
+@{
+    ViewBag.Title = "SelectProduct";
+}
+
+<h2>SelectProduct</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+    @Html.HiddenFor(model => model.SalesOrderId, "SalesOrderId")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList.FirstOrDefault().Product)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductList.FirstOrDefault().Description)
+        </th>
+    </tr>
+
+@foreach (var item in Model.ProductList) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Selected", "Create", new { Model.SalesOrderId, item.ProductId})
+        </td>
+    </tr>
+}
+
+</table>

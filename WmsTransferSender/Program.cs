@@ -24,6 +24,10 @@ namespace WmsTransferSender
             {
                 new ReceiptPlansToWmsServices().StartProcessing();
             }
+            else if (args[0] == "SalesOrder")
+            {
+                new SalesOrderToWmsServices().StartProcessing();
+            }
             Console.ReadKey();
         }
 
