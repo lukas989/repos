@@ -105,5 +105,6 @@
     <Build Include="Security\WmsSimulator.sql" />
     <Build Include="dbo\Tables\ReceiptPlanLineConfirmWms.sql" />
     <Build Include="dbo\Views\VSalesOrders.sql" />
+    <Build Include="dbo\Views\VSalesOrderLines.sql" />
   </ItemGroup>
 </Project>

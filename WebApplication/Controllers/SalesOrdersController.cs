@@ -75,20 +75,22 @@ namespace WebApplication.Controllers
         }
 
         // GET: SalesOrders/Edit/5
-        public ActionResult Edit(int? id)
+        public async System.Threading.Tasks.Task<ActionResult> Edit(int? SalesOrderId)
         {
-            if (id == null)
+            if (SalesOrderId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            SalesOrders salesOrders = db.SalesOrders.Find(id);
-            if (salesOrders == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.CustomerId = new SelectList(db.Customers, "CustomerId", "Name", salesOrders.CustomerId);
-            ViewBag.SalesOrderStatusId = new SelectList(db.SalesOrderStatus, "SalesOrderStatusId", "Name", salesOrders.SalesOrderStatusId);
-            return View(salesOrders);
+            var loadSelectListItem = new LoadSelectListItem();
+            SalesOrderEdit salesOrderEdit = await new HttpClientLib().GetByIdAsync<SalesOrderEdit>("API", "/api/SalesOrders/", (int)SalesOrderId);
+
+            //PurchaseOrder.PurchaseOrderStatusList = await loadSelectListItem.PurchaseOrderStatusAsync();
+            //PurchaseOrder.SupplierList = await loadSelectListItem.SupplierAsync();
+            //Dictionary<string, string> paramList = new Dictionary<string, string>();
+            //paramList.Add("purchaseOrderId", id.ToString());
+            //PurchaseOrder.VPurchaseOrderLines = await new HttpClientLib().GetByAsync<IEnumerable<VPurchaseOrderLines>>("API", "/api/PurchaseOrderLines/", paramList);
+
+            return View(salesOrderEdit);
         }
 
         // POST: SalesOrders/Edit/5

@@ -1,18 +1,18 @@
-﻿CREATE TABLE [dbo].[SalesOrderLines]
-(
-	[SalesOrderId] int NOT NULL,
-	[SalesOrderLineNo] int NOT NULL,
-	[ProductId] INT NOT NULL,
-	[OrderedQty] int NOT NULL,
-	[RecivedQty] int NULL,
-	[PurchaseOrderPrice] decimal (15, 5) NOT NULL DEFAULT ((1)),
-	[ExpectedDate] datetime NULL,
-	[DeliveryDate] datetime NULL,
-	[EntryAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
-	[EntryDate] datetime NOT NULL  DEFAULT (GETDATE()),
-	[LastAuthor] varchar (32)  NOT NULL  DEFAULT (SUSER_SNAME()),
-	[LastUpdate] datetime NOT NULL  DEFAULT (GETDATE()),
-	CONSTRAINT [PK_SalesOrderLines] PRIMARY KEY CLUSTERED ([SalesOrderId],[SalesOrderLineNo]),
-	CONSTRAINT FK_SalesOrders_SalesOrderLines FOREIGN KEY ([SalesOrderId])  REFERENCES SalesOrders([SalesOrderId]),
-	CONSTRAINT FK_Products_SalesOrderLines FOREIGN KEY ([ProductId])  REFERENCES Products([ProductId])
-)
+﻿CREATE TABLE [dbo].[SalesOrderLines] (
+    [SalesOrderId]       INT             NOT NULL,
+    [SalesOrderLineNo]   INT             NOT NULL,
+    [ProductId]          INT             NOT NULL,
+    [OrderedQty]         INT             NOT NULL,
+    [RecivedQty]         INT             NOT NULL,
+    [PurchaseOrderPrice] DECIMAL (15, 5) DEFAULT ((1)) NOT NULL,
+    [ExpectedDate]       DATETIME        NULL,
+    [DeliveryDate]       DATETIME        NULL,
+    [EntryAuthor]        VARCHAR (32)    DEFAULT (suser_sname()) NOT NULL,
+    [EntryDate]          DATETIME        DEFAULT (getdate()) NOT NULL,
+    [LastAuthor]         VARCHAR (32)    DEFAULT (suser_sname()) NOT NULL,
+    [LastUpdate]         DATETIME        DEFAULT (getdate()) NOT NULL,
+    CONSTRAINT [PK_SalesOrderLines] PRIMARY KEY CLUSTERED ([SalesOrderId] ASC, [SalesOrderLineNo] ASC),
+    CONSTRAINT [FK_Products_SalesOrderLines] FOREIGN KEY ([ProductId]) REFERENCES [dbo].[Products] ([ProductId]),
+    CONSTRAINT [FK_SalesOrders_SalesOrderLines] FOREIGN KEY ([SalesOrderId]) REFERENCES [dbo].[SalesOrders] ([SalesOrderId])
+);
+

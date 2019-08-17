@@ -12,11 +12,12 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class SalesOrderLines
+    public partial class VSalesOrderLines
     {
         public int SalesOrderId { get; set; }
         public int SalesOrderLineNo { get; set; }
         public int ProductId { get; set; }
+        public string ProductName { get; set; }
         public int OrderedQty { get; set; }
         public int RecivedQty { get; set; }
         public decimal PurchaseOrderPrice { get; set; }
@@ -26,8 +27,5 @@ namespace Models
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
-    
-        public virtual Products Products { get; set; }
-        public virtual SalesOrders SalesOrders { get; set; }
     }
 }

@@ -149,6 +149,9 @@
     <Compile Include="VReceiptPlans.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VSalesOrderLines.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="VSalesOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
