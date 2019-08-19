@@ -51,5 +51,6 @@ namespace Models
         public virtual DbSet<ReceiptPlanLineConfirmWms> ReceiptPlanLineConfirmWms { get; set; }
         public virtual DbSet<VSalesOrders> VSalesOrders { get; set; }
         public virtual DbSet<VSalesOrderLines> VSalesOrderLines { get; set; }
+        public virtual DbSet<OrderLineConfirmWms> OrderLineConfirmWms { get; set; }
     }
 }

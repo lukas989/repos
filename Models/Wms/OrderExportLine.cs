@@ -1,4 +1,6 @@
-﻿namespace Models.Wms
+﻿using System.Xml.Serialization;
+
+namespace Models.Wms
 {
     public class OrderExportLine
     {

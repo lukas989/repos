@@ -47,6 +47,7 @@
         <EntityTypeShape EntityType="WmsModel.ReceiptPlanLineConfirmWms" Width="1.5" PointX="14.375" PointY="10.75" />
         <EntityTypeShape EntityType="WmsModel.VSalesOrders" Width="1.5" PointX="5.75" PointY="5.5" />
         <EntityTypeShape EntityType="WmsModel.VSalesOrderLines" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="WmsModel.OrderLineConfirmWms" Width="1.5" PointX="13.375" PointY="14.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

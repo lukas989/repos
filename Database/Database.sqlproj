@@ -107,5 +107,6 @@
     <Build Include="dbo\Tables\ReceiptPlanLineConfirmWms.sql" />
     <Build Include="dbo\Views\VSalesOrders.sql" />
     <Build Include="dbo\Views\VSalesOrderLines.sql" />
+    <Build Include="dbo\Tables\OrderLineConfirmWms.sql" />
   </ItemGroup>
 </Project>

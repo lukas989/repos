@@ -26,7 +26,7 @@ namespace WebApplicationAPI.Controllers
         [Route("api/Wms/ReceiptExport")]
         public IHttpActionResult ReceiptExport([FromBody]ReceiptExport receiptExport)
         {
-            if (existReferenceNumber(receiptExport.Header.ReferenceNumber))
+            if (existReferenceNumber(receiptExport.Header.ReferenceNumber, WmsOperation.Receipt))
             {
                 return BadRequest("ReferenceNumber exist:" + receiptExport.Header.ReferenceNumber);
             }
@@ -49,14 +49,14 @@ namespace WebApplicationAPI.Controllers
                         {
                             confirmed = receivedQuantity;
                         }
-                        else 
+                        else
                         {
                             confirmed = unconfirmedReceiptPlanLine;
                         }
                         var currentDateTime = DateTime.Now;
 
-                        ReceiptPlanLineConfirmWms receiptPlanLineConfirmWms = new ReceiptPlanLineConfirmWms() { WmsDate = currentDateTime } ;
-                        Mapper.Map<ReceiptExportHeader, ReceiptPlanLineConfirmWms> (receiptExport.Header, receiptPlanLineConfirmWms);
+                        ReceiptPlanLineConfirmWms receiptPlanLineConfirmWms = new ReceiptPlanLineConfirmWms() { WmsDate = currentDateTime };
+                        Mapper.Map<ReceiptExportHeader, ReceiptPlanLineConfirmWms>(receiptExport.Header, receiptPlanLineConfirmWms);
                         Mapper.Map<ReceiptExportLine, ReceiptPlanLineConfirmWms>(receiptExportLine, receiptPlanLineConfirmWms);
                         db.ReceiptPlanLineConfirmWms.Add(receiptPlanLineConfirmWms);
 
@@ -65,7 +65,7 @@ namespace WebApplicationAPI.Controllers
                         receiptPlanLines.LastUpdate = currentDateTime;
                         receiptPlanLines.LastAuthor = "Wms";
 
-                        var purchaseOrderLines = db.PurchaseOrderLines.FirstOrDefault(x => x.PurchaseOrderId == vReceiptPlanLine.PurchaseOrderId  && x.PurchaseOrderLineNo == vReceiptPlanLine.PurchaseOrderLineNo);
+                        var purchaseOrderLines = db.PurchaseOrderLines.FirstOrDefault(x => x.PurchaseOrderId == vReceiptPlanLine.PurchaseOrderId && x.PurchaseOrderLineNo == vReceiptPlanLine.PurchaseOrderLineNo);
                         purchaseOrderLines.RecivedQty += confirmed;
                         purchaseOrderLines.LastUpdate = currentDateTime;
                         purchaseOrderLines.LastAuthor = "Wms";
@@ -77,9 +77,22 @@ namespace WebApplicationAPI.Controllers
             return Ok();
         }
 
-        private bool existReferenceNumber(string referenceNumber)
+        private bool existReferenceNumber(string referenceNumber, WmsOperation wmsOperation)
         {
-            return db.ReceiptPlanLineConfirmWms.Any(x => x.ReferenceNumber == referenceNumber);
+            if (wmsOperation == WmsOperation.Receipt)
+            {
+                return db.ReceiptPlanLineConfirmWms.Any(x => x.ReferenceNumber == referenceNumber);
+            }
+            else if (wmsOperation == WmsOperation.Order)
+            {
+                return db.OrderLineConfirmWms.Any(x => x.ReferenceNumber == referenceNumber);
+            }
+            else
+            {
+                return true;
+            }
+
+
         }
 
         [HttpPut]
@@ -100,6 +113,27 @@ namespace WebApplicationAPI.Controllers
         [Route("api/Wms/OrderExport")]
         public IHttpActionResult OrderExport([FromBody]OrderExport orderExport)
         {
+            if (existReferenceNumber(orderExport.Header.ReferenceNumber, WmsOperation.Order))
+            {
+                return BadRequest("ReferenceNumber exist:" + orderExport.Header.ReferenceNumber);
+            }
+
+            foreach (var orderExportLines in orderExport.OrderExportLines)
+            {
+                var currentDateTime = DateTime.Now;
+                OrderLineConfirmWms orderLineConfirmWms = new OrderLineConfirmWms() { WmsDate = currentDateTime };
+                Mapper.Map<OrderExportHeader, OrderLineConfirmWms>(orderExport.Header, orderLineConfirmWms);
+                Mapper.Map<OrderExportLine, OrderLineConfirmWms>(orderExportLines, orderLineConfirmWms);
+                db.OrderLineConfirmWms.Add(orderLineConfirmWms);
+
+                var salesOrderLines = db.SalesOrderLines.FirstOrDefault(x => x.SalesOrderId.ToString() == orderExport.Header.OrderCode && x.SalesOrderLineNo.ToString() == orderExportLines.OrderLineNo);
+                salesOrderLines.RecivedQty = Int32.Parse(orderExportLines.CheckedQuantity);
+                salesOrderLines.LastUpdate = currentDateTime;
+                salesOrderLines.LastAuthor = "Wms";
+                db.SaveChanges();
+            }
+            return Ok();
         }
-        }
+
     }
+}

@@ -84,6 +84,9 @@
       <DependentUpon>EntityDataModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Mappers.cs" />
+    <Compile Include="OrderLineConfirmWms.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProductBarcodes.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -157,6 +160,7 @@
     <Compile Include="VSalesOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="WmsOperation.cs" />
     <Compile Include="Wms\Customer.cs" />
     <Compile Include="Wms\Item.cs" />
     <Compile Include="Wms\ItemExport.cs" />

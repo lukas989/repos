@@ -43,6 +43,20 @@
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrderLineConfirmWms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceNumber" Type="varchar" MaxLength="10" />
+          <Property Name="OrderCode" Type="varchar" MaxLength="10" />
+          <Property Name="LogisticSite" Type="varchar" MaxLength="10" />
+          <Property Name="OrderLineNo" Type="varchar" MaxLength="10" />
+          <Property Name="PartNumber" Type="varchar" MaxLength="10" />
+          <Property Name="OrderedQuantity" Type="varchar" MaxLength="10" />
+          <Property Name="CheckedQuantity" Type="varchar" MaxLength="10" />
+          <Property Name="WmsDate" Type="datetime" />
+        </EntityType>
         <EntityType Name="ProductBarcodes">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -650,6 +664,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CustomerAddressTypes" EntityType="Self.CustomerAddressTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLineConfirmWms" EntityType="Self.OrderLineConfirmWms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductBarcodes" EntityType="Self.ProductBarcodes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrderLines" EntityType="Self.PurchaseOrderLines" Schema="dbo" store:Type="Tables" />
@@ -1393,6 +1408,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <EntitySet Name="ReceiptPlanLineConfirmWms" EntityType="WmsModel.ReceiptPlanLineConfirmWms" />
           <EntitySet Name="VSalesOrders" EntityType="WmsModel.VSalesOrders" />
           <EntitySet Name="VSalesOrderLines" EntityType="WmsModel.VSalesOrderLines" />
+          <EntitySet Name="OrderLineConfirmWms" EntityType="WmsModel.OrderLineConfirmWms" />
         </EntityContainer>
         <EntityType Name="VProducts">
           <Key>
@@ -1612,6 +1628,20 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastAuthor" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LastUpdate" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderLineConfirmWms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OrderCode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="LogisticSite" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OrderLineNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PartNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="OrderedQuantity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="CheckedQuantity" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="WmsDate" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2018,6 +2048,21 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="SalesOrderLineNo" ColumnName="SalesOrderLineNo" />
                 <ScalarProperty Name="SalesOrderId" ColumnName="SalesOrderId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLineConfirmWms">
+            <EntityTypeMapping TypeName="WmsModel.OrderLineConfirmWms">
+              <MappingFragment StoreEntitySet="OrderLineConfirmWms">
+                <ScalarProperty Name="WmsDate" ColumnName="WmsDate" />
+                <ScalarProperty Name="CheckedQuantity" ColumnName="CheckedQuantity" />
+                <ScalarProperty Name="OrderedQuantity" ColumnName="OrderedQuantity" />
+                <ScalarProperty Name="PartNumber" ColumnName="PartNumber" />
+                <ScalarProperty Name="OrderLineNo" ColumnName="OrderLineNo" />
+                <ScalarProperty Name="LogisticSite" ColumnName="LogisticSite" />
+                <ScalarProperty Name="OrderCode" ColumnName="OrderCode" />
+                <ScalarProperty Name="ReferenceNumber" ColumnName="ReferenceNumber" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -42,6 +42,9 @@ namespace WmsTransferSender
                 .ForMember(dest => dest.Price, p => p.MapFrom(scr => scr.PurchaseOrderPrice))
                 .ForMember(dest => dest.Quantity, p => p.MapFrom(scr => scr.OrderedQty));
 
+                cfg.CreateMap<OrderExportHeader, OrderLineConfirmWms>();
+
+                cfg.CreateMap<OrderExportLine, OrderLineConfirmWms>();
             }
             ); 
   
