@@ -17,9 +17,9 @@ namespace API.Controllers
         private WmsConnectionEntities db = new WmsConnectionEntities();
 
         // GET: api/Suppliers
-        public IQueryable<Suppliers> GetSuppliers()
+        public IQueryable<VSuppliers> GetSuppliers()
         {
-            return db.Suppliers;
+            return db.VSuppliers;
         }
 
         // GET: api/Suppliers/5

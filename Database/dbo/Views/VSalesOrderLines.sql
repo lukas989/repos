@@ -1,8 +1,10 @@
 ﻿CREATE VIEW VSalesOrderLines 
 AS
 SELECT sol.SalesOrderId,
+	  'SO' + CAST(sol.SalesOrderId  AS VARCHAR(10)) AS VSalesOrderId,
        sol.SalesOrderLineNo,
        sol.ProductId,
+	   'P' + CAST(p.ProductId AS VARCHAR(10)) AS VProductId,
 	   p.Name AS ProductName,
        sol.OrderedQty,
        sol.RecivedQty,

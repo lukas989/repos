@@ -12,6 +12,9 @@
 <table class="table table-striped">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.VProductId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Product)
         </th>
         <th>
@@ -56,6 +59,9 @@
 @foreach (var item in Model) {
 <tr>
     <td>
+        @Html.DisplayFor(modelItem => item.VProductId)
+    </td>
+    <td>
         @Html.DisplayFor(modelItem => item.Product)
     </td>
     <td>
@@ -95,7 +101,7 @@
         @Html.DisplayFor(modelItem => item.WmsUpdate)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class="btn btn-default"})
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class = "btn btn-default" })
     </td>
 </tr>
 }

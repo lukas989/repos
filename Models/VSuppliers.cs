@@ -12,22 +12,15 @@ namespace Models
     using System;
     using System.Collections.Generic;
     
-    public partial class VPurchaseOrders
+    public partial class VSuppliers
     {
-        public int PurchaseOrderId { get; set; }
-        public int PurchaseOrderStatusId { get; set; }
-        public string PurchaseOrderStatus { get; set; }
+        public string VSupplierId { get; set; }
         public int SupplierId { get; set; }
-        public string Supplier { get; set; }
-        public Nullable<int> Line { get; set; }
-        public Nullable<System.DateTime> ExpectedDate { get; set; }
-        public string CurrencyId { get; set; }
-        public decimal CurrencyRate { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
         public string EntryAuthor { get; set; }
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
-        public string VPurchaseOrderId { get; set; }
-        public string VSupplierId { get; set; }
     }
 }
