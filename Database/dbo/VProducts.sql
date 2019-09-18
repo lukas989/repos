@@ -1,6 +1,8 @@
 ﻿CREATE VIEW [dbo].[VProducts]
-	AS SELECT p.ProductId ,
+	AS SELECT 'P' + CAST(p.ProductId AS VARCHAR(10)) AS VProductId,
+			  p.ProductId ,
               p.Name as Product,
+			  'S' + CAST(p.SupplierId AS VARCHAR(10)) AS VSupplierId,
               p.SupplierId ,
 			  s.Name as Supplier,
               p.Description ,

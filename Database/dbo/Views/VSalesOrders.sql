@@ -1,9 +1,11 @@
 ﻿CREATE VIEW dbo.VSalesOrders
 AS
 SELECT top 1000 so.SalesOrderId,
+			  'SO' + CAST(so.SalesOrderId  AS VARCHAR(10)) AS VSalesOrderId,
                 so.SalesOrderStatusId,
 				sos.Name SalesOrderStatus,
                 so.CustomerId,
+				'C' + CAST(so.CustomerId  AS VARCHAR(10)) AS VCustomerId,
                 c.Name NameCustomer,
                 c.FirstName FirstNameCustomer,
                 c.LastName LastNameCustomer,
