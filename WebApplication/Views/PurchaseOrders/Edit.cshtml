@@ -72,7 +72,7 @@
             </div>
             @Html.ActionLink("New Line", "Create", "PurchaseOrderLines", new { purchaseOrderId = Model.PurchaseOrderId, supplierId = Model.SupplierId }, new { @class="btn btn-default"})
 
-            <table class="table">
+            <table class="table table-striped">
                 <tr>
                     <th>
                         @Html.DisplayNameFor(model => model.VPurchaseOrderLines.FirstOrDefault().ProductName)
@@ -135,8 +135,8 @@
                             @Html.DisplayFor(modelItem => item.LastUpdate)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", "PurchaseOrderLines", new { purchaseOrderId = item.PurchaseOrderId, purchaseOrderLineNo = item.PurchaseOrderLineNo }, null) |
-                            @Html.ActionLink("Delete", "Delete", "PurchaseOrderLines", new { purchaseOrderId = item.PurchaseOrderId, purchaseOrderLineNo = item.PurchaseOrderLineNo }, null)
+                            @Html.ActionLink("Edit", "Edit", "PurchaseOrderLines", new { purchaseOrderId = item.PurchaseOrderId, purchaseOrderLineNo = item.PurchaseOrderLineNo }, new { @class="btn btn-default"}) |
+                            @Html.ActionLink("Delete", "Delete", "PurchaseOrderLines", new { purchaseOrderId = item.PurchaseOrderId, purchaseOrderLineNo = item.PurchaseOrderLineNo }, new { @class="btn btn-default"})
 
                         </td>
                     </tr>
@@ -148,7 +148,7 @@
     }
 
     <div>
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-default"})
     </div>
 
     @section Scripts {
