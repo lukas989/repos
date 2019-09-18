@@ -32,16 +32,5 @@ namespace Models
         public string Description { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<System.DateTime> WmsUpdate { get; set; }
-
-        public string Customer
-        {
-            get
-            {
-                if (!string.IsNullOrWhiteSpace(NameCustomer))
-                    return NameCustomer;
-                else
-                    return FirstNameCustomer + " " + LastNameCustomer;
-            }
-        }
     }
 }

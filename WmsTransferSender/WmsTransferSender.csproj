@@ -54,11 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="OrederImport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SalesOrderToWms.cs" />
-    <Compile Include="SalesOrderToWmsServices.cs" />
+    <Compile Include="Services\SalesOrderToWmsServices.cs" />
     <Compile Include="Services\ReceiptPlansToWmsServices.cs" />
     <Compile Include="Services\ProductToWmsServices.cs" />
   </ItemGroup>
