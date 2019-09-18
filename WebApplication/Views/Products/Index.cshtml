@@ -7,9 +7,9 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create",null, new { @class="btn btn-default"})
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Product)
@@ -95,7 +95,7 @@
         @Html.DisplayFor(modelItem => item.WmsUpdate)
     </td>
     <td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ProductId })
+        @Html.ActionLink("Edit", "Edit", new { id = item.ProductId }, new { @class="btn btn-default"})
     </td>
 </tr>
 }

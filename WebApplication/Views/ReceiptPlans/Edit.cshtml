@@ -58,7 +58,7 @@
 <p>
     @Html.ActionLink("New Line", "Create", "ReceiptPlanLines", new { receiptPlanId = Model.ReceiptPlanId, supplierId = Model.SupplierId }, new { @class = "btn btn-default" })
 </p>
-<table class="table">
+<table class="table table-striped">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.VReceiptPlanLines.FirstOrDefault().Product)
@@ -123,8 +123,8 @@
     </td>
 
     <td>
-        @Html.ActionLink("Edit", "Edit", "ReceiptPlanLines", new { receiptPlanId = item.ReceiptPlanId, receiptPlanLineNo = item.ReceiptPlanLineNo }, null) |
-        @Html.ActionLink("Delete", "Delete", "ReceiptPlanLines", new { receiptPlanId = item.ReceiptPlanId, receiptPlanLineNo = item.ReceiptPlanLineNo }, null) 
+        @Html.ActionLink("Edit", "Edit", "ReceiptPlanLines", new { receiptPlanId = item.ReceiptPlanId, receiptPlanLineNo = item.ReceiptPlanLineNo }, new { @class="btn btn-default"}) |
+        @Html.ActionLink("Delete", "Delete", "ReceiptPlanLines", new { receiptPlanId = item.ReceiptPlanId, receiptPlanLineNo = item.ReceiptPlanLineNo }, new { @class="btn btn-default"}) 
     </td>
 </tr>
     }
@@ -133,7 +133,7 @@
 
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new { @class="btn btn-default"})
 </div>
 
 @section Scripts {
