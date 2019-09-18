@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Models.Suppliers>
+﻿@model IEnumerable<Models.VSuppliers>
 
 @{
     ViewBag.Title = "Index";
@@ -11,6 +11,10 @@
 </p>
 <table class="table table-striped">
     <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.VSupplierId)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Name)
         </th>
@@ -33,29 +37,32 @@
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryAuthor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EntryDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastAuthor)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastUpdate)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new {  id=item.SupplierId }, new { @class="btn btn-default"}) 
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.VSupplierId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Name)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Description)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EntryDate)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastAuthor)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.LastUpdate)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.SupplierId }, new { @class = "btn btn-default" })
+    </td>
+</tr>
 }
 
 </table>

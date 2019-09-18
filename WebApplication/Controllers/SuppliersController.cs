@@ -16,7 +16,7 @@ namespace WebApplication.Controllers
         // GET: Suppliers
         public async System.Threading.Tasks.Task<ActionResult> Index()
         {
-            IEnumerable<Suppliers> suppliers =await new HttpClientLib().GetAsync<IEnumerable<Suppliers>>("API", "/api/Suppliers/");
+            IEnumerable<VSuppliers> suppliers =await new HttpClientLib().GetAsync<IEnumerable<VSuppliers>>("API", "/api/Suppliers/");
             return View(suppliers);
         }
 
