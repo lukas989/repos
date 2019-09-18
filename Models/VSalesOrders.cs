@@ -32,5 +32,7 @@ namespace Models
         public string Description { get; set; }
         public Nullable<decimal> Price { get; set; }
         public Nullable<System.DateTime> WmsUpdate { get; set; }
+        public string VSalesOrderId { get; set; }
+        public string VCustomerId { get; set; }
     }
 }

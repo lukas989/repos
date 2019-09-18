@@ -160,6 +160,9 @@
     <Compile Include="VSalesOrders.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="VSuppliers.cs">
+      <DependentUpon>EntityDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="WmsOperation.cs" />
     <Compile Include="Wms\Customer.cs" />
     <Compile Include="Wms\Item.cs" />

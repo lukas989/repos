@@ -29,5 +29,7 @@ namespace Models
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public Nullable<System.DateTime> WmsUpdate { get; set; }
+        public string VProductId { get; set; }
+        public string VSupplierId { get; set; }
     }
 }

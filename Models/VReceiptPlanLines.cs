@@ -28,5 +28,8 @@ namespace Models
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public Nullable<int> ProductId { get; set; }
+        public string VReceiptPlanId { get; set; }
+        public string VProductId { get; set; }
+        public string VPurchaseOrderId { get; set; }
     }
 }

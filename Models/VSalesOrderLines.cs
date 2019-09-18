@@ -19,7 +19,7 @@ namespace Models
         public int ProductId { get; set; }
         public string ProductName { get; set; }
         public int OrderedQty { get; set; }
-        public Nullable<int> RecivedQty { get; set; }
+        public int RecivedQty { get; set; }
         public decimal PurchaseOrderPrice { get; set; }
         public Nullable<System.DateTime> ExpectedDate { get; set; }
         public Nullable<System.DateTime> DeliveryDate { get; set; }
@@ -27,5 +27,7 @@ namespace Models
         public System.DateTime EntryDate { get; set; }
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
+        public string VSalesOrderId { get; set; }
+        public string VProductId { get; set; }
     }
 }
