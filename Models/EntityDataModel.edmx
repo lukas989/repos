@@ -5,27 +5,6 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="WmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="CustomerAddress">
-          <Key>
-            <PropertyRef Name="CustomerAddressId" />
-          </Key>
-          <Property Name="CustomerAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CustomerId" Type="int" Nullable="false" />
-          <Property Name="CustomerAddressTypeId" Type="int" Nullable="false" />
-          <Property Name="Street" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="City" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Zipcode" Type="varchar" MaxLength="15" Nullable="false" />
-          <Property Name="Country" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
-        </EntityType>
-        <EntityType Name="CustomerAddressTypes">
-          <Key>
-            <PropertyRef Name="CustomerAddressTypeId" />
-          </Key>
-          <Property Name="CustomerAddressTypeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="varchar" MaxLength="32" Nullable="false" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
-        </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -507,30 +486,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSuppliers' does not have a 
           <Property Name="LastAuthor" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="LastUpdate" Type="datetime" Nullable="false" />
         </EntityType>
-        <Association Name="FK_CustomerAddressTypes_CustomerAddress">
-          <End Role="CustomerAddressTypes" Type="Self.CustomerAddressTypes" Multiplicity="1" />
-          <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="CustomerAddressTypes">
-              <PropertyRef Name="CustomerAddressTypeId" />
-            </Principal>
-            <Dependent Role="CustomerAddress">
-              <PropertyRef Name="CustomerAddressTypeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Customers_CustomerAddress">
-          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
-          <End Role="CustomerAddress" Type="Self.CustomerAddress" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Customers">
-              <PropertyRef Name="CustomerId" />
-            </Principal>
-            <Dependent Role="CustomerAddress">
-              <PropertyRef Name="CustomerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Customers_SalesOrder">
           <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
           <End Role="SalesOrders" Type="Self.SalesOrders" Multiplicity="*" />
@@ -700,8 +655,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSuppliers' does not have a 
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="WmsModelStoreContainer">
-          <EntitySet Name="CustomerAddress" EntityType="Self.CustomerAddress" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="CustomerAddressTypes" EntityType="Self.CustomerAddressTypes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderLineConfirmWms" EntityType="Self.OrderLineConfirmWms" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductBarcodes" EntityType="Self.ProductBarcodes" Schema="dbo" store:Type="Tables" />
@@ -876,14 +829,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSuppliers' does not have a 
     [VSuppliers].[LastUpdate] AS [LastUpdate]
     FROM [dbo].[VSuppliers] AS [VSuppliers]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_CustomerAddressTypes_CustomerAddress" Association="Self.FK_CustomerAddressTypes_CustomerAddress">
-            <End Role="CustomerAddressTypes" EntitySet="CustomerAddressTypes" />
-            <End Role="CustomerAddress" EntitySet="CustomerAddress" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Customers_CustomerAddress" Association="Self.FK_Customers_CustomerAddress">
-            <End Role="Customers" EntitySet="Customers" />
-            <End Role="CustomerAddress" EntitySet="CustomerAddress" />
-          </AssociationSet>
           <AssociationSet Name="FK_Customers_SalesOrder" Association="Self.FK_Customers_SalesOrder">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="SalesOrders" EntitySet="SalesOrders" />
@@ -1752,29 +1697,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSuppliers' does not have a 
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="WmsModelStoreContainer" CdmEntityContainer="WmsConnectionEntities">
-          <EntitySetMapping Name="CustomerAddress">
-            <EntityTypeMapping TypeName="WmsModel.CustomerAddress">
-              <MappingFragment StoreEntitySet="CustomerAddress">
-                <ScalarProperty Name="CustomerAddressId" ColumnName="CustomerAddressId" />
-                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
-                <ScalarProperty Name="CustomerAddressTypeId" ColumnName="CustomerAddressTypeId" />
-                <ScalarProperty Name="Street" ColumnName="Street" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Zipcode" ColumnName="Zipcode" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="CustomerAddressTypes">
-            <EntityTypeMapping TypeName="WmsModel.CustomerAddressTypes">
-              <MappingFragment StoreEntitySet="CustomerAddressTypes">
-                <ScalarProperty Name="CustomerAddressTypeId" ColumnName="CustomerAddressTypeId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="WmsModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
