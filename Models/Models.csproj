@@ -83,6 +83,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EntityDataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EntityDataModel2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EntityDataModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Mappers.cs" />
     <Compile Include="OrderLineConfirmWms.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
@@ -193,7 +198,7 @@
     <None Include="App.config" />
     <EntityDeploy Include="EntityDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>EntityDataModel1.Designer.cs</LastGenOutput>
+      <LastGenOutput>EntityDataModel2.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="EntityDataModel.edmx.diagram">
       <DependentUpon>EntityDataModel.edmx</DependentUpon>

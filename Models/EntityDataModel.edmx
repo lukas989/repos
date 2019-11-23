@@ -450,9 +450,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSalesOrders' does not have 
           <Property Name="SalesOrderStatus" Type="varchar" MaxLength="32" />
           <Property Name="CustomerId" Type="int" Nullable="false" />
           <Property Name="VCustomerId" Type="varchar" MaxLength="11" />
-          <Property Name="NameCustomer" Type="varchar" MaxLength="200" />
-          <Property Name="FirstNameCustomer" Type="varchar" MaxLength="200" />
-          <Property Name="LastNameCustomer" Type="varchar" MaxLength="200" />
+          <Property Name="NameCustomer" Type="varchar" MaxLength="401" />
           <Property Name="SalesOrderLines" Type="int" />
           <Property Name="Price" Type="decimal" Precision="38" Scale="5" />
           <Property Name="ExpectedDate" Type="datetime" />
@@ -802,8 +800,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSuppliers' does not have a 
     [VSalesOrders].[CustomerId] AS [CustomerId], 
     [VSalesOrders].[VCustomerId] AS [VCustomerId], 
     [VSalesOrders].[NameCustomer] AS [NameCustomer], 
-    [VSalesOrders].[FirstNameCustomer] AS [FirstNameCustomer], 
-    [VSalesOrders].[LastNameCustomer] AS [LastNameCustomer], 
     [VSalesOrders].[SalesOrderLines] AS [SalesOrderLines], 
     [VSalesOrders].[Price] AS [Price], 
     [VSalesOrders].[ExpectedDate] AS [ExpectedDate], 
@@ -1613,7 +1609,7 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSuppliers' does not have a 
           <Property Name="SalesOrderStatusId" Type="Int32" Nullable="false" />
           <Property Name="SalesOrderStatus" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="CustomerId" Type="Int32" Nullable="false" />
-          <Property Name="NameCustomer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="NameCustomer" Type="String" MaxLength="401" FixedLength="false" Unicode="false" />
           <Property Name="FirstNameCustomer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="LastNameCustomer" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="SalesOrderLines" Type="Int32" />
@@ -2061,8 +2057,6 @@ warning 6002: The table/view 'WmsIntegration_v2.dbo.VSuppliers' does not have a 
                 <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
                 <ScalarProperty Name="ExpectedDate" ColumnName="ExpectedDate" />
                 <ScalarProperty Name="SalesOrderLines" ColumnName="SalesOrderLines" />
-                <ScalarProperty Name="LastNameCustomer" ColumnName="LastNameCustomer" />
-                <ScalarProperty Name="FirstNameCustomer" ColumnName="FirstNameCustomer" />
                 <ScalarProperty Name="NameCustomer" ColumnName="NameCustomer" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SalesOrderStatus" ColumnName="SalesOrderStatus" />
