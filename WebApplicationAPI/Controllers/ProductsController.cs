@@ -28,10 +28,6 @@ namespace WebApplicationAPI.Controllers
         public IHttpActionResult GetProductsById(int id)
         {
             Products products = db.Products.Find(id);
-            var listProductBarcodes =  db.ProductBarcodes.Where(x => x.ProductId == id).ToList();
-            if (listProductBarcodes != null && listProductBarcodes.Count !=  0)
-            { products.ProductBarcodes = listProductBarcodes; }
-            
             if (products == null)
             {
                 return NotFound();

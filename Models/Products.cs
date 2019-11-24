@@ -17,7 +17,6 @@ namespace Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Products()
         {
-            this.ProductBarcodes = new HashSet<ProductBarcodes>();
             this.PurchaseOrderLines = new HashSet<PurchaseOrderLines>();
             this.SalesOrderLines = new HashSet<SalesOrderLines>();
         }
@@ -36,8 +35,6 @@ namespace Models
         public System.DateTime LastUpdate { get; set; }
         public Nullable<System.DateTime> WmsUpdate { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductBarcodes> ProductBarcodes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrderLines> PurchaseOrderLines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

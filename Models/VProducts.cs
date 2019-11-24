@@ -14,12 +14,13 @@ namespace Models
     
     public partial class VProducts
     {
+        public string VProductId { get; set; }
         public int ProductId { get; set; }
         public string Product { get; set; }
+        public string VSupplierId { get; set; }
         public int SupplierId { get; set; }
         public string Supplier { get; set; }
         public string Description { get; set; }
-        public Nullable<int> IsBarcodeSet { get; set; }
         public Nullable<decimal> Weight { get; set; }
         public Nullable<decimal> Height { get; set; }
         public Nullable<decimal> Width { get; set; }
@@ -29,7 +30,5 @@ namespace Models
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public Nullable<System.DateTime> WmsUpdate { get; set; }
-        public string VProductId { get; set; }
-        public string VSupplierId { get; set; }
     }
 }

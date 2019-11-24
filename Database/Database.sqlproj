@@ -88,12 +88,9 @@
     <Build Include="dbo\Tables\PurchaseOrderStatus.sql" />
     <Build Include="dbo\Tables\ReceiptPlanStatus.sql" />
     <Build Include="dbo\Tables\Customers.sql" />
-    <Build Include="dbo\Tables\CustomerAddress.sql" />
-    <Build Include="dbo\Tables\CustomerAddressTypes.sql" />
     <Build Include="dbo\Tables\SalesOrders.sql" />
     <Build Include="dbo\Tables\SalesOrderLines.sql" />
     <Build Include="dbo\Tables\SalesOrderStatus.sql" />
-    <Build Include="dbo\Tables\ProductBarcodes.sql" />
     <Build Include="dbo\VProducts.sql" />
     <Build Include="dbo\VPurchaseOrders.sql" />
     <Build Include="dbo\Views\VPurchaseOrderLines.sql" />

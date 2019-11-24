@@ -15,13 +15,14 @@ namespace Models
     public partial class VSalesOrders
     {
         public int SalesOrderId { get; set; }
+        public string VSalesOrderId { get; set; }
         public int SalesOrderStatusId { get; set; }
         public string SalesOrderStatus { get; set; }
         public int CustomerId { get; set; }
+        public string VCustomerId { get; set; }
         public string NameCustomer { get; set; }
-        public string FirstNameCustomer { get; set; }
-        public string LastNameCustomer { get; set; }
         public Nullable<int> SalesOrderLines { get; set; }
+        public Nullable<decimal> Price { get; set; }
         public Nullable<System.DateTime> ExpectedDate { get; set; }
         public string CurrencyId { get; set; }
         public decimal CurrencyRate { get; set; }
@@ -30,9 +31,6 @@ namespace Models
         public string LastAuthor { get; set; }
         public System.DateTime LastUpdate { get; set; }
         public string Description { get; set; }
-        public Nullable<decimal> Price { get; set; }
         public Nullable<System.DateTime> WmsUpdate { get; set; }
-        public string VSalesOrderId { get; set; }
-        public string VCustomerId { get; set; }
     }
 }

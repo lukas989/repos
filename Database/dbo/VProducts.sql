@@ -6,7 +6,6 @@
               p.SupplierId ,
 			  s.Name as Supplier,
               p.Description ,
-			  (SELECT TOP 1 1 FROM ProductBarcodes WHERE ProductBarcodes.ProductId = p.ProductId) as IsBarcodeSet,
               p.Weight ,
               p.Height ,
               p.Width ,

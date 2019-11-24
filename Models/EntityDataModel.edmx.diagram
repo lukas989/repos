@@ -5,10 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1f0adfa76971403ebe442e532e4fa342" Name="Diagram1" ZoomLevel="62">
-        <EntityTypeShape EntityType="WmsModel.CustomerAddress" Width="1.5" PointX="3" PointY="6.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="WmsModel.CustomerAddressTypes" Width="1.5" PointX="0.75" PointY="15.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.Customers" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="WmsModel.ProductBarcodes" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.Products" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.PurchaseOrderLines" Width="1.5" PointX="8.25" PointY="10.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.PurchaseOrders" Width="1.5" PointX="6" PointY="14.625" IsExpanded="true" />
@@ -21,10 +18,7 @@
         <EntityTypeShape EntityType="WmsModel.SalesOrderStatus" Width="1.5" PointX="0.875" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.Suppliers" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="WmsModel.sysdiagrams" Width="1.5" PointX="10.75" PointY="1.25" IsExpanded="true" />
-        <AssociationConnector Association="WmsModel.FK_CustomerAddressTypes_CustomerAddress" ManuallyRouted="false" />
-        <AssociationConnector Association="WmsModel.FK_Customers_CustomerAddress" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Customers_SalesOrder" ManuallyRouted="false" />
-        <AssociationConnector Association="WmsModel.FK_Products_ProductBarcodes" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Products_PurchaseOrderLines" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Products_SalesOrderLines" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_Supplier_Products" ManuallyRouted="false" />
@@ -37,7 +31,6 @@
         <AssociationConnector Association="WmsModel.FK_Supplier_ReceiptPlans" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_SalesOrders_SalesOrderLines" ManuallyRouted="false" />
         <AssociationConnector Association="WmsModel.FK_SalesOrderStatus_SalesOrder" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="WmsModel.VProducts" Width="1.5" PointX="10.375" PointY="4.75" />
         <EntityTypeShape EntityType="WmsModel.VPurchaseOrders" Width="1.5" PointX="10.375" PointY="9.75" />
         <EntityTypeShape EntityType="WmsModel.VPurchaseOrderLines" Width="1.5" PointX="12.375" PointY="4.75" />
         <EntityTypeShape EntityType="WmsModel.VReceiptPlanLines" Width="1.5" PointX="12.375" PointY="9.75" />
@@ -45,10 +38,11 @@
         <EntityTypeShape EntityType="WmsModel.XmlIn" Width="1.5" PointX="14.375" PointY="4.75" />
         <EntityTypeShape EntityType="WmsModel.XmlOut" Width="1.5" PointX="14.375" PointY="7.75" />
         <EntityTypeShape EntityType="WmsModel.ReceiptPlanLineConfirmWms" Width="1.5" PointX="14.375" PointY="10.75" />
-        <EntityTypeShape EntityType="WmsModel.VSalesOrders" Width="1.5" PointX="5.75" PointY="5.5" />
         <EntityTypeShape EntityType="WmsModel.VSalesOrderLines" Width="1.5" PointX="7.375" PointY="0.75" />
         <EntityTypeShape EntityType="WmsModel.OrderLineConfirmWms" Width="1.5" PointX="13.375" PointY="14.75" />
         <EntityTypeShape EntityType="WmsModel.VSuppliers" Width="1.5" PointX="15.375" PointY="0.75" />
+        <EntityTypeShape EntityType="WmsModel.VSalesOrders" Width="1.5" PointX="5.375" PointY="5.75" />
+        <EntityTypeShape EntityType="WmsModel.VProducts" Width="1.5" PointX="9.375" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

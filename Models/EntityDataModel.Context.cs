@@ -25,10 +25,7 @@ namespace Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<CustomerAddress> CustomerAddress { get; set; }
-        public virtual DbSet<CustomerAddressTypes> CustomerAddressTypes { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
-        public virtual DbSet<ProductBarcodes> ProductBarcodes { get; set; }
         public virtual DbSet<Products> Products { get; set; }
         public virtual DbSet<PurchaseOrderLines> PurchaseOrderLines { get; set; }
         public virtual DbSet<PurchaseOrders> PurchaseOrders { get; set; }
@@ -41,7 +38,6 @@ namespace Models
         public virtual DbSet<SalesOrderStatus> SalesOrderStatus { get; set; }
         public virtual DbSet<Suppliers> Suppliers { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<VProducts> VProducts { get; set; }
         public virtual DbSet<VPurchaseOrders> VPurchaseOrders { get; set; }
         public virtual DbSet<VPurchaseOrderLines> VPurchaseOrderLines { get; set; }
         public virtual DbSet<VReceiptPlanLines> VReceiptPlanLines { get; set; }
@@ -49,9 +45,10 @@ namespace Models
         public virtual DbSet<XmlIn> XmlIn { get; set; }
         public virtual DbSet<XmlOut> XmlOut { get; set; }
         public virtual DbSet<ReceiptPlanLineConfirmWms> ReceiptPlanLineConfirmWms { get; set; }
-        public virtual DbSet<VSalesOrders> VSalesOrders { get; set; }
         public virtual DbSet<VSalesOrderLines> VSalesOrderLines { get; set; }
         public virtual DbSet<OrderLineConfirmWms> OrderLineConfirmWms { get; set; }
         public virtual DbSet<VSuppliers> VSuppliers { get; set; }
+        public virtual DbSet<VSalesOrders> VSalesOrders { get; set; }
+        public virtual DbSet<VProducts> VProducts { get; set; }
     }
 }

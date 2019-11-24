@@ -54,12 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerAddress.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerAddressTypes.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Customers.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
@@ -90,9 +84,6 @@
     </Compile>
     <Compile Include="Mappers.cs" />
     <Compile Include="OrderLineConfirmWms.cs">
-      <DependentUpon>EntityDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ProductBarcodes.cs">
       <DependentUpon>EntityDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductEdit.cs" />
